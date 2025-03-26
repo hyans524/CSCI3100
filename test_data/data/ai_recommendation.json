@@ -1,0 +1,16 @@
+[
+    {
+      "user": "backpacker_sara",
+      "preferences": {
+        "destination": "Japan",
+        "budget": 5000,
+        "activities": ["Cultural Tours", "Food"]
+      },
+      "suggestions": [
+        {
+          "destination": "Kyoto",
+          "activities": ["Fushimi Inari Shrine", "Kaiseki Dinner"]
+        }
+      ]
+    }
+]

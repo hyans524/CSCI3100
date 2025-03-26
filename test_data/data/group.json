@@ -1,0 +1,22 @@
+[
+    {
+      "group_name": "Japan 2024 Squad",
+      "members": [
+        "adventure_jane", 
+        "traveler_mike"
+      ],
+      "trip_summary":  "Tokyo, Japan",
+      "messages": [
+        {
+          "user": "adventure_jane",
+          "text": "Let's meet at Shinjuku Station!",
+          "timestamp": "2024-04-15T10:00:00Z"
+        },
+        {
+            "user": "traveler_mike",
+            "text": "OK!",
+            "timestamp": "2024-04-15T10:02:00Z"
+          }
+      ]
+    }
+  ]
