@@ -5,7 +5,11 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Venue' }]
+    age: { type: Number, required: true},
+    phone: { type: String, required: true, unique: true},
+    gender: { type: String, required: true},
+    language: { type: String, required: true},
+    email: { type: String, required: true, unique: true},
 });
 
 // Hash password before saving
