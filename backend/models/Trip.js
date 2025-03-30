@@ -1,0 +1,14 @@
+const mongoose = require('mongoose');
+
+const TripSchema = new mongoose.Schema({
+    destination: { type: String, required: true },
+    start_date: { type: Date },
+    end_date: { type: String },
+    budget: { type: Number },
+    activity: {type: mongoose.Schema.Types.Mixed},
+    group_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Group', required: true }
+});
+
+module.exports = mongoose.model('Trip', TripSchema); 
+
+
