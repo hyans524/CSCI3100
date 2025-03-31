@@ -5,9 +5,112 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
+    <link rel="stylesheet" href="./src/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </head>
-  <body>
+<body>
     <div id="root"></div>
+    <header>
+      <nav>
+        <div class="logo"><span><strong>WeTravel</strong></span></div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Destinations</a></li>
+          <li><a href="#">GroupChat</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+          <a href="#" class="btn">Sign In</a>
+          <a href="#" class="btn btn-primary">Sign Up</a>
+        </div>
+      </nav>
+    </header>
+  
+    <!-- Hero Banner -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Discover Your Next Adventure</h1>
+        <p>Find the best travel destinations and book your dream vacation today.</p>
+        <form class="search-bar">
+          <input type="text" placeholder="Search destinations...">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+    </section>
+  
+    <!-- Popular Destinations -->
+    <section class="destinations">
+      <h2>Popular Destinations</h2>
+      <div class="destination-grid">
+        <div class="destination-card">
+          <img src="paris.jpg" alt="Paris">
+          <h3>Paris, France</h3>
+          <p>From $999</p>
+        </div>
+        <div class="destination-card">
+          <img src="bali.jpg" alt="Bali">
+          <h3>Bali, Indonesia</h3>
+          <p>From $799</p>
+        </div>
+        <div class="destination-card">
+          <img src="tokyo.jpg" alt="Tokyo">
+          <h3>Tokyo, Japan</h3>
+          <p>From $1299</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Featured Deals -->
+    <section class="deals">
+      <h2>Hot Deals</h2>
+      <div class="deal-slider">
+        <!-- Slider content goes here (JS-based) -->
+      </div>
+    </section>
+  
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <h2>What Our Travelers Say</h2>
+      <div class="testimonial-cards">
+        <div class="testimonial">
+          <p>"Best travel experience ever!" - <strong>John D.</strong></p>
+        </div>
+        <div class="testimonial">
+          <p>"Amazing customer service!" - <strong>Sarah K.</strong></p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Newsletter Subscription -->
+    <section class="newsletter">
+      <h2>Subscribe for Updates</h2>
+      <form>
+        <input type="email" placeholder="Your Email">
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </section>
+  
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">Explore<span>World</span></div>
+        <div class="footer-links">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">FAQ</a>
+        </div>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <p>&copy; 2023 ExploreWorld. All rights reserved.</p>
+    </footer>
+
+
+
     <script type="module" src="/src/main.jsx"></script>
-  </body>
+</body>
 </html>
