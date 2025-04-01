@@ -34,7 +34,7 @@ const Hero = () => {
                   name="destination"
                   id="destination"
                   placeholder="Bangkok"
-                  className="w-full bg-gray-100 my-2 range accent-red focus:outline-red focus:outline outline-1 rounded-full p-2"
+                  className="w-full bg-gray-100 my-2 range accent-red-500 focus:outline-red-500 focus:outline outline-1 rounded-full p-2"
                 />
               </div>
 
@@ -46,7 +46,7 @@ const Hero = () => {
                   type="Date"
                   name="destination"
                   id="destination"
-                  className="w-full !placeholder-slate-400 bg-gray-100 my-2 rounded-full focus:outline-red focus:outline outline-1 p-2"
+                  className="w-full !placeholder-slate-400 bg-gray-100 my-2 rounded-full focus:outline-red-500 focus:outline outline-1 p-2"
                 />
               </div>
               <div className="w-[23%]">
@@ -57,14 +57,13 @@ const Hero = () => {
                   type="Date"
                   name="destination"
                   id="destination"
-                  className="w-full !placeholder-slate-400 bg-gray-100 my-2 rounded-full focus:outline-red focus:outline outline-1 p-2"
+                  className="w-full !placeholder-slate-400 bg-gray-100 my-2 rounded-full focus:outline-red-500 focus:outline outline-1 p-2"
                 />
               </div>
 
               <div className="w-[23%]">
                 <label htmlFor="destination" className="opacity-70 block">
                   <div className="w-full flex justify-between items-center">
-                    <p>Max Price</p>
                     <p className="font-bold text-xl">{priceValue} Hkd</p>
                   </div>
                 </label>
@@ -73,7 +72,7 @@ const Hero = () => {
                     type="range"
                     name="destination"
                     id="destination"
-                    className="appearance-none w-full h-2 bg-gray-300 rounded-full my-2 accent-red"
+                    className="appearance-none w-full h-2 bg-gray-300 rounded-full my-2 accent-red-800"
                     min="150"
                     max="1000"
                     value={priceValue}
