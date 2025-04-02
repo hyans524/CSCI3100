@@ -14,7 +14,7 @@ const GroupSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-          timestamp: {
+        timestamp: {
             type: Date,
             default: Date.now,
         },
