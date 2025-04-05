@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 });
-z
+
 router.put('/:id', async (req, res) => {
     try {
         const group = await Group.findById(req.params.id);

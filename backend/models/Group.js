@@ -6,7 +6,7 @@ const GroupSchema = new mongoose.Schema({
     trip_summary: { type: mongoose.Schema.Types.Mixed },
     messages: [{
         user_id: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,
         },

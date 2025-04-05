@@ -1,7 +1,7 @@
 {
-  "name": "cultural-events-backend",
+  "name": "we_travel-backend",
   "version": "1.0.0",
-  "description": "Backend for Cultural Events Web Application",
+  "description": "Backend for WeTravl Web Application",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -16,6 +16,8 @@
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.8.6",
+    "multer": "^1.4.5-lts.2",
+    "openai": "^4.91.1",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {

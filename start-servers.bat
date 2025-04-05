@@ -23,7 +23,7 @@ cd backend
 :: Install backend dependencies
 echo Installing backend dependencies...
 call npm install
-call npm install dotenv express mongoose cors bcryptjs jsonwebtoken express-validator xml2js
+call npm install dotenv express mongoose cors bcryptjs jsonwebtoken express-validator xml2js multer openai
 call npm install nodemon --save-dev
 if errorlevel 1 (
     echo Failed to install backend dependencies

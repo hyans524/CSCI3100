@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const RecommendationSchema = new Schema({
+const RecommendationSchema = new mongoose.Schema({
     user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     group_id: { type: Schema.Types.ObjectId, ref: 'Group', default: null },
     preferences: {
@@ -14,4 +14,4 @@ const RecommendationSchema = new Schema({
     createdAt: { type: Date, default: Date.now },
   });
 
-module.exports = mongoose.model('Recommendation', recommendationSchema);
+module.exports = mongoose.model('Recommendation', RecommendationSchema);
