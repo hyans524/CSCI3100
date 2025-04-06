@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const TripSchema = new mongoose.Schema({
     destination: { type: String, required: true },
     start_date: { type: Date },
-    end_date: { type: String },
+    end_date: { type: Date },
     budget: { type: Number },
     activity: {type: mongoose.Schema.Types.Mixed},
     group_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Group', required: true }
