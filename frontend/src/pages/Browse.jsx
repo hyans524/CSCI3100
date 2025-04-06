@@ -1,6 +1,5 @@
 import React from 'react'
 import great_wall from '../assets/great_wall.jpg'
-import Browseoption from '../../components/Browseoption/Browseoption'
 
 const Browse = () => {
   return (

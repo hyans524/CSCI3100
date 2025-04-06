@@ -35,7 +35,7 @@ const Recommend = () => {
                                     type="text"
                                     name="location"
                                     id="location"
-                                    placeholder="Bangkok"
+                                    placeholder="Tokyo"
                                     className="w-full bg-gray-100 my-2 range accent-red-300 focus:outline-pink-400 focus:outline outline-1 p-2 rounded-md"
                                 />
                             </div>
@@ -120,7 +120,7 @@ const Recommend = () => {
                         </div>
 
                         <div className="flex items-right">
-                            <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full mt-5 ml-[80%]">
+                            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full mt-5 ml-[80%]">
                                 AI generate
                             </button>
                         </div>
