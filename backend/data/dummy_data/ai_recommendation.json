@@ -1,16 +1,114 @@
 [
-    {
-      "user": "backpacker_sara",
-      "preferences": {
-        "destination": "Japan",
-        "budget": 5000,
-        "activities": ["Cultural Tours", "Food"]
-      },
-      "suggestions": [
-        {
-          "destination": "Kyoto",
-          "activities": ["Fushimi Inari Shrine", "Kaiseki Dinner"]
-        }
-      ]
-    }
+  {
+    "user_id": "1",
+    "preferences": {
+      "location": "Japan",
+      "budget": "5000",
+      "duration": 5,
+      "activities": ["Cultural Tours", "Food"]
+    },
+    "suggestions": ["Kyoto Fushimi Inari Shrine", "Kaiseki Dinner"]
+  },
+  {
+    "user_id": "1",
+    "group_id": "101",
+    "preferences": {
+      "location": "Paris, France",
+      "budget": "2000",
+      "duration": 7,
+      "activities": ["sightseeing", "museums", "food tours"]
+    },
+    "suggestions": ["Eiffel Tower visit", "Louvre Museum tour", "Seine River cruise", "Montmartre walking tour"]
+  },
+  {
+    "user_id": "2",
+    "preferences": {
+      "location": "Tokyo, Japan",
+      "budget": "3000",
+      "duration": 10,
+      "activities": ["sushi experience", "shopping", "cultural sites"]
+    },
+    "suggestions": ["Shibuya Crossing visit", "Tsukiji Fish Market tour", "Asakusa Temple experience", "Robot Restaurant show"]
+  },
+  {
+    "user_id": "3",
+    "preferences": {
+      "location": "New York, USA",
+      "budget": "2500",
+      "duration": 5,
+      "activities": ["broadway shows", "landmarks", "shopping"]
+    },
+    "suggestions": ["Statue of Liberty cruise", "Central Park bike tour", "Metropolitan Museum visit", "Times Square exploration"]
+  },
+  {
+    "user_id": "4",
+    "preferences": {
+      "location": "Bali, Indonesia",
+      "budget": "1500",
+      "duration": 8,
+      "activities": ["beaches", "yoga retreats", "cultural experiences"]
+    },
+    "suggestions": ["Ubud Monkey Forest", "Tegallalang Rice Terraces", "Uluwatu Temple visit", "Seminyak beach relaxation"]
+  },
+  {
+    "user_id": "5",
+    "preferences": {
+      "location": "Rome, Italy",
+      "budget": "1800",
+      "duration": 6,
+      "activities": ["historical sites", "food tours", "art galleries"]
+    },
+    "suggestions": ["Colosseum guided tour", "Vatican Museum visit", "Trevi Fountain visit", "Authentic pasta-making class"]
+  },
+  {
+    "user_id": "6",
+    "group_id": "102",
+    "preferences": {
+      "location": "Cape Town, South Africa",
+      "budget": "2200",
+      "duration": 9,
+      "activities": ["hiking", "wildlife", "wine tasting"]
+    },
+    "suggestions": ["Table Mountain hike", "Cape Peninsula tour", "Kirstenbosch Botanical Gardens", "Stellenbosch wine route"]
+  },
+  {
+    "user_id": "7",
+    "preferences": {
+      "location": "Sydney, Australia",
+      "budget": "2800",
+      "duration": 8,
+      "activities": ["beaches", "wildlife", "city tours"]
+    },
+    "suggestions": ["Sydney Opera House tour", "Bondi Beach visit", "Taronga Zoo experience", "Harbour Bridge climb"]
+  },
+  {
+    "user_id": "8",
+    "preferences": {
+      "location": "Bangkok, Thailand",
+      "budget": "1200",
+      "duration": 7,
+      "activities": ["street food", "temples", "markets"]
+    },
+    "suggestions": ["Grand Palace visit", "Floating markets tour", "Wat Arun temple", "Chinatown street food crawl"]
+  },
+  {
+    "user_id": "9",
+    "preferences": {
+      "location": "Reykjavik, Iceland",
+      "budget": "3500",
+      "duration": 6,
+      "activities": ["northern lights", "hot springs", "glaciers"]
+    },
+    "suggestions": ["Blue Lagoon visit", "Golden Circle tour", "Glacier hiking experience", "Northern Lights hunting tour"]
+  },
+  {
+    "user_id": "10",
+    "preferences": {
+      "location": "Dubai, UAE",
+      "budget": "4000",
+      "duration": 7,
+      "activities": ["luxury experiences", "desert tours", "shopping"]
+    },
+    "suggestions": ["Burj Khalifa visit", "Desert safari experience", "Dubai Mall shopping", "Palm Jumeirah tour"]
+  }
 ]

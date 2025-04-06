@@ -1,29 +1,104 @@
 [
-    {
-      "username": "adventure_jane",
-      "email": "jane@example.com",
-      "password": "hashed_1234",
-      "age": 28,
-      "gender": "Female",
-      "language": "English",
-      "phone": "+1234567890"
-    },
-    {
-      "username": "traveler_mike",
-      "email": "mike@example.com",
-      "password": "hashed_5678",
-      "age": 32,
-      "gender": "Male",
-      "language": "English",
-      "phone": "+0987654321"
-    },
-    {
-      "username": "backpacker_sara",
-      "email": "sara@example.com",
-      "password": "hashed_9101",
-      "age": 24,
-      "gender": "Female",
-      "language": "English",
-      "phone": "+1122334455"
-    }
+  {
+    "id": "1",
+    "username": "adventure_jane",
+    "email": "jane@example.com",
+    "password": "hashed1234",
+    "age": 28,
+    "gender": "Female",
+    "language": "English",
+    "phone": "+1234567890"
+  },
+  {
+    "id": "2",
+    "username": "traveler_mike",
+    "email": "mike@example.com",
+    "password": "hashed5678",
+    "age": 32,
+    "gender": "Male",
+    "language": "English",
+    "phone": "+0987654321"
+  },
+  {
+    "id": "3",
+    "username": "backpacker_sara",
+    "email": "sara@example.com",
+    "password": "hashed9101",
+    "age": 24,
+    "gender": "Female",
+    "language": "English",
+    "phone": "+1122334455"
+  },
+  {
+    "id": "4",
+    "username": "traveler_john",
+    "password": "Travel123", 
+    "age": 28,
+    "phone": "+1234567890",
+    "gender": "Male",
+    "language": "English",
+    "email": "john@example.com"
+  },
+  {
+    "id": "5",
+    "username": "adventure_sara",
+    "password": "SaraPass456", 
+    "age": 32,
+    "phone": "+1987654321",
+    "gender": "Female",
+    "language": "Spanish",
+    "email": "sara@example.com"
+  },
+  {
+    "id": "6",
+    "username": "explorer_mike",
+    "password": "Mike789Adventure",
+    "age": 24,
+    "phone": "+1122334455",
+    "gender": "Male",
+    "language": "French",
+    "email": "mike@example.com"
+  },
+  {
+    "id": "7",
+    "username": "admin_user",
+    "password": "AdminPass123", 
+    "age": 35,
+    "phone": "+1555555555",
+    "gender": "Female",
+    "language": "English",
+    "email": "admin@example.com",
+    "isAdmin": true
+  },
+  {
+    "id": "8",
+    "username": "testAdmin",
+    "password": "Adminadmin", 
+    "age": 20,
+    "phone": "+155554213",
+    "gender": "Male",
+    "language": "Chinese",
+    "email": "admin@test.com",
+    "isAdmin": true
+  },
+  {
+    "id": "9",
+    "username": "test_user",
+    "password": "Pass123901", 
+    "age": 18,
+    "phone": "+8612345678900",
+    "gender": "Female",
+    "language": "Chinese",
+    "email": "user@test.com"
+  },
+  {
+    "id": "10",
+    "username": "feng_user",
+    "password": "feng1234", 
+    "age": 21,
+    "phone": "+85296684538",
+    "gender": "Male",
+    "language": "Chinese",
+    "email": "feng@example.com"
+  }
 ]

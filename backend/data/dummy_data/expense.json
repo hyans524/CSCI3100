@@ -1,10 +1,91 @@
 [
     {
-      "group": "Japan 2024 Squad",
-      "paid_by": "adventure_jane",
+      "group_id": "104",
+      "paid_by": "9",
       "amount": 150.50,
       "category": "Food",
       "description": "Sushi dinner for 2 people",
       "date": "2024-05-02"
+    },
+
+    {
+      "group_id": "101",
+      "paid_by": "1",
+      "amount": 45.00,
+      "category": "Food",
+      "description": "Group dinner at Italian restaurant",
+      "date": "2024-05-01"
+    },
+    {
+      "group_id": "101",
+      "paid_by": "2",
+      "amount": 28.50,
+      "category": "Transport",
+      "description": "Train tickets for city travel",
+      "date": "2024-05-02"
+    },
+    {
+      "group_id": "102",
+      "paid_by": "3",
+      "amount": 200.00,
+      "category": "Accommodation",
+      "description": "Hostel booking for 3 nights",
+      "date": "2024-05-03"
+    },
+    {
+      "group_id": "102",
+      "paid_by": "4",
+      "amount": 75.00,
+      "category": "Recreation",
+      "description": "Museum entry tickets",
+      "date": "2024-05-04"
+    },
+    {
+      "group_id": "103",
+      "paid_by": "5",
+      "amount": 60.00,
+      "category": "Food",
+      "description": "Groceries for group meals",
+      "date": "2024-05-05"
+    },
+    {
+      "group_id": "103",
+      "paid_by": "6",
+      "amount": 15.00,
+      "category": "Transport",
+      "description": "Subway day passes",
+      "date": "2024-05-06"
+    },
+    {
+      "group_id": "104",
+      "paid_by": "7",
+      "amount": 180.00,
+      "category": "Accommodation",
+      "description": "Hotel room for 2 nights",
+      "date": "2024-05-07"
+    },
+    {
+      "group_id": "104",
+      "paid_by": "8",
+      "amount": 90.00,
+      "category": "Recreation",
+      "description": "Guided hiking tour",
+      "date": "2024-05-08"
+    },
+    {
+      "group_id": "105",
+      "paid_by": "9",
+      "amount": 35.00,
+      "category": "Food",
+      "description": "Cafe breakfast for group",
+      "date": "2024-05-09"
+    },
+    {
+      "group_id": "105",
+      "paid_by": "10",
+      "amount": 50.00,
+      "category": "Other",
+      "description": "First aid kit and supplies",
+      "date": "2024-05-10"
     }
   ]
