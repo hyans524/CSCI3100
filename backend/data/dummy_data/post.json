@@ -1,8 +1,169 @@
 [
-    {
-      "user_id": "adventure_jane",
-      "text": "Loved the cherry blossoms in Tokyo!",
-      "image": "tokyo.jpg",
-      "date": "2024-05-11"
-    }
-  ]
+  {
+    "user_id": "1",
+    "text": "Amazing cultural experience in Kyoto!",
+    "image": "images/kyoto.jpg",
+    "location": "Kyoto, Japan",
+    "budget": "2001-3000",
+    "activities": ["Temple visits", "Tea ceremonies", "Gardens"],
+    "start_date": "2024-04-01",
+    "end_date": "2024-04-10",
+    "likes": ["2", "3", "4"],
+    "comments": [
+      {
+        "user_id": "2",
+        "text": "Those gardens look incredible!",
+        "date": "2024-04-02T09:15:00Z"
+      },
+      {
+        "user_id": "9",
+        "text": "Looks great!",
+        "date": "2024-04-08T14:30:00Z"
+      }
+    ]
+  },
+  {
+    "user_id": "3",
+    "text": "Best pizza tour in Naples!",
+    "image": "images/naples.jpg",
+    "location": "Naples, Italy",
+    "budget": "1001-2000",
+    "activities": ["Food tours", "Historic sites", "Market visits"],
+    "start_date": "2024-05-15",
+    "end_date": "2024-05-22",
+    "likes": ["1", "5"],
+    "comments": [
+      {
+        "user_id": "4",
+        "text": "Which pizzeria was your favorite?",
+        "date": "2024-05-16T14:30:00Z"
+      }
+    ]
+  },
+  {
+    "user_id": "5",
+    "text": "Unforgettable safari adventure!",
+    "image": "images/safari.jpg",
+    "location": "Serengeti, Tanzania",
+    "budget": "3001+",
+    "activities": ["Wildlife viewing", "Camping", "Photography"],
+    "start_date": "2024-06-01",
+    "end_date": "2024-06-10",
+    "likes": ["6", "7", "8", "9"],
+    "comments": []
+  },
+  {
+    "user_id": "2",
+    "text": "Skiing paradise in the Alps 🏂",
+    "image": "images/alps.jpg",
+    "location": "Swiss Alps",
+    "budget": "3001+",
+    "activities": ["Skiing", "Snowboarding", "Mountain tours"],
+    "start_date": "2024-01-10",
+    "end_date": "2024-01-20",
+    "likes": ["1", "3", "5"],
+    "comments": [
+      {
+        "user_id": "7",
+        "text": "Which resort did you stay at?",
+        "date": "2024-01-12T11:20:00Z"
+      }
+    ]
+  },
+  {
+    "user_id": "4",
+    "text": "Beach relaxation in Bali 🌴",
+    "image": "images/bali.jpg",
+    "location": "Bali, Indonesia",
+    "budget": "2001-3000",
+    "activities": ["Surfing", "Yoga", "Beach hopping"],
+    "start_date": "2024-03-05",
+    "end_date": "2024-03-15",
+    "likes": ["9", "10"],
+    "comments": [
+      {
+        "user_id": "6",
+        "text": "Perfect sunset shots!",
+        "date": "2024-03-07T18:45:00Z"
+      }
+    ]
+  },
+  {
+    "user_id": "1",
+    "text": "Urban exploration in NYC",
+    "image": "images/nyc.jpg",
+    "location": "New York City, USA",
+    "budget": "1001-2000",
+    "activities": ["Museums", "Broadway shows", "Shopping"],
+    "start_date": "2024-07-01",
+    "end_date": "2024-07-07",
+    "likes": ["2", "4", "7"],
+    "comments": []
+  },
+  {
+    "user_id": "7",
+    "text": "Northern Lights chase in Iceland",
+    "image": "images/iceland.jpg",
+    "location": "Reykjavik, Iceland",
+    "budget": "2001-3000",
+    "activities": ["Aurora viewing", "Hot springs", "Glacier hiking"],
+    "start_date": "2024-02-10",
+    "end_date": "2024-02-20",
+    "likes": ["8", "9", "10"],
+    "comments": [
+      {
+        "user_id": "3",
+        "text": "What camera settings did you use?",
+        "date": "2024-02-12T20:15:00Z"
+      }
+    ]
+  },
+  {
+    "user_id": "8",
+    "text": "Desert adventure in Dubai",
+    "image": "images/dubai.jpg",
+    "location": "Dubai, UAE",
+    "budget": "3001+",
+    "activities": ["Desert safari", "Luxury shopping", "Burj Khalifa"],
+    "start_date": "2024-11-01",
+    "end_date": "2024-11-08",
+    "likes": ["1", "5", "9"],
+    "comments": []
+  },
+  {
+    "user_id": "9",
+    "text": "Cultural immersion in Marrakech",
+    "image": "images/marrakech.jpg",
+    "location": "Marrakech, Morocco",
+    "budget": "0-1000",
+    "activities": ["Markets", "Historic sites", "Local cuisine"],
+    "start_date": "2024-09-10",
+    "end_date": "2024-09-17",
+    "likes": ["2", "3", "6"],
+    "comments": [
+      {
+        "user_id": "10",
+        "text": "Love the vibrant colors!",
+        "date": "2024-09-12T16:30:00Z"
+      }
+    ]
+  },
+  {
+    "user_id": "10",
+    "text": "Hiking the Inca Trail",
+    "image": "images/inca.jpg",
+    "location": "Machu Picchu, Peru",
+    "budget": "1001-2000",
+    "activities": ["Hiking", "Archaeology", "Nature photography"],
+    "start_date": "2024-08-15",
+    "end_date": "2024-08-25",
+    "likes": ["1", "4", "7"],
+    "comments": [
+      {
+        "user_id": "5",
+        "text": "How was the altitude?",
+        "date": "2024-08-17T12:00:00Z"
+      }
+    ]
+  }
+]
