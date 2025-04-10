@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/WeTravel'
 const db = mongoose.connection;
 
 const groupRoutes = require('./routes/groups');
-// const userRoutes = require('./routes/users');
+const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/posts');
 const recommendationRoutes = require('./routes/recommendations')
 const expenseRoutes = require('./routes/expenses')
@@ -38,7 +38,7 @@ const authRoutes = require('./routes/auth');
 
 app.use('/api/groups', groupRoutes);
 app.use('/api/auth', authRoutes);
-// app.use('/api/users', userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/recommendations', recommendationRoutes);
 app.use('/api/expenses', expenseRoutes);
@@ -85,11 +85,10 @@ app.post('/api/init-data', async (req, res) => {
                 expensesCount: expenseCount
             });
         }
-
+        
         var json1 = require("./data/dummy_data/users.json");
         json1 = bson.EJSON.parse(JSON.stringify(json1));
         
-        // Process each user to preserve their favorites
         const processedUsers = json1.map(user => {
             // const userId = user._id.$oid;
             return user;
