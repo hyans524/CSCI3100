@@ -39,4 +39,22 @@ echo Starting backend server...
 start cmd /k "npm run dev"
 timeout /t 2
 
+:: Setup Frontend
+echo.
+echo Setting up frontend...
+cd ../frontend
+
+:: Install frontend dependencies
+echo Installing frontend dependencies...
+call npm install
+if errorlevel 1 (
+    echo Failed to install frontend dependencies
+    pause
+    exit /b 1
+)
+call npm audit fix --force
+
+:: Start frontend server
+echo Starting frontend server...
+start cmd /k "npm run dev"
 pause
