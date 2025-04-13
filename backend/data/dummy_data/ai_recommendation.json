@@ -1,5 +1,6 @@
 [
   {
+    "_id": "67fbd068d2525d08daed8953",
     "user_id": "1",
     "preferences": {
       "location": "Japan",
@@ -10,6 +11,7 @@
     "suggestions": ["Kyoto Fushimi Inari Shrine", "Kaiseki Dinner"]
   },
   {
+    "_id": "67fbd068d2525d08daed8954",
     "user_id": "1",
     "group_id": "101",
     "preferences": {
@@ -21,6 +23,7 @@
     "suggestions": ["Eiffel Tower visit", "Louvre Museum tour", "Seine River cruise", "Montmartre walking tour"]
   },
   {
+    "_id": "67fbd068d2525d08daed8955",
     "user_id": "2",
     "preferences": {
       "location": "Tokyo, Japan",
@@ -31,6 +34,7 @@
     "suggestions": ["Shibuya Crossing visit", "Tsukiji Fish Market tour", "Asakusa Temple experience", "Robot Restaurant show"]
   },
   {
+    "_id": "67fbd068d2525d08daed8956",
     "user_id": "3",
     "preferences": {
       "location": "New York, USA",
@@ -41,6 +45,7 @@
     "suggestions": ["Statue of Liberty cruise", "Central Park bike tour", "Metropolitan Museum visit", "Times Square exploration"]
   },
   {
+    "_id": "67fbd068d2525d08daed8957",
     "user_id": "4",
     "preferences": {
       "location": "Bali, Indonesia",
@@ -51,6 +56,7 @@
     "suggestions": ["Ubud Monkey Forest", "Tegallalang Rice Terraces", "Uluwatu Temple visit", "Seminyak beach relaxation"]
   },
   {
+    "_id": "67fbd068d2525d08daed8958",
     "user_id": "5",
     "preferences": {
       "location": "Rome, Italy",
@@ -61,6 +67,7 @@
     "suggestions": ["Colosseum guided tour", "Vatican Museum visit", "Trevi Fountain visit", "Authentic pasta-making class"]
   },
   {
+    "_id": "67fbd068d2525d08daed8959",
     "user_id": "6",
     "group_id": "102",
     "preferences": {
@@ -72,6 +79,7 @@
     "suggestions": ["Table Mountain hike", "Cape Peninsula tour", "Kirstenbosch Botanical Gardens", "Stellenbosch wine route"]
   },
   {
+    "_id": "67fbd068d2525d08daed895a",
     "user_id": "7",
     "preferences": {
       "location": "Sydney, Australia",
@@ -82,6 +90,7 @@
     "suggestions": ["Sydney Opera House tour", "Bondi Beach visit", "Taronga Zoo experience", "Harbour Bridge climb"]
   },
   {
+    "_id": "67fbd068d2525d08daed895b",
     "user_id": "8",
     "preferences": {
       "location": "Bangkok, Thailand",
@@ -92,6 +101,7 @@
     "suggestions": ["Grand Palace visit", "Floating markets tour", "Wat Arun temple", "Chinatown street food crawl"]
   },
   {
+    "_id": "67fbd068d2525d08daed895c",
     "user_id": "9",
     "preferences": {
       "location": "Reykjavik, Iceland",
@@ -102,6 +112,7 @@
     "suggestions": ["Blue Lagoon visit", "Golden Circle tour", "Glacier hiking experience", "Northern Lights hunting tour"]
   },
   {
+    "_id": "67fbd068d2525d08daed895d",
     "user_id": "10",
     "preferences": {
       "location": "Dubai, UAE",
