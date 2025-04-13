@@ -8,6 +8,7 @@ import Browse from "./pages/Browse"
 import MyTrip from "./pages/MyTrip"
 import NoPage from "./pages/NoPage"
 import Profile from "./pages/Profile"
+import TripDetail from "./pages/TripDetail"
 
 const App = () => {
   return (
@@ -16,11 +17,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="AIrec" element={<AIrec />} />
-            <Route path="browse" element={<Browse />} />
-            <Route path="mytrip" element={<MyTrip />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/AIrecommendation" element={<AIrec />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/mytrip" element={<MyTrip />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/trip/:id" element={<TripDetail />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
