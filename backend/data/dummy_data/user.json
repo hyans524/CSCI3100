@@ -7,7 +7,7 @@
     "age": 28,
     "gender": "Female",
     "language": "English",
-    "phone": "+1234567890"
+    "phone": "+1234567899"
   },
   {
     "id": "2",
@@ -22,7 +22,7 @@
   {
     "id": "3",
     "username": "backpacker_sara",
-    "email": "sara@example.com",
+    "email": "sara1@example.com",
     "password": "hashed9101",
     "age": 24,
     "gender": "Female",
@@ -54,10 +54,10 @@
     "username": "explorer_mike",
     "password": "Mike789Adventure",
     "age": 24,
-    "phone": "+1122334455",
+    "phone": "+11223344551",
     "gender": "Male",
     "language": "French",
-    "email": "mike@example.com"
+    "email": "mike1@example.com"
   },
   {
     "id": "7",

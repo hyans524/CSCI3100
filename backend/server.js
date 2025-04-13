@@ -67,7 +67,7 @@ app.get('/api/check-init', async (req, res) => {
     }
 });
 
-app.post('/api/init-data', async (req, res) => {
+app.get('/api/init-data', async (req, res) => {
     try {
         const groupCount = await Group.countDocuments();
         const userCount = await User.countDocuments();
@@ -86,7 +86,7 @@ app.post('/api/init-data', async (req, res) => {
             });
         }
         
-        var json1 = require("./data/dummy_data/users.json");
+        var json1 = require("./data/dummy_data/user.json");
         json1 = bson.EJSON.parse(JSON.stringify(json1));
         
         const processedUsers = json1.map(user => {
