@@ -1,5 +1,6 @@
 [
     {
+      "_id": "67fbcfadd2525d08daed8950",
       "destination": "Tokyo, Japan",
       "start_date": "2024-05-01",
       "end_date": "2024-05-10",
@@ -8,6 +9,7 @@
       "group_id": "101"
     },
     {
+      "_id": "67fbd013d2525d08daed8951",
       "destination": "Paris, France",
       "start_date": "2024-05-01",
       "end_date": "2024-05-05",
@@ -16,6 +18,7 @@
       "group_id": "101"
     },
     {
+      "_id": "67fbd013d2525d08daed8952",
       "destination": "Tokyo, Japan",
       "start_date": "2024-05-05",
       "end_date": "2024-05-15",
@@ -24,6 +27,7 @@
       "group_id": "102"
     },
     {
+      "_id": "67fbd013d2525d08daed8953",
       "destination": "New York, USA",
       "start_date": "2024-06-01",
       "end_date": "2024-06-10",
@@ -32,6 +36,7 @@
       "group_id": "103"
     },
     {
+      "_id": "67fbd013d2525d08daed8954",
       "destination": "Bali, Indonesia",
       "start_date": "2024-07-01",
       "end_date": "2024-07-10",
@@ -40,6 +45,7 @@
       "group_id": "104"
     },
     {
+      "_id": "67fbd013d2525d08daed8955",
       "destination": "Rome, Italy",
       "start_date": "2024-08-01",
       "end_date": "2024-08-10",
