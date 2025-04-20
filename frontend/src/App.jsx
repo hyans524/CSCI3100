@@ -9,6 +9,7 @@ import MyTrip from "./pages/MyTrip"
 import NoPage from "./pages/NoPage"
 import Profile from "./pages/Profile"
 import TripDetail from "./pages/TripDetail"
+import MyTripDetail from "./pages/MyTripDetail"
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/mytrip" element={<MyTrip />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/trip/:id" element={<TripDetail />} />
+            <Route path="/mytrip/:id" element={<MyTripDetail />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>

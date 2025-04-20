@@ -1,7 +1,6 @@
 import React from 'react'
 import Fuji_background from '../assets/Fuji_background.jpg'
 import Recommend from '../../components/Recommend/Recommend'
-import Hero from '../../components/Hero/Hero'
 
 const AIrec = () => {
   return (
