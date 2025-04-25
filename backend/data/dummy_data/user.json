@@ -1,7 +1,7 @@
 [
   {
     "_id": "67fba7d7cc439d8b22e006c6",
-    "id": "1",
+    "id": 1,
     "username": "adventure_jane",
     "email": "jane@example.com",
     "password": "hashed1234",
@@ -12,7 +12,7 @@
   },
   {
     "_id": "67fba7d7cc439d8b22e006c7",
-    "id": "2",
+    "id": 2,
     "username": "traveler_mike",
     "email": "mike@example.com",
     "password": "hashed5678",
@@ -23,7 +23,7 @@
   },
   {
     "_id": "67fba7d7cc439d8b22e006c8",
-    "id": "3",
+    "id": 3,
     "username": "backpacker_sara",
     "email": "sara1@example.com",
     "password": "hashed9101",
@@ -34,7 +34,7 @@
   },
   {
     "_id": "67fba7d7cc439d8b22e006c9",
-    "id": "4",
+    "id": 4,
     "username": "traveler_john",
     "password": "Travel123", 
     "age": 28,
@@ -45,7 +45,7 @@
   },
   {
     "_id": "67fba7d7cc439d8b22e006ca",
-    "id": "5",
+    "id": 5,
     "username": "adventure_sara",
     "password": "SaraPass456", 
     "age": 32,
@@ -56,7 +56,7 @@
   },
   {
     "_id": "67fba7d7cc439d8b22e006cb",
-    "id": "6",
+    "id": 6,
     "username": "explorer_mike",
     "password": "Mike789Adventure",
     "age": 24,
@@ -67,7 +67,7 @@
   },
   {
     "_id": "67fba7d7cc439d8b22e006cc",
-    "id": "7",
+    "id": 7,
     "username": "admin_user",
     "password": "AdminPass123", 
     "age": 35,
@@ -79,7 +79,7 @@
   },
   {
     "_id": "67fba7d7cc439d8b22e006cd",
-    "id": "8",
+    "id": 8,
     "username": "testAdmin",
     "password": "Adminadmin", 
     "age": 20,
@@ -91,7 +91,7 @@
   },
   {
     "_id": "67fba7d7cc439d8b22e006ce",
-    "id": "9",
+    "id": 9,
     "username": "test_user",
     "password": "Pass123901", 
     "age": 18,
@@ -102,7 +102,7 @@
   },
   {
     "_id": "67fba7d7cc439d8b22e006cf",
-    "id": "10",
+    "id": 10,
     "username": "feng_user",
     "password": "feng1234", 
     "age": 21,

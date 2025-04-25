@@ -11,7 +11,7 @@ const commentSchema = new Schema({
 const PostSchema = new mongoose.Schema({
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   text: { type: String, required: true, trim: true },
-  image: { type: Buffer },
+  image: { type: String },
   location: { type: String, required: true },
   budget: { type: String, enum: ['0-1000', '1001-2000', '2001-3000', '3001+'], required: true },
   activities: [{ type: String, required: true }],
