@@ -1,5 +1,6 @@
 [
   {
+    "_id": "67fbd152d2525d08daed8955",
     "user_id": "1",
     "text": "Amazing cultural experience in Kyoto!",
     "image": "images/kyoto.jpg",
@@ -23,6 +24,7 @@
     ]
   },
   {
+    "_id": "67fbd152d2525d08daed8956",
     "user_id": "3",
     "text": "Best pizza tour in Naples!",
     "image": "images/naples.jpg",
@@ -41,6 +43,7 @@
     ]
   },
   {
+    "_id": "67fbd152d2525d08daed8957",
     "user_id": "5",
     "text": "Unforgettable safari adventure!",
     "image": "images/safari.jpg",
@@ -53,6 +56,7 @@
     "comments": []
   },
   {
+    "_id": "67fbd152d2525d08daed8958",
     "user_id": "2",
     "text": "Skiing paradise in the Alps 🏂",
     "image": "images/alps.jpg",
@@ -71,6 +75,7 @@
     ]
   },
   {
+    "_id": "67fbd152d2525d08daed8959",
     "user_id": "4",
     "text": "Beach relaxation in Bali 🌴",
     "image": "images/bali.jpg",
@@ -89,6 +94,7 @@
     ]
   },
   {
+    "_id": "67fbd152d2525d08daed895a",
     "user_id": "1",
     "text": "Urban exploration in NYC",
     "image": "images/nyc.jpg",
@@ -101,6 +107,7 @@
     "comments": []
   },
   {
+    "_id": "67fbd152d2525d08daed895b",
     "user_id": "7",
     "text": "Northern Lights chase in Iceland",
     "image": "images/iceland.jpg",
@@ -119,6 +126,7 @@
     ]
   },
   {
+    "_id": "67fbd152d2525d08daed895c",
     "user_id": "8",
     "text": "Desert adventure in Dubai",
     "image": "images/dubai.jpg",
@@ -131,6 +139,7 @@
     "comments": []
   },
   {
+    "_id": "67fbd152d2525d08daed895d",
     "user_id": "9",
     "text": "Cultural immersion in Marrakech",
     "image": "images/marrakech.jpg",
@@ -149,6 +158,7 @@
     ]
   },
   {
+    "_id": "67fbd152d2525d08daed895e",
     "user_id": "10",
     "text": "Hiking the Inca Trail",
     "image": "images/inca.jpg",

@@ -1,5 +1,6 @@
 [
     {
+      "_id": "67fbd252d2525d08daed895a",
       "group_id": "104",
       "paid_by": "9",
       "amount": 150.50,
@@ -9,6 +10,7 @@
     },
 
     {
+      "_id": "67fbd252d2525d08daed895b",
       "group_id": "101",
       "paid_by": "1",
       "amount": 45.00,
@@ -17,6 +19,7 @@
       "date": "2024-05-01"
     },
     {
+      "_id": "67fbd252d2525d08daed895c",
       "group_id": "101",
       "paid_by": "2",
       "amount": 28.50,
@@ -25,6 +28,7 @@
       "date": "2024-05-02"
     },
     {
+      "_id": "67fbd252d2525d08daed895d",
       "group_id": "102",
       "paid_by": "3",
       "amount": 200.00,
@@ -33,6 +37,7 @@
       "date": "2024-05-03"
     },
     {
+      "_id": "67fbd252d2525d08daed895e",
       "group_id": "102",
       "paid_by": "4",
       "amount": 75.00,
@@ -41,6 +46,7 @@
       "date": "2024-05-04"
     },
     {
+      "_id": "67fbd252d2525d08daed895f",
       "group_id": "103",
       "paid_by": "5",
       "amount": 60.00,
@@ -49,6 +55,7 @@
       "date": "2024-05-05"
     },
     {
+      "_id": "67fbd252d2525d08daed8961",
       "group_id": "103",
       "paid_by": "6",
       "amount": 15.00,
@@ -57,6 +64,7 @@
       "date": "2024-05-06"
     },
     {
+      "_id": "67fbd252d2525d08daed8962",
       "group_id": "104",
       "paid_by": "7",
       "amount": 180.00,
@@ -65,6 +73,7 @@
       "date": "2024-05-07"
     },
     {
+      "_id": "67fbd252d2525d08daed8963",
       "group_id": "104",
       "paid_by": "8",
       "amount": 90.00,
@@ -73,6 +82,7 @@
       "date": "2024-05-08"
     },
     {
+      "_id": "67fbd252d2525d08daed8964",
       "group_id": "105",
       "paid_by": "9",
       "amount": 35.00,
@@ -81,6 +91,7 @@
       "date": "2024-05-09"
     },
     {
+      "_id": "67fbd252d2525d08daed8965",
       "group_id": "105",
       "paid_by": "10",
       "amount": 50.00,

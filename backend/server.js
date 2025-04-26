@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bson = require('bson');
+const path = require('path');
+const fs = require('fs');
 
 const Group = require('./models/Group');
 const User = require('./models/User');
@@ -111,6 +113,51 @@ app.get('/api/init-data', async (req, res) => {
         
         await db.collection("users").deleteMany({});
         await db.collection("users").insertMany(processedUsers);
+
+        let jsonPosts = require("./data/dummy_data/post.json");
+        jsonPosts = bson.EJSON.parse(JSON.stringify(jsonPosts));
+
+        const processedPosts = await Promise.all(jsonPosts.map(async (post) => {
+            const user = await User.findOne({id: Number(post.user_id)});
+            if (!user) throw new Error(`User with id ${post.user_id} not found`);
+
+            const imagePath = path.join(__dirname, './data/dummy_data', post.image); 
+            const imageBuffer = fs.readFileSync(imagePath).toString('base64');
+
+            const comments = await Promise.all(post.comments.map(async comment => {
+                const commentUser = await User.findOne({id: Number(comment.user_id)} );
+                if (!commentUser) throw new Error(`User with id ${comment.user_id} not found`);
+                
+                return {
+                    user_id: commentUser._id,
+                    text: comment.text,
+                    date: new Date(comment.date)
+                };
+            }));
+
+            const likes = await Promise.all(post.likes.map(async likeId => {
+                const likeUser = await User.findOne({ id: Number(likeId) });
+                return likeUser ? likeUser._id : null;
+            })).then(results => results.filter(Boolean));
+
+            return {
+                ...post,
+                user_id: user._id, 
+                image: imageBuffer,
+                start_date: new Date(post.start_date),
+                end_date: new Date(post.end_date),
+                comments,
+                likes
+            };
+        }));
+
+        await Post.deleteMany({});
+        await db.collection("posts").insertMany(processedPosts);
+
+        //const post1 = await Post.findOne();
+        //console.log(post1.image)
+        //const buffer = Buffer.from(post1.image, 'base64');
+        //fs.writeFileSync('test.jpg', buffer);
 
         res.json({
             message: 'Data initialized successfully',

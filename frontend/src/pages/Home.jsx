@@ -1,6 +1,7 @@
 import React from 'react'
 import Temple_background from '../assets/Temple_background.png'
-import Hero from '../../components/Hero/Hero'
+import Searchbox from '../../components/Searchbox/Searchbox'
+import Trip from '../../components/Trips/Trip'
 
 const Home = () => {
   return (
@@ -12,7 +13,10 @@ const Home = () => {
             alt="Temple background"
             className="absolute right-0 top-0 h-[700px] w-full object-cover z-[-1] opacity-75"
           />
-          <Hero />
+          <Searchbox />
+        </div>
+        <div className="pt-2 px-20 py-10">
+          <Trip />
         </div>
       </div>
     </>
