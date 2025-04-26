@@ -59,7 +59,7 @@ app.get('/api/check-init', async (req, res) => {
                 users: userCount,
                 posts: postCount,
                 recommendations: recommendationCount,
-                eexpenses: expenseCount
+                expenses: expenseCount
             }
         });
     } catch (error) {
@@ -86,15 +86,30 @@ app.get('/api/init-data', async (req, res) => {
             });
         }
         
-        var json1 = require("./data/dummy_data/user.json");
-        json1 = bson.EJSON.parse(JSON.stringify(json1));
+        var user_json = require("./data/dummy_data/user.json");
+        user_json = bson.EJSON.parse(JSON.stringify(user_json));
+
+        var expense_json = require("./data/dummy_data/expense.json")
+        expense_json = bson.EJSON.parse(JSON.stringify(expense_json))
         
-        const processedUsers = json1.map(user => {
+        var group_json = require("./data/dummy_data/group.json")
+        group_json = bson.EJSON.parse(JSON.stringify(group_json))
+
+        var post_json = require("./data/dummy_data/post.json")
+        post_json = bson.EJSON.parse(JSON.stringify(post_json))
+
+        var trip_json = require("./data/dummy_data/trip.json")
+        trip_json = bson.EJSON.parse(JSON.stringify(trip_json))
+
+        var recommendation_json = require("./data/dummy_data/ai_recommendation.json")
+        recommendation_json = bson.EJSON.parse(JSON.stringify(recommendation_json))
+
+        const processedUsers = user_json.map(user => {
             // const userId = user._id.$oid;
             return user;
         });
         
-        await User.deleteMany({});
+        await db.collection("users").deleteMany({});
         await db.collection("users").insertMany(processedUsers);
 
         res.json({
