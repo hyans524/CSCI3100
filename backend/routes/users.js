@@ -5,8 +5,8 @@ const auth = require('../middleware/auth');
 
 router.get('/', async (req, res) => {
     try {
-        const groups = await User.find()
-        res.json(groups);
+        const users = await User.find()
+        res.json(users);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -15,11 +15,11 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const groups = await User.find()
-        if (!groups) {
+        const users = await User.findById(req.params.id)
+        if (!users) {
             return res.status(404).json({ message: 'User not found' });
         }
-        res.json(groups);
+        res.json(users);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const user = new User({
-        id: req.body.id,
+        user_id: req.body.user_id,
         username: req.body.username,
         password: req.body.password,
         isAdmin: req.body.isAdmin,

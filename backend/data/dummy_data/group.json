@@ -1,93 +1,105 @@
 [
     {
-      "_id": "67fbd1f7d2525d08daed8957",
+      "_id": {
+        "$oid": "67fbd1f7d2525d08daed8957"
+      },
       "group_id": "101",
       "group_name": "Japan 2024 Squad",
-      "members": ["4", "9"],
+      "members": ["67fba7d7cc439d8b22e006c9", "67fba7d7cc439d8b22e006ce"],
       "trip_summary":  "Tokyo, Japan",
       "messages": [
         {
-          "user": "4",
+          "user_oid": "67fba7d7cc439d8b22e006c9",
           "text": "Let's meet at Shinjuku Station!",
           "timestamp": "2024-04-15T10:00:00Z"
         },
         {
-            "user": "9",
+            "user_oid": "67fba7d7cc439d8b22e006ce",
             "text": "OK!",
             "timestamp": "2024-04-15T10:02:00Z"
           }
       ]
     },
     {
-      "_id": "67fbd1f7d2525d08daed8958",
+      "_id": {
+        "$oid": "67fbd1f7d2525d08daed8958"
+      },
       "group_id": "102",
       "group_name": "European Explorers",
-      "members": ["1", "2", "3"],
+      "members": ["67fba7d7cc439d8b22e006c6", "67fba7d7cc439d8b22e006c7", "67fba7d7cc439d8b22e006c8"],
       "trip_summary": "location: Paris, France\nactivities: Eiffel Tower visit, Louvre tour, Seine River cruise\ncost: 2500\ndate: 2024-05-01",
       "messages": [
         {
-          "user_id": "1",
+          "user_oid": "67fba7d7cc439d8b22e006c6",
           "text": "Who's handling the museum bookings?",
           "timestamp": "2024-04-15T09:00:00Z"
         },
         {
-          "user_id": "2",
+          "user_oid": "67fba7d7cc439d8b22e006c7",
           "text": "I'll take care of the tickets!",
           "timestamp": "2024-04-15T09:15:00Z"
         }
       ]
     },
     {
-      "_id": "67fbd1f7d2525d08daed8959",
+      "_id": {
+        "$oid": "67fbd1f7d2525d08daed8959"
+      },
       "group_id": "103",
       "group_name": "Asia Adventure Squad",
-      "members": ["4", "5", "6"],
+      "members": ["67fba7d7cc439d8b22e006c9", "67fba7d7cc439d8b22e006c9", "67fba7d7cc439d8b22e006c9"],
       "trip_summary": "Tokyo, Japan",
       "messages": [
         {
-          "user_id": "4",
+          "user_oid": "67fba7d7cc439d8b22e006c9",
           "text": "Should we get a JR Pass?",
           "timestamp": "2024-05-01T14:30:00Z"
         }
       ]
     },
     {
-      "_id": "67fbd1f7d2525d08daed895a",
+      "_id": {
+        "$oid": "67fbd1f7d2525d08daed895a"
+      },
       "group_id": "104",
       "group_name": "US Road Trippers",
-      "members": ["7", "8"],
+      "members": ["67fba7d7cc439d8b22e006cc", "67fba7d7cc439d8b22e006cd"],
       "trip_summary": "California, USA",
       "messages": [
         {
-          "user_id": "7",
+          "user_oid": "767fba7d7cc439d8b22e006cc",
           "text": "I'll bring the camping gear!",
           "timestamp": "2024-06-10T18:00:00Z"
         }
       ]
     },
     {
-      "_id": "67fbd1f7d2525d08daed895b",
+      "_id": {
+        "$oid": "67fbd1f7d2525d08daed895b"
+      },
       "group_id": "105",
       "group_name": "Tropical Getaway",
-      "members": ["9", "10"],
+      "members": ["67fba7d7cc439d8b22e006ce", "67fba7d7cc439d8b22e006cf"],
       "trip_summary": "Bali, Indonesia",
       "messages": [
         {
-          "user_id": "9",
+          "user_oid": "67fba7d7cc439d8b22e006ce",
           "text": "Should we get travel insurance?",
           "timestamp": "2024-07-20T10:45:00Z"
         }
       ]
     },
     {
-      "_id": "67fbd1f7d2525d08daed895c",
+      "_id": {
+        "$oid": "67fbd1f7d2525d08daed895c"
+      },
       "group_id": "106",
       "group_name": "Historic Europe",
-      "members": ["3", "5", "7"],
+      "members": ["67fba7d7cc439d8b22e006c8", "67fba7d7cc439d8b22e006ca", "7fba7d7cc439d8b22e006cc"],
       "trip_summary": "Rome, Italy",
       "messages": [
         {
-          "user_id": "3",
+          "user_oid": "67fba7d7cc439d8b22e006c8",
           "text": "Found a great Airbnb near the city center!",
           "timestamp": "2024-08-10T16:20:00Z"
         }

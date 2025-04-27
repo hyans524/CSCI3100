@@ -67,40 +67,4 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Get user favorites
-router.get('/favorites', auth.userAuth, async (req, res) => {
-    try {
-        const user = await User.findById(req.user.userId).populate('favorites');
-        res.json(user.favorites);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-// Add to favorites
-router.post('/favorites/:venueId', auth.userAuth, async (req, res) => {
-    try {
-        const user = await User.findById(req.user.userId);
-        if (!user.favorites.includes(req.params.venueId)) {
-            user.favorites.push(req.params.venueId);
-            await user.save();
-        }
-        res.json(user.favorites);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-// Remove from favorites
-router.delete('/favorites/:venueId', auth.userAuth, async (req, res) => {
-    try {
-        const user = await User.findById(req.user.userId);
-        user.favorites = user.favorites.filter(id => id.toString() !== req.params.venueId);
-        await user.save();
-        res.json(user.favorites);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
 module.exports = router; 

@@ -1,7 +1,9 @@
 [
   {
-    "_id": "67fba7d7cc439d8b22e006c6",
-    "id": 1,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006c6"
+    },
+    "user_id": 1,
     "username": "adventure_jane",
     "email": "jane@example.com",
     "password": "hashed1234",
@@ -11,8 +13,10 @@
     "phone": "+1234567899"
   },
   {
-    "_id": "67fba7d7cc439d8b22e006c7",
-    "id": 2,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006c7"
+    },
+    "user_id": 2,
     "username": "traveler_mike",
     "email": "mike@example.com",
     "password": "hashed5678",
@@ -22,8 +26,10 @@
     "phone": "+0987654321"
   },
   {
-    "_id": "67fba7d7cc439d8b22e006c8",
-    "id": 3,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006c8"
+    },
+    "user_id": 3,
     "username": "backpacker_sara",
     "email": "sara1@example.com",
     "password": "hashed9101",
@@ -33,8 +39,10 @@
     "phone": "+1122334455"
   },
   {
-    "_id": "67fba7d7cc439d8b22e006c9",
-    "id": 4,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006c9"
+    },
+    "user_id": 4,
     "username": "traveler_john",
     "password": "Travel123", 
     "age": 28,
@@ -44,8 +52,10 @@
     "email": "john@example.com"
   },
   {
-    "_id": "67fba7d7cc439d8b22e006ca",
-    "id": 5,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006ca"
+    },
+    "user_id": 5,
     "username": "adventure_sara",
     "password": "SaraPass456", 
     "age": 32,
@@ -55,8 +65,10 @@
     "email": "sara@example.com"
   },
   {
-    "_id": "67fba7d7cc439d8b22e006cb",
-    "id": 6,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006cb"
+    },
+    "user_id": 6,
     "username": "explorer_mike",
     "password": "Mike789Adventure",
     "age": 24,
@@ -66,8 +78,10 @@
     "email": "mike1@example.com"
   },
   {
-    "_id": "67fba7d7cc439d8b22e006cc",
-    "id": 7,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006cc"
+    },
+    "user_id": 7,
     "username": "admin_user",
     "password": "AdminPass123", 
     "age": 35,
@@ -78,8 +92,10 @@
     "isAdmin": true
   },
   {
-    "_id": "67fba7d7cc439d8b22e006cd",
-    "id": 8,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006cd"
+    },
+    "user_id": 8,
     "username": "testAdmin",
     "password": "Adminadmin", 
     "age": 20,
@@ -90,8 +106,10 @@
     "isAdmin": true
   },
   {
-    "_id": "67fba7d7cc439d8b22e006ce",
-    "id": 9,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006ce"
+    },
+    "user_id": 9,
     "username": "test_user",
     "password": "Pass123901", 
     "age": 18,
@@ -101,8 +119,10 @@
     "email": "user@test.com"
   },
   {
-    "_id": "67fba7d7cc439d8b22e006cf",
-    "id": 10,
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006cf"
+    },
+    "user_id": 10,
     "username": "feng_user",
     "password": "feng1234", 
     "age": 21,

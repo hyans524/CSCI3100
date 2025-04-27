@@ -53,15 +53,17 @@ app.get('/api/check-init', async (req, res) => {
         const postCount = await Post.countDocuments();
         const recommendationCount = await Recommendation.countDocuments();
         const expenseCount = await Expense.countDocuments();
+        const tripCount = await Trip.countDocuments();
         
         res.json({
-            needsInit: groupCount === 0 || userCount === 0 || postCount === 0 || recommendationCount === 0 || expenseCount === 0,
+            needsInit: groupCount === 0 || userCount === 0 || postCount === 0 || recommendationCount === 0 || expenseCount === 0 || tripCount == 0,
             counts: {
                 groups: groupCount,
                 users: userCount,
                 posts: postCount,
                 recommendations: recommendationCount,
-                expenses: expenseCount
+                expenses: expenseCount,
+                trips: tripCount
             }
         });
     } catch (error) {
@@ -76,6 +78,7 @@ app.get('/api/init-data', async (req, res) => {
         const postCount = await Post.countDocuments();
         const recommendationCount = await Recommendation.countDocuments();
         const expenseCount = await Expense.countDocuments();
+        const tripCount = await Trip.countDocuments();
 
         if (groupCount > 0 && userCount > 0 && postCount > 0 && recommendationCount > 0 && expenseCount > 0) {
             return res.json({
@@ -84,7 +87,8 @@ app.get('/api/init-data', async (req, res) => {
                 usersCount: userCount,
                 postsCount: postCount,
                 recommendationsCount: recommendationCount,
-                expensesCount: expenseCount
+                expensesCount: expenseCount,
+                tripsCount: tripCount
             });
         }
         
@@ -97,14 +101,14 @@ app.get('/api/init-data', async (req, res) => {
         var group_json = require("./data/dummy_data/group.json")
         group_json = bson.EJSON.parse(JSON.stringify(group_json))
 
-        var post_json = require("./data/dummy_data/post.json")
-        post_json = bson.EJSON.parse(JSON.stringify(post_json))
+        // var post_json = require("./data/dummy_data/post.json")
+        // post_json = bson.EJSON.parse(JSON.stringify(post_json))
 
         var trip_json = require("./data/dummy_data/trip.json")
         trip_json = bson.EJSON.parse(JSON.stringify(trip_json))
 
-        var recommendation_json = require("./data/dummy_data/ai_recommendation.json")
-        recommendation_json = bson.EJSON.parse(JSON.stringify(recommendation_json))
+        // var recommendation_json = require("./data/dummy_data/ai_recommendation.json")
+        // recommendation_json = bson.EJSON.parse(JSON.stringify(recommendation_json))
 
         const processedUsers = user_json.map(user => {
             // const userId = user._id.$oid;
@@ -114,6 +118,35 @@ app.get('/api/init-data', async (req, res) => {
         await db.collection("users").deleteMany({});
         await db.collection("users").insertMany(processedUsers);
 
+        const processedGroups = group_json.map(group => {
+
+            return group;
+        });
+        
+        await db.collection("groups").deleteMany({});
+        await db.collection("groups").insertMany(processedGroups);
+
+        res.json({
+            message: 'Data initialized successfully',
+            groupsCount: groupCount,
+            usersCount: userCount,
+            postsCount: postCount,
+            recommendationsCount: recommendationCount,
+            expensesCount: expenseCount,
+            tripsCount: tripCount
+
+        });
+    } catch (error) {
+        console.error('Error initializing data:', error);
+        res.status(500).json({ error: 'Error initializing data', details: error.message });
+    }
+});
+
+
+
+
+app.get('/api/test-post', async (req, res) => {
+    try {
         let jsonPosts = require("./data/dummy_data/post.json");
         jsonPosts = bson.EJSON.parse(JSON.stringify(jsonPosts));
 
@@ -169,6 +202,7 @@ app.get('/api/init-data', async (req, res) => {
         res.status(500).json({ error: 'Error initializing data', details: error.message });
     }
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
