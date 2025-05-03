@@ -1,8 +1,10 @@
 [
     {
-      "_id": "67fbd252d2525d08daed895a",
-      "group_id": "104",
-      "paid_by": "9",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed895a"
+      },
+      "group_id": "67fbd1f7d2525d08daed895a",
+      "paid_by": "67fba7d7cc439d8b22e006cd",
       "amount": 150.50,
       "category": "Food",
       "description": "Sushi dinner for 2 people",
@@ -10,90 +12,109 @@
     },
 
     {
-      "_id": "67fbd252d2525d08daed895b",
-      "group_id": "101",
-      "paid_by": "1",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed895b"
+      },
+      "group_id": "67fbd1f7d2525d08daed8957",
+      "paid_by": "67fba7d7cc439d8b22e006ce",
       "amount": 45.00,
       "category": "Food",
       "description": "Group dinner at Italian restaurant",
       "date": "2024-05-01"
     },
     {
-      "_id": "67fbd252d2525d08daed895c",
-      "group_id": "101",
-      "paid_by": "2",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed895c"
+      },
+      "group_id": "67fbd1f7d2525d08daed8957",
+      "paid_by": "67fba7d7cc439d8b22e006c9",
       "amount": 28.50,
       "category": "Transport",
       "description": "Train tickets for city travel",
       "date": "2024-05-02"
     },
     {
-      "_id": "67fbd252d2525d08daed895d",
-      "group_id": "102",
-      "paid_by": "3",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed895d"
+      },
+      "group_id": "67fbd1f7d2525d08daed8958",
+      "paid_by": "67fba7d7cc439d8b22e006c8",
       "amount": 200.00,
       "category": "Accommodation",
       "description": "Hostel booking for 3 nights",
       "date": "2024-05-03"
     },
     {
-      "_id": "67fbd252d2525d08daed895e",
-      "group_id": "102",
-      "paid_by": "4",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed895e"
+      },
+      "group_id": "67fbd1f7d2525d08daed8958",
+      "paid_by": "67fba7d7cc439d8b22e006c7",
       "amount": 75.00,
       "category": "Recreation",
       "description": "Museum entry tickets",
       "date": "2024-05-04"
     },
     {
-      "_id": "67fbd252d2525d08daed895f",
-      "group_id": "103",
-      "paid_by": "5",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed895f"
+      },
+      "group_id": "67fbd1f7d2525d08daed8959",
+      "paid_by": "67fba7d7cc439d8b22e006ca",
       "amount": 60.00,
       "category": "Food",
       "description": "Groceries for group meals",
       "date": "2024-05-05"
     },
     {
-      "_id": "67fbd252d2525d08daed8961",
-      "group_id": "103",
-      "paid_by": "6",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed8961"
+      },
+      "group_id": "67fbd1f7d2525d08daed8959",
+      "paid_by": "67fba7d7cc439d8b22e006cb",
       "amount": 15.00,
       "category": "Transport",
       "description": "Subway day passes",
       "date": "2024-05-06"
     },
     {
-      "_id": "67fbd252d2525d08daed8962",
-      "group_id": "104",
-      "paid_by": "7",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed8962"
+      },
+      "group_id": "67fbd1f7d2525d08daed895a",
+      "paid_by": "67fba7d7cc439d8b22e006cc",
       "amount": 180.00,
       "category": "Accommodation",
       "description": "Hotel room for 2 nights",
       "date": "2024-05-07"
     },
     {
-      "_id": "67fbd252d2525d08daed8963",
-      "group_id": "104",
-      "paid_by": "8",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed8963"
+      },
+      "group_id": "67fbd1f7d2525d08daed895a",
+      "paid_by": "67fba7d7cc439d8b22e006cd",
       "amount": 90.00,
       "category": "Recreation",
       "description": "Guided hiking tour",
       "date": "2024-05-08"
     },
     {
-      "_id": "67fbd252d2525d08daed8964",
-      "group_id": "105",
-      "paid_by": "9",
+      "_id": {
+        "$oid": "67fbd252d2525d08daed8964"
+      },
+      "group_id": "67fbd1f7d2525d08daed895b",
+      "paid_by": "67fba7d7cc439d8b22e006ce",
       "amount": 35.00,
       "category": "Food",
       "description": "Cafe breakfast for group",
       "date": "2024-05-09"
     },
-    {
-      "_id": "67fbd252d2525d08daed8965",
-      "group_id": "105",
-      "paid_by": "10",
+    {"_id": {
+        "$oid": "67fbd252d2525d08daed8965"
+      },
+      "group_id": "67fbd1f7d2525d08daed895b",
+      "paid_by": "67fba7d7cc439d8b22e006cf",
       "amount": 50.00,
       "category": "Other",
       "description": "First aid kit and supplies",

@@ -1,7 +1,9 @@
 [
   {
-    "_id": "67fbd068d2525d08daed8953",
-    "user_id": "1",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed8953"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006c6",
     "preferences": {
       "location": "Japan",
       "budget": "5000",
@@ -11,8 +13,10 @@
     "suggestions": ["Kyoto Fushimi Inari Shrine", "Kaiseki Dinner"]
   },
   {
-    "_id": "67fbd068d2525d08daed8954",
-    "user_id": "1",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed8954"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006c6",
     "group_id": "101",
     "preferences": {
       "location": "Paris, France",
@@ -23,8 +27,10 @@
     "suggestions": ["Eiffel Tower visit", "Louvre Museum tour", "Seine River cruise", "Montmartre walking tour"]
   },
   {
-    "_id": "67fbd068d2525d08daed8955",
-    "user_id": "2",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed8955"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006c7",
     "preferences": {
       "location": "Tokyo, Japan",
       "budget": "3000",
@@ -34,8 +40,10 @@
     "suggestions": ["Shibuya Crossing visit", "Tsukiji Fish Market tour", "Asakusa Temple experience", "Robot Restaurant show"]
   },
   {
-    "_id": "67fbd068d2525d08daed8956",
-    "user_id": "3",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed8956"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006c8",
     "preferences": {
       "location": "New York, USA",
       "budget": "2500",
@@ -45,8 +53,10 @@
     "suggestions": ["Statue of Liberty cruise", "Central Park bike tour", "Metropolitan Museum visit", "Times Square exploration"]
   },
   {
-    "_id": "67fbd068d2525d08daed8957",
-    "user_id": "4",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed8957"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006c9",
     "preferences": {
       "location": "Bali, Indonesia",
       "budget": "1500",
@@ -56,8 +66,10 @@
     "suggestions": ["Ubud Monkey Forest", "Tegallalang Rice Terraces", "Uluwatu Temple visit", "Seminyak beach relaxation"]
   },
   {
-    "_id": "67fbd068d2525d08daed8958",
-    "user_id": "5",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed8958"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006ca",
     "preferences": {
       "location": "Rome, Italy",
       "budget": "1800",
@@ -67,8 +79,10 @@
     "suggestions": ["Colosseum guided tour", "Vatican Museum visit", "Trevi Fountain visit", "Authentic pasta-making class"]
   },
   {
-    "_id": "67fbd068d2525d08daed8959",
-    "user_id": "6",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed8959"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006cb",
     "group_id": "102",
     "preferences": {
       "location": "Cape Town, South Africa",
@@ -79,8 +93,10 @@
     "suggestions": ["Table Mountain hike", "Cape Peninsula tour", "Kirstenbosch Botanical Gardens", "Stellenbosch wine route"]
   },
   {
-    "_id": "67fbd068d2525d08daed895a",
-    "user_id": "7",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed895a"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006cc",
     "preferences": {
       "location": "Sydney, Australia",
       "budget": "2800",
@@ -90,8 +106,10 @@
     "suggestions": ["Sydney Opera House tour", "Bondi Beach visit", "Taronga Zoo experience", "Harbour Bridge climb"]
   },
   {
-    "_id": "67fbd068d2525d08daed895b",
-    "user_id": "8",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed895b"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006cd",
     "preferences": {
       "location": "Bangkok, Thailand",
       "budget": "1200",
@@ -101,8 +119,10 @@
     "suggestions": ["Grand Palace visit", "Floating markets tour", "Wat Arun temple", "Chinatown street food crawl"]
   },
   {
-    "_id": "67fbd068d2525d08daed895c",
-    "user_id": "9",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed895c"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006ce",
     "preferences": {
       "location": "Reykjavik, Iceland",
       "budget": "3500",
@@ -112,8 +132,10 @@
     "suggestions": ["Blue Lagoon visit", "Golden Circle tour", "Glacier hiking experience", "Northern Lights hunting tour"]
   },
   {
-    "_id": "67fbd068d2525d08daed895d",
-    "user_id": "10",
+    "_id": {
+      "$oid": "67fbd068d2525d08daed895d"
+    }, 
+    "user_id": "67fba7d7cc439d8b22e006cf",
     "preferences": {
       "location": "Dubai, UAE",
       "budget": "4000",
