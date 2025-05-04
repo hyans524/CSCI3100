@@ -32,8 +32,8 @@ def generate_license_entries(num_entries, user_object_ids):
         entry = {
             '_id': ObjectId(),
             'key': key,
-            'status': status,
-            'issued_to': issued_to
+            #'status': status,
+            #'issued_to': issued_to
         }
         entries.append(entry)
     return entries
