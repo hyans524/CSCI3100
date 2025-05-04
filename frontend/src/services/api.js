@@ -38,7 +38,7 @@ api.interceptors.response.use(
     }
 );
 
-// User-related APIs
+
 export const userApi = {
     getAll: () => api.get('/users'),
     getById: (id) => api.get(`/users/${id}`),
@@ -61,4 +61,27 @@ export const authApi = {
     getCurrentUserId: () => localStorage.getItem('userId'),
 };
 
+export const groupApi = {
+    getAll: () => api.get('/groups'),
+    getById: (id) => api.get(`/groups/${id}`),
+    create: (data) => api.post('/groups', data),
+    update: (id, data) => api.put(`/groups/${id}`, data),
+    delete: (id) => api.delete(`/groups/${id}`),
+};
+
+export const expenseApi = {
+    getAll: () => api.get('/expenses'),
+    getById: (id) => api.get(`/expenses/${id}`),
+    create: (data) => api.post('/expenses', data),
+    update: (id, data) => api.put(`/expenses/${id}`, data),
+    delete: (id) => api.delete(`/expenses/${id}`),
+};
+
+export const tripApi = {
+    getAll: () => api.get('/trips'),
+    getById: (id) => api.get(`/trips/${id}`),
+    create: (data) => api.post('/trips', data),
+    update: (id, data) => api.put(`/trips/${id}`, data),
+    delete: (id) => api.delete(`/trips/${id}`),
+};
 export default api; 
