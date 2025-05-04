@@ -65,7 +65,7 @@ router.delete('/:id', async (req, res) => {
         if (!trip) {
             return res.status(404).json({ message: 'Trip not found' });
         }
-        await trip.remove();
+        await trip.deleteOne({ _id: req.params.id }).exec();
         res.json({ message: 'Trip deleted' });
     } catch (error) {
         res.status(500).json({ message: error.message });
