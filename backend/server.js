@@ -126,6 +126,22 @@ app.get('/api/init-data', async (req, res) => {
         await db.collection("groups").deleteMany({});
         await db.collection("groups").insertMany(processedGroups);
 
+        const processedExpenses = group_json.map(expense => {
+
+            return expense;
+        });
+        
+        await db.collection("expenses").deleteMany({});
+        await db.collection("expenses").insertMany(processedExpenses);
+
+        const processedTrips = group_json.map(trip => {
+
+            return trip;
+        });
+        
+        await db.collection("trips").deleteMany({});
+        await db.collection("trips").insertMany(processedTrips);
+
         res.json({
             message: 'Data initialized successfully',
             groupsCount: groupCount,
