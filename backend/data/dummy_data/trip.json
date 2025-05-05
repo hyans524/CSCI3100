@@ -7,8 +7,8 @@
       "start_date": "2024-05-01",
       "end_date": "2024-05-10",
       "budget": 5000,
-      "activities": ["Visit Senso-ji Temple", "Sushi Cooking Class"],
-      "group_id": "67fbd1f7d2525d08daed8957"
+      "activity": ["Visit Senso-ji Temple", "Sushi Cooking Class"],
+      "group_id": 101
     },
     {
       "_id": {
@@ -19,7 +19,7 @@
       "end_date": "2024-05-05",
       "budget": 2500,
       "activity": ["Eiffel Tower visit", "Louvre Museum tour", "Seine River cruise"],
-      "group_id": "67fbd1f7d2525d08daed8957"
+      "group_id": 102
     },
     {
       "_id": {
@@ -30,7 +30,7 @@
       "end_date": "2024-05-15",
       "budget": 3000,
       "activity": ["Shibuya Crossing exploration", "Tsukiji Market sushi experience", "Asakusa Temple visit"],
-      "group_id": "67fbd1f7d2525d08daed8958"
+      "group_id": 103
     },
     {
       "_id": {
@@ -41,7 +41,7 @@
       "end_date": "2024-06-10",
       "budget": 3500,
       "activity": ["Statue of Liberty cruise", "Broadway show tickets", "Central Park picnic"],
-      "group_id": "67fbd1f7d2525d08daed8959"
+      "group_id": 104
     },
     {
       "_id": {
@@ -52,7 +52,7 @@
       "end_date": "2024-07-10",
       "budget": 2000,
       "activity": ["Ubud Monkey Forest", "Tegallalang Rice Terraces", "Seminyak relaxation"],
-      "group_id": "67fbd1f7d2525d08daed895a"
+      "group_id": 105
     },
     {
       "_id": {
@@ -63,6 +63,6 @@
       "end_date": "2024-08-10",
       "budget": 1800,
       "activity": ["Colosseum guided tour", "Vatican Museum visit", "Gelato tasting tour"],
-      "group_id": "67fbd1f7d2525d08daed895b"
+      "group_id": 106
     }
   ]

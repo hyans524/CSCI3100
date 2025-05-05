@@ -5,8 +5,8 @@ const TripSchema = new mongoose.Schema({
     start_date: { type: Date },
     end_date: { type: Date },
     budget: { type: Number },
-    activity: {type: mongoose.Schema.Types.Mixed},
-    group_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Group', required: true }
+    activity: { type: [String], default: [] },
+    group_id: { type: Number, ref: 'Group', required: true }
 });
 
 module.exports = mongoose.model('Trip', TripSchema); 

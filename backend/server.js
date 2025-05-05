@@ -16,7 +16,11 @@ const Trip = require('./models/Trip');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
 
 // Connect to MongoDB
@@ -35,7 +39,6 @@ const postRoutes = require('./routes/posts');
 const recommendationRoutes = require('./routes/recommendations')
 const expenseRoutes = require('./routes/expenses')
 const tripRoutes = require('./routes/trips')
-
 const authRoutes = require('./routes/auth');
 
 app.use('/api/groups', groupRoutes);
@@ -45,6 +48,14 @@ app.use('/api/posts', postRoutes);
 app.use('/api/recommendations', recommendationRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/trips', tripRoutes);
+
+// Test endpoint for basic connectivity testing
+app.get('/api/test', (req, res) => {
+  res.json({ 
+    message: 'API is working',
+    timestamp: new Date().toISOString()
+  });
+});
 
 app.get('/api/check-init', async (req, res) => {
     try {
@@ -80,7 +91,7 @@ app.get('/api/init-data', async (req, res) => {
         const expenseCount = await Expense.countDocuments();
         const tripCount = await Trip.countDocuments();
 
-        if (groupCount > 0 && userCount > 0 && postCount > 0 && recommendationCount > 0 && expenseCount > 0) {
+        if (groupCount > 0 && userCount > 0 && postCount > 0 && recommendationCount > 0 && expenseCount > 0 && tripCount > 0) {
             return res.json({
                 message: 'Database already initialized',
                 groupsCount: groupCount,
@@ -92,74 +103,60 @@ app.get('/api/init-data', async (req, res) => {
             });
         }
         
+        // Load and process User data
         var user_json = require("./data/dummy_data/user.json");
         user_json = bson.EJSON.parse(JSON.stringify(user_json));
-
-        var expense_json = require("./data/dummy_data/expense.json")
-        expense_json = bson.EJSON.parse(JSON.stringify(expense_json))
-        
-        var group_json = require("./data/dummy_data/group.json")
-        group_json = bson.EJSON.parse(JSON.stringify(group_json))
-
-        // var post_json = require("./data/dummy_data/post.json")
-        // post_json = bson.EJSON.parse(JSON.stringify(post_json))
-
-        var trip_json = require("./data/dummy_data/trip.json")
-        trip_json = bson.EJSON.parse(JSON.stringify(trip_json))
-
-        // var recommendation_json = require("./data/dummy_data/ai_recommendation.json")
-        // recommendation_json = bson.EJSON.parse(JSON.stringify(recommendation_json))
-
         const processedUsers = user_json.map(user => {
-            // const userId = user._id.$oid;
             return user;
         });
-        
         await db.collection("users").deleteMany({});
         await db.collection("users").insertMany(processedUsers);
-
+        console.log(`Initialized ${processedUsers.length} users`);
+        
+        // Load and process Group data
+        var group_json = require("./data/dummy_data/group.json");
+        group_json = bson.EJSON.parse(JSON.stringify(group_json));
         const processedGroups = group_json.map(group => {
-
             return group;
         });
-        
         await db.collection("groups").deleteMany({});
         await db.collection("groups").insertMany(processedGroups);
-
-        const processedExpenses = group_json.map(expense => {
-
+        console.log(`Initialized ${processedGroups.length} groups`);
+        
+        // Load and process Expense data
+        var expense_json = require("./data/dummy_data/expense.json");
+        expense_json = bson.EJSON.parse(JSON.stringify(expense_json));
+        const processedExpenses = expense_json.map(expense => {
             return expense;
         });
-        
         await db.collection("expenses").deleteMany({});
         await db.collection("expenses").insertMany(processedExpenses);
+        console.log(`Initialized ${processedExpenses.length} expenses`);
 
-        const processedTrips = group_json.map(trip => {
-
+        // Load and process Trip data
+        var trip_json = require("./data/dummy_data/trip.json");
+        trip_json = bson.EJSON.parse(JSON.stringify(trip_json));
+        const processedTrips = trip_json.map(trip => {
             return trip;
         });
-        
         await db.collection("trips").deleteMany({});
         await db.collection("trips").insertMany(processedTrips);
+        console.log(`Initialized ${processedTrips.length} trips`);
 
         res.json({
             message: 'Data initialized successfully',
-            groupsCount: groupCount,
-            usersCount: userCount,
-            postsCount: postCount,
-            recommendationsCount: recommendationCount,
-            expensesCount: expenseCount,
-            tripsCount: tripCount
-
+            groupsCount: await Group.countDocuments(),
+            usersCount: await User.countDocuments(),
+            postsCount: await Post.countDocuments(),
+            recommendationsCount: await Recommendation.countDocuments(),
+            expensesCount: await Expense.countDocuments(),
+            tripsCount: await Trip.countDocuments()
         });
     } catch (error) {
         console.error('Error initializing data:', error);
         res.status(500).json({ error: 'Error initializing data', details: error.message });
     }
 });
-
-
-
 
 app.get('/api/test-post', async (req, res) => {
     try {
@@ -203,15 +200,9 @@ app.get('/api/test-post', async (req, res) => {
         await Post.deleteMany({});
         await db.collection("posts").insertMany(processedPosts);
 
-        //const post1 = await Post.findOne();
-        //console.log(post1.image)
-        //const buffer = Buffer.from(post1.image, 'base64');
-        //fs.writeFileSync('test.jpg', buffer);
-
         res.json({
             message: 'Data initialized successfully',
-            usersCount: userCount
-
+            postsCount: await Post.countDocuments()
         });
     } catch (error) {
         console.error('Error initializing data:', error);
@@ -219,6 +210,48 @@ app.get('/api/test-post', async (req, res) => {
     }
 });
 
+// Add this to server.js for debugging
+app.get('/api/diagnostics', async (req, res) => {
+    try {
+      // Fetch a sample trip and group
+      const sampleTrip = await Trip.findOne().lean();
+      let groupInfo = null;
+      
+      if (sampleTrip && sampleTrip.group_id) {
+        // Check if group_id is a string or ObjectId
+        const groupIdType = typeof sampleTrip.group_id;
+        const isObjectId = sampleTrip.group_id instanceof mongoose.Types.ObjectId;
+        
+        // Try to find the group
+        const group = await Group.findOne({ group_id: sampleTrip.group_id }).lean();
+        groupInfo = {
+          found: !!group,
+          groupDetails: group,
+          idType: groupIdType,
+          isObjectId
+        };
+      }
+      
+      // Return diagnostic info
+      res.json({
+        tripExample: sampleTrip,
+        groupReference: groupInfo,
+        collections: {
+          tripCount: await Trip.countDocuments(),
+          groupCount: await Group.countDocuments()
+        }
+      });
+    } catch (error) {
+      console.error('Diagnostic error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({ message: 'Server error', error: err.message });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -1,56 +1,83 @@
-// MyTrip.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { tripApi } from "../utils/api";
 import Temple from "../assets/Temple_background.png";
 import Fuji from "../assets/Fuji_background.jpg";
 import GreatWall from "../assets/great_wall.jpg";
+import { formatDate, formatCurrency } from "../utils/formatters";
 
 const MyTrip = () => {
   const [trips, setTrips] = useState([]);
   const [filter, setFilter] = useState("all"); // "all", "completed", "upcoming"
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // For demo, using mock data
-    const mockTrips = [
-      {
-        id: 1,
-        title: "Beach Vacation in Bali",
-        location: "Bali, Indonesia",
-        startDate: "2025-06-15",
-        endDate: "2025-06-25",
-        status: "upcoming",
-        image: Temple,
-        participants: 4,
-        activities: ["Surfing", "Snorkeling", "Temple Visit"]
-      },
-      {
-        id: 2,
-        title: "Mountain Trek in the Alps",
-        location: "Swiss Alps, Switzerland",
-        startDate: "2025-01-10",
-        endDate: "2025-01-20",
-        status: "completed",
-        image: Fuji,
-        participants: 6,
-        activities: ["Hiking", "Skiing", "Photography"]
-      },
-      {
-        id: 3,
-        title: "Cultural Tour in Japan",
-        location: "Tokyo & Kyoto, Japan",
-        startDate: "2025-09-05",
-        endDate: "2025-09-15",
-        status: "upcoming",
-        image: GreatWall,
-        participants: 2,
-        activities: ["Temple Visit", "Food Tour", "Shopping"]
+    const fetchTrips = async () => {
+      try {
+        setLoading(true);
+        
+        const response = await tripApi.getAll();
+        const tripsData = response.data;
+
+        console.log("API Response:", tripsData);
+        
+        // Debug the IDs in the response
+        if (Array.isArray(tripsData)) {
+          tripsData.forEach((trip, index) => {
+            console.log(`Trip ${index} ID information:`, {
+              _id: trip._id,
+              id: trip.id,
+              tripId: trip.tripId,
+              keys: Object.keys(trip)
+            });
+          });
+        }
+        
+        // Process the trips data to add UI-specific properties
+        const processedTrips = tripsData.map(trip => {
+          const today = new Date();
+          const endDate = new Date(trip.end_date);
+          const status = endDate < today ? "completed" : "upcoming";
+          
+          // Use the groupName directly from the API response
+          const groupName = trip.groupName || "Unnamed Group";
+          const memberCount = trip.memberCount || 0;
+
+          // Assign placeholder image based on destination
+          let image = Temple;
+          if (trip.destination && trip.destination.toLowerCase().includes('japan')) {
+            image = Fuji;
+          } else if (trip.destination && trip.destination.toLowerCase().includes('china')) {
+            image = GreatWall;
+          }
+          
+          // Ensure trip has an ID that can be used for navigation
+          const tripId = trip._id || trip.id || trip.tripId;
+          console.log(`Processed trip: ${trip.destination}, using ID: ${tripId}`);
+          
+          return {
+            ...trip,
+            _id: tripId, // Ensure the _id is set for navigation
+            image,
+            status,
+            groupName,
+            memberCount
+          };
+        });
+        
+        setTrips(processedTrips);
+        setError(null);
+      } catch (err) {
+        console.error("Failed to fetch trips:", err);
+        setError("Failed to load trips. Please try again.");
+      } finally {
+        setLoading(false);
       }
-    ];
-    
-    // Set trips immediately without setTimeout
-    setTrips(mockTrips);
-    
+    };
+
+    fetchTrips();
   }, []);
 
   const filteredTrips = trips.filter(trip => {
@@ -58,22 +85,70 @@ const MyTrip = () => {
     return trip.status === filter;
   });
 
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
-
   const calculateDuration = (startDate, endDate) => {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    const diffTime = Math.abs(end - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
+    if (!startDate || !endDate) return 'Unknown';
+    
+    try {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      
+      if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+        return 'Unknown';
+      }
+      
+      const diffTime = Math.abs(end - start);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays;
+    } catch (err) {
+      return 'Unknown';
+    }
   };
 
   const handleTripClick = (tripId) => {
+    console.log("Trip click handler called with ID:", tripId);
+    
+    if (!tripId) {
+      console.error("ERROR: Attempted to navigate to trip detail with undefined ID");
+      alert("Sorry, can't view this trip. Missing trip ID.");
+      return;
+    }
+    
+    console.log("Navigating to trip with ID:", tripId);
     navigate(`/mytrip/${tripId}`);
   };
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-16 text-center">
+        <div className="bg-blue-50 p-8 rounded-lg max-w-2xl mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-blue-400 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          <h2 className="text-2xl font-bold text-blue-700 mt-4">Loading trips...</h2>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-16 text-center">
+        <div className="bg-red-50 p-8 rounded-lg max-w-2xl mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-red-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <h2 className="text-2xl font-bold text-red-700 mb-4">Error</h2>
+          <p className="text-red-600 mb-6">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -124,77 +199,98 @@ const MyTrip = () => {
         </div>
       ) : (
         <div className="space-y-6">
-          {filteredTrips.map(trip => (
-            <div 
-              key={trip.id} 
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => handleTripClick(trip.id)}
-            >
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/3 h-48 md:h-64 overflow-hidden">
-                  <img 
-                    src={trip.image} 
-                    alt={trip.title} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6 md:w-2/3">
-                  <div className="flex justify-between items-start">
-                    <h2 className="text-xl font-bold text-blue-700 mb-2">{trip.title}</h2>
-                    <span 
-                      className={`text-xs font-semibold px-3 py-1 rounded-full uppercase ${
-                        trip.status === "upcoming" ? "bg-green-100 text-green-700" : "bg-blue-100 text-blue-700"
-                      }`}
-                    >
-                      {trip.status}
-                    </span>
+          {filteredTrips.map(trip => {
+            // Log each trip ID as we render it
+            console.log(`Rendering trip card for ${trip.destination}, ID:`, trip._id);
+            
+            return (
+              <div 
+                key={trip._id || `trip-${Math.random()}`} 
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => {
+                  console.log("Clicked on trip card:", trip);
+                  handleTripClick(trip._id);
+                }}
+              >
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/3 h-48 md:h-64 overflow-hidden">
+                    <img 
+                      src={trip.image} 
+                      alt={trip.destination} 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  
-                  <div className="flex items-center text-gray-600 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span>{trip.location}</span>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <div className="text-xs text-gray-500">DATE</div>
-                      <div className="font-medium">
-                        {formatDate(trip.startDate)} - {formatDate(trip.endDate)}
+                  <div className="p-6 md:w-2/3">
+                    <div className="flex justify-between items-start">
+                      <h2 className="text-xl font-bold text-blue-700 mb-2">
+                        {trip.groupName || 'Unnamed Group'}
+                      </h2>
+                      <span 
+                        className={`text-xs font-semibold px-3 py-1 rounded-full uppercase ${
+                          trip.status === "upcoming" ? "bg-green-100 text-green-700" : "bg-blue-100 text-blue-700"
+                        }`}
+                      >
+                        {trip.status}
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center text-gray-600 mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span>{trip.destination || "Unknown destination"}</span>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <div className="text-xs text-gray-500">DATE</div>
+                        <div className="font-medium">
+                          {trip.start_date && !isNaN(new Date(trip.start_date).getTime()) 
+                            ? formatDate(trip.start_date) 
+                            : 'Unknown'} - 
+                          {trip.end_date && !isNaN(new Date(trip.end_date).getTime()) 
+                            ? formatDate(trip.end_date) 
+                            : 'Unknown'}
+                        </div>
+                        <div className="text-sm text-blue-600">
+                          {typeof calculateDuration(trip.start_date, trip.end_date) === 'number' 
+                            ? `${calculateDuration(trip.start_date, trip.end_date)} days` 
+                            : calculateDuration(trip.start_date, trip.end_date)}
+                        </div>
                       </div>
-                      <div className="text-sm text-blue-600">
-                        {calculateDuration(trip.startDate, trip.endDate)} days
+                      <div>
+                        <div className="text-xs text-gray-500">GROUP MEMBERS</div>
+                        <div className="font-medium flex items-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
+                          {trip.memberCount || 0} people
+                        </div>
                       </div>
                     </div>
-                    <div>
-                      <div className="text-xs text-gray-500">PARTICIPANTS</div>
-                      <div className="font-medium flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        {trip.participants} people
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <div className="text-xs text-gray-500">BUDGET</div>
+                        <div className="font-medium">
+                          {!isNaN(trip.budget) ? formatCurrency(trip.budget) : 'Budget not set'}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {trip.activities.slice(0, 3).map((activity, index) => (
-                      <span key={index} className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
-                        {activity}
-                      </span>
-                    ))}
-                    {trip.activities.length > 3 && (
-                      <span className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
-                        +{trip.activities.length - 3} more
-                      </span>
-                    )}
+                    
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {trip.activities && trip.activities.map((activity, index) => (
+                        <span key={index} className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
+                          {activity}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

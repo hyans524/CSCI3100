@@ -2,17 +2,29 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Travel_animation from "../../src/assets/travel_animation.jpg";
 
-const TripCard = ({_id, user_id, text, image, location, budget, activities, start_date, end_date}) => {
+const TripCard = ({_id, user_id, text, image, location, budget, activities, start_date, end_date, likeCount, commentCount}) => {
 
-  // Convert buffer to image URL or use Travel_animation image if no image provided
+  // Get the image URL - handles both URL paths and base64 encoded images
   const getImageUrl = () => {
     if (!image) return Travel_animation;
     
-    try {
-      return `data:image/jpeg;base64,${Buffer.from(image).toString('base64')}`;
-    } catch (error) {
-      return Travel_animation;
+    // If image is a path (from backend uploads folder)
+    if (typeof image === 'string' && (image.startsWith('/uploads/') || image.startsWith('http'))) {
+      return image;
     }
+    
+    // Try to handle base64 encoded image
+    try {
+      if (typeof image === 'object' && image.buffer) {
+        return `data:image/jpeg;base64,${Buffer.from(image.buffer).toString('base64')}`;
+      } else if (Buffer.isBuffer(image)) {
+        return `data:image/jpeg;base64,${Buffer.from(image).toString('base64')}`;
+      }
+    } catch (error) {
+      console.error("Error processing image:", error);
+    }
+    
+    return Travel_animation;
   };
   
   const isDefaultImage = !image || getImageUrl() === Travel_animation;
@@ -34,6 +46,9 @@ const TripCard = ({_id, user_id, text, image, location, budget, activities, star
     const start = new Date(start_date);
     const end = new Date(end_date);
     
+    // Check if dates are valid
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) return "";
+    
     const formatOptions = { month: 'short', day: 'numeric' };
     const startFormatted = start.toLocaleDateString(undefined, formatOptions);
     const endFormatted = end.toLocaleDateString(undefined, formatOptions);
@@ -41,13 +56,18 @@ const TripCard = ({_id, user_id, text, image, location, budget, activities, star
     return `${startFormatted} - ${endFormatted}, ${start.getFullYear()}`;
   };
 
+  // Handle activities properly - they might come as an array or a string
+  const processedActivities = Array.isArray(activities) 
+    ? activities 
+    : (typeof activities === 'string' ? activities.split(',').map(act => act.trim()) : []);
+
   return (
     <Link
       to={`/trip/${_id}`}
       onClick={() => {
         window.scrollTo(0, 0);
       }}
-      state={{_id, user_id, text, image, location, budget, activities, start_date, end_date}}
+      state={{_id, user_id, text, image, location, budget, activities: processedActivities, start_date, end_date}}
     >
       <div className="shadow-lg transition-all duration-500 hover:shadow-xl cursor-pointer">
         <div className="overflow-hidden relative">
@@ -57,6 +77,10 @@ const TripCard = ({_id, user_id, text, image, location, budget, activities, star
             className={`mx-auto h-[220px] w-full object-cover transition duration-700 hover:skew-x-2 hover:scale-110 ${
               isDefaultImage ? 'opacity-70 saturate-80 brightness-80' : ''
             }`}
+            onError={(e) => {
+              e.target.src = Travel_animation;
+              e.target.classList.add('opacity-70', 'saturate-80', 'brightness-80');
+            }}
           />
           
           {isDefaultImage && (
@@ -77,19 +101,39 @@ const TripCard = ({_id, user_id, text, image, location, budget, activities, star
           </div>
           <p className="line-clamp-2">{text}</p>
           <div className="flex flex-wrap gap-1 mt-2">
-            {activities && activities.slice(0, 3).map((activity, index) => (
+            {processedActivities.slice(0, 3).map((activity, index) => (
               <span key={index} className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
                 {activity}
               </span>
             ))}
-            {activities && activities.length > 3 && (
+            {processedActivities.length > 3 && (
               <span className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
-                +{activities.length - 3} more
+                +{processedActivities.length - 3} more
               </span>
             )}
           </div>
-          <div className="flex items-center justify-end border-t-2 py-3 !mt-3">
-            <p className="text-xl font-bold">{formatBudget(budget)}</p>
+          <div className="flex items-center justify-between border-t-2 py-3 !mt-3">
+            {(likeCount !== undefined || commentCount !== undefined) && (
+              <div className="flex items-center gap-3">
+                {likeCount !== undefined && (
+                  <span className="flex items-center gap-1 text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    {likeCount}
+                  </span>
+                )}
+                {commentCount !== undefined && (
+                  <span className="flex items-center gap-1 text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    {commentCount}
+                  </span>
+                )}
+              </div>
+            )}
+            <p className="text-xl font-bold ml-auto">{formatBudget(budget)}</p>
           </div>
         </div>
       </div>

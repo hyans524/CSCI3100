@@ -46,6 +46,22 @@ router.post('/', async (req, res) => {
     }
 });
 
+
+router.post('/byids', async (req, res) => {
+    try {
+        const { userIds } = req.body;
+        
+        if (!Array.isArray(userIds)) {
+            return res.status(400).json({ message: 'userIds must be an array' });
+        }
+        
+        const users = await User.find({ user_id: { $in: userIds } });
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 router.put('/:id', async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
@@ -67,7 +83,7 @@ router.delete('/:id', async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        await user.remove();
+        await user.findByIdAndDelete(req.params.id);
         res.json({ message: 'User deleted' });
     } catch (error) {
         res.status(500).json({ message: error.message });
