@@ -34,8 +34,6 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const expense = new Expense({
-        date: req.body.date,
-        description: req.body.description,
         category: req.body.category,
         amount: req.body.amount,
         paid_by: req.body.paid_by,
@@ -71,7 +69,7 @@ router.delete('/:id', async (req, res) => {
         if (!expense) {
             return res.status(404).json({ message: 'Expense not found' });
         }
-        await expense.remove();
+        await expense.deleteOne({ _id: req.params.id }).exec();
         res.json({ message: 'Expense deleted' });
     } catch (error) {
         res.status(500).json({ message: error.message });

@@ -119,6 +119,7 @@ router.get('/by-group-id/:groupId', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const group = new Group({
+        group_id: req.body.group_id,
         group_name: req.body.group_name,
         members: req.body.members,
         trip_summary: req.body.trip_summary,
@@ -149,11 +150,11 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const group = await Group.findById(req.params.id);
+        const group = await Group.findOne({ _id: req.params.id }).exec();
         if (!group) {
             return res.status(404).json({ message: 'Group not found' });
         }
-        await group.remove();
+        await group.deleteOne({ _id: req.params.id }).exec();
         res.json({ message: 'Group deleted' });
     } catch (error) {
         res.status(500).json({ message: error.message });

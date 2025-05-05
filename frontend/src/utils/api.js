@@ -38,7 +38,7 @@ api.interceptors.response.use(
     }
 );
 
-// User-related APIs
+
 export const userApi = {
     getAll: () => api.get('/users'),
     getById: (id) => api.get(`/users/${id}`),
@@ -62,16 +62,14 @@ export const authApi = {
     getCurrentUserId: () => localStorage.getItem('userId'),
 };
 
-
 // Trip-related APIs
 export const tripApi = {
     getAll: () => api.get('/trips'),
     getById: (id) => api.get(`/trips/${id}`),
     create: (data) => api.post('/trips', data),
     update: (id, data) => api.put(`/trips/${id}`, data),
-    delete: (id) => api.delete(`/trips/${id}`) || "67fba7d7cc439d8b22e006c9", // Default mock user ID
+    delete: (id) => api.delete(`/trips/${id}`) || "67fba7d7cc439d8b22e006c9",
 };
-
 
 // Group-related APIs
 export const groupApi = {
