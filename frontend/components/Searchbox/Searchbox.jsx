@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Searchbox = () => {
-  const [priceValue, setPriceValue] = useState(150);
+  const [priceValue, setPriceValue] = useState(500);
 
   return (
     <div className="bg-gradient-to-b from-black/40 to-black/20 backdrop-blur-[2px] h-full">
@@ -94,15 +94,15 @@ const Searchbox = () => {
                     name="price-range"
                     id="price-range"
                     className="appearance-none w-full h-2 bg-gray-200 rounded-full accent-orange-600 cursor-pointer"
-                    min="150"
-                    max="1000"
+                    min="500"
+                    max="10000"
                     value={priceValue}
                     step="10"
                     onChange={(e) => setPriceValue(e.target.value)}
                   />
                   <div className="flex justify-between text-xs text-gray-500 mt-1">
-                    <span>150</span>
-                    <span>1000</span>
+                    <span>500</span>
+                    <span>10000</span>
                   </div>
                 </div>
               </div>

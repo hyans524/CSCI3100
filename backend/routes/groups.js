@@ -140,11 +140,51 @@ router.put('/:id', async (req, res) => {
             return res.status(404).json({ message: 'Group not found' });
         }
 
-        Object.assign(group, req.body);
+        if (req.body.$push) {
+            for (const field in req.body.$push) {
+                if (Array.isArray(group[field])) {
+                    group[field].push(req.body.$push[field]);
+                }
+            }
+        } else {
+            // Regular update
+            Object.assign(group, req.body);
+        }
+        
         const updatedGroup = await group.save();
         res.json(updatedGroup);
     } catch (error) {
+        console.error('Error updating group:', error);
         res.status(400).json({ message: error.message });
+    }
+});
+
+router.post('/:id/messages', async (req, res) => {
+    try {
+        const group = await Group.findById(req.params.id);
+        if (!group) {
+            return res.status(404).json({ message: 'Group not found' });
+        }
+        
+        // Validate user_oid format
+        if (!mongoose.Types.ObjectId.isValid(req.body.user_oid)) {
+            return res.status(400).json({ message: 'Invalid user ID format' });
+        }
+        
+        // Create and add the new message
+        const newMessage = {
+            user_oid: req.body.user_oid,
+            text: req.body.text,
+            timestamp: req.body.timestamp || new Date()
+        };
+        
+        group.messages.push(newMessage);
+        const updatedGroup = await group.save();
+        
+        res.status(201).json(updatedGroup);
+    } catch (error) {
+        console.error('Error adding message:', error);
+        res.status(500).json({ message: error.message });
     }
 });
 
@@ -157,6 +197,40 @@ router.delete('/:id', async (req, res) => {
         await group.deleteOne({ _id: req.params.id }).exec();
         res.json({ message: 'Group deleted' });
     } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+router.delete('/:groupId/messages/:messageId', async (req, res) => {
+    try {
+        const { groupId, messageId } = req.params;
+        
+        // Validate object IDs
+        if (!mongoose.Types.ObjectId.isValid(groupId) || !mongoose.Types.ObjectId.isValid(messageId)) {
+            return res.status(400).json({ message: 'Invalid ID format' });
+        }
+        
+        // Find the group
+        const group = await Group.findById(groupId);
+        if (!group) {
+            return res.status(404).json({ message: 'Group not found' });
+        }
+        
+        // Check if the message exists in the group
+        const messageIndex = group.messages.findIndex(
+            message => message._id.toString() === messageId
+        );
+        
+        if (messageIndex === -1) {
+            return res.status(404).json({ message: 'Message not found' });
+        }
+
+        group.messages.splice(messageIndex, 1);
+        await group.save();
+        res.json({ message: 'Message deleted successfully' });
+        
+    } catch (error) {
+        console.error('Error deleting message:', error);
         res.status(500).json({ message: error.message });
     }
 });

@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { formatDateTime } from '../../src/utils/formatters';
 import { groupApi } from '../../src/utils/api';
+import api from '../../src/utils/api';
 
-const GroupMessages = ({ messages, members, groupId }) => {
+const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
   const [newMessage, setNewMessage] = useState('');
   const [sending, setSending] = useState(false);
+  const [messages, setMessages] = useState(initialMessages || []);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [messageToDelete, setMessageToDelete] = useState(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [error, setError] = useState(null);
+  
+  // Mock user_oid since auth isn't implemented yet
+  const currentUserId = "67fba7d7cc439d8b22e006c9";
+
+  useEffect(() => {
+    setMessages(initialMessages || []);
+  }, [initialMessages]);
 
   const getMessageAuthor = (message, userId) => {
-    // First try to get user from message.user if it exists (from our updated API)
     if (message.user) {
       return message.user.username || `User ${message.user.user_id || ''}`;
     }
     
-    // Otherwise try to find from members array
     if (!members || !Array.isArray(members)) return "Unknown";
     
     // Try to match by _id or user_id
@@ -28,46 +39,162 @@ const GroupMessages = ({ messages, members, groupId }) => {
     return "Unknown User";
   };
 
+  // Check if a message belongs to the current user
+  const isCurrentUserMessage = (message) => {
+    const userId = message.user_oid?.toString() || message.user_id?.toString() || (message.user && message.user._id?.toString());
+    return userId === currentUserId;
+  };
+
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!newMessage.trim() || sending) return;
 
     try {
       setSending(true);
-      await groupApi.addMessage(groupId, newMessage.trim());
       
-      // In a real app, you would update the messages list with the new message
-      // Here we'll just clear the input field
+      // Create new message object
+      const newMessageObj = {
+        user_oid: currentUserId,
+        text: newMessage.trim(),
+        timestamp: new Date().toISOString()
+      };
+      
+      // Send message using the new endpoint
+      const response = await api.post(`/groups/${groupId}/messages`, newMessageObj);
+      
+      console.log('Message sent response:', response.data);
+      
+      // Update local state with new message
+      setMessages([...messages, {...newMessageObj, _id: response.data.messages[response.data.messages.length - 1]._id}]);
       setNewMessage('');
+
     } catch (error) {
       console.error('Failed to send message:', error);
-      alert('Failed to send message. Please try again.');
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+      }
+      setError('Failed to send message. Please try again.');
     } finally {
       setSending(false);
     }
   };
 
+  // Initialize delete confirmation
+  const initiateDelete = (message) => {
+    setMessageToDelete(message);
+    setShowDeleteConfirm(true);
+  };
+
+  // Handle message deletion with confirmation
+  const handleDeleteMessage = async () => {
+    if (!messageToDelete) return;
+    
+    try {
+      // Call API to delete the message
+      const response = await api.delete(`/groups/${groupId}/messages/${messageToDelete._id}`);
+      
+      console.log('Message deleted successfully', response.data);
+      
+      // Update local state to remove the deleted message
+      setMessages(messages.filter(message => 
+        message._id !== messageToDelete._id
+      ));
+      
+      // Close the confirmation popup
+      setShowDeleteConfirm(false);
+      setMessageToDelete(null);
+      
+    } catch (error) {
+      console.error('Failed to delete message:', error);
+      
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+      }
+      
+      setError('Failed to delete message. Please try again.');
+      setShowDeleteConfirm(false);
+      setMessageToDelete(null);
+    }
+  };
+
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-md p-6 mb-8">
+      {/* Error Alert */}
+      {error && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black bg-opacity-30" onClick={() => setError(null)}></div>
+          <div className="bg-gray-800 text-white rounded-lg shadow-lg p-6 max-w-md w-full mx-4 z-10">
+            <h3 className="font-medium mb-2">localhost:5173 says</h3>
+            <p className="mb-6">{error}</p>
+            <div className="flex justify-end">
+              <button 
+                className="px-6 py-2 bg-blue-100 text-blue-900 rounded-full hover:bg-blue-200"
+                onClick={() => setError(null)}
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteConfirm && messageToDelete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full mx-4 z-10">
+            <h3 className="text-xl font-bold mb-4">Confirm Delete</h3>
+            <p className="mb-6">
+              Are you sure you want to delete this message? This action cannot be undone.
+            </p>
+            <div className="flex justify-end space-x-3">
+              <button 
+                className="px-4 py-2 bg-white border border-gray-300 rounded text-gray-700 hover:bg-gray-100"
+                onClick={() => {
+                  setShowDeleteConfirm(false);
+                  setMessageToDelete(null);
+                }}
+              >
+                Cancel
+              </button>
+              <button 
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                onClick={handleDeleteMessage}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-bold text-xl text-blue-700">Group Messages</h2>
         <button 
-          className="text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg flex items-center"
-          onClick={() => console.log('Edit messages settings')}
+          className={`text-sm ${isEditMode ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'} text-white px-3 py-1 rounded-lg flex items-center`}
+          onClick={toggleEditMode}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            {isEditMode ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            )}
           </svg>
-          Edit
+          {isEditMode ? 'Cancel' : 'Edit'}
         </button>
       </div>
+      
       <div className="space-y-4 max-h-96 overflow-y-auto mb-4">
         {messages && messages.length > 0 ? (
           messages.map((message, index) => {
-            // Try to use user property first (from updated API), then fall back to user_oid
             const userId = message.user?._id || message.user_oid || message.user_id;
             const author = message.user?.username || getMessageAuthor(message, userId);
             const firstLetter = author.charAt(0).toUpperCase();
+            const canDelete = isEditMode && isCurrentUserMessage(message);
             
             return (
               <div key={index} className="flex space-x-3">
@@ -75,9 +202,22 @@ const GroupMessages = ({ messages, members, groupId }) => {
                   {firstLetter}
                 </div>
                 <div className="flex-1 bg-gray-50 rounded-lg p-3">
-                  <div className="flex items-baseline">
-                    <span className="font-medium text-blue-600">{author}</span>
-                    <span className="ml-2 text-xs text-gray-500">{formatDateTime(message.timestamp)}</span>
+                  <div className="flex items-baseline justify-between">
+                    <div>
+                      <span className="font-medium text-blue-600">{author}</span>
+                      <span className="ml-2 text-xs text-gray-500">{formatDateTime(message.timestamp)}</span>
+                    </div>
+                    {canDelete && (
+                      <button 
+                        onClick={() => initiateDelete(message)}
+                        className="text-red-600 hover:text-red-800 ml-2"
+                        title="Delete message"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    )}
                   </div>
                   <div className="mt-1">{message.text}</div>
                 </div>

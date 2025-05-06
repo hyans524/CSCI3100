@@ -37,7 +37,9 @@ router.post('/', async (req, res) => {
         category: req.body.category,
         amount: req.body.amount,
         paid_by: req.body.paid_by,
-        group_id: req.body.group_id
+        group_id: req.body.group_id,
+        description: req.body.description,
+        date: req.body.date || new Date()
     });
 
     try {
@@ -65,11 +67,12 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const expense = await Expense.findById(req.params.id);
-        if (!expense) {
+        const result = await Expense.findByIdAndDelete(req.params.id);
+        
+        if (!result) {
             return res.status(404).json({ message: 'Expense not found' });
         }
-        await expense.deleteOne({ _id: req.params.id }).exec();
+        
         res.json({ message: 'Expense deleted' });
     } catch (error) {
         res.status(500).json({ message: error.message });

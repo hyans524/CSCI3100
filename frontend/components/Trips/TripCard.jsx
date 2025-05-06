@@ -2,28 +2,37 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Travel_animation from "../../src/assets/travel_animation.jpg";
 
-const TripCard = ({_id, user_id, text, image, location, budget, activities, start_date, end_date, likeCount, commentCount}) => {
+const TripCard = ({
+  _id, 
+  user_id, 
+  text, 
+  image, 
+  location, 
+  budget, 
+  activities, 
+  start_date, 
+  end_date, 
+  likeCount, 
+  commentCount,
+  trip_oid // New field that references the trip document
+}) => {
 
   // Get the image URL - handles both URL paths and base64 encoded images
   const getImageUrl = () => {
     if (!image) return Travel_animation;
     
     // If image is a path (from backend uploads folder)
-    if (typeof image === 'string' && (image.startsWith('/uploads/') || image.startsWith('http'))) {
-      return image;
-    }
-    
-    // Try to handle base64 encoded image
-    try {
-      if (typeof image === 'object' && image.buffer) {
-        return `data:image/jpeg;base64,${Buffer.from(image.buffer).toString('base64')}`;
-      } else if (Buffer.isBuffer(image)) {
-        return `data:image/jpeg;base64,${Buffer.from(image).toString('base64')}`;
+    if (typeof image === 'string') {
+      if (image.startsWith('/uploads/')) {
+        // Use absolute URL for server-side images
+        return `${window.location.origin}${image}`;
       }
-    } catch (error) {
-      console.error("Error processing image:", error);
+      if (image.startsWith('http')) {
+        return image;
+      }
     }
     
+    // Fallback to default image
     return Travel_animation;
   };
   
@@ -67,7 +76,18 @@ const TripCard = ({_id, user_id, text, image, location, budget, activities, star
       onClick={() => {
         window.scrollTo(0, 0);
       }}
-      state={{_id, user_id, text, image, location, budget, activities: processedActivities, start_date, end_date}}
+      state={{
+        _id, 
+        user_id, 
+        text, 
+        image, 
+        location, 
+        budget, 
+        activities: processedActivities, 
+        start_date, 
+        end_date,
+        trip_oid // Pass along the trip_oid for joining functionality
+      }}
     >
       <div className="shadow-lg transition-all duration-500 hover:shadow-xl cursor-pointer">
         <div className="overflow-hidden relative">

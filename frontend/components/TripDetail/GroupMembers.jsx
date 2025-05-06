@@ -2,9 +2,7 @@ import React from 'react';
 
 const GroupMembers = ({ members }) => {
   const getDisplayName = (member) => {
-    // Try all possible name fields in order of preference
-    return member.username || member.name || 
-           (member.user_id ? `User ${member.user_id}` : `Member`);
+    return member.username;
   };
   
   // Get avatar text (first letter of name)

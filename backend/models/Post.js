@@ -10,6 +10,7 @@ const commentSchema = new Schema({
 
 const PostSchema = new mongoose.Schema({
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  trip_oid: { type: mongoose.Schema.Types.ObjectId, ref: 'Trip', required: true },
   text: { type: String, required: true, trim: true },
   image: { type: String },
   location: { type: String, required: true },

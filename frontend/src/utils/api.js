@@ -80,17 +80,23 @@ export const groupApi = {
     update: (id, data) => api.put(`/groups/${id}`, data),
     delete: (id) => api.delete(`/groups/${id}`),
     addMessage: (groupId, text) => {
-        const userId = authApi.getCurrentUserId();
-        return api.put(`/groups/${groupId}`, {
-            $push: {
-                messages: {
-                    user_oid: userId,
-                    text: text,
-                    timestamp: new Date()
-                }
-            }
-        });
-    }
+        // Use mock user ID if auth is not implemented yet
+        const userId = authApi.getCurrentUserId() || "67fba7d7cc439d8b22e006c9";
+        
+        // Create a new message object
+        const newMessage = {
+            user_oid: userId,
+            text: text,
+            timestamp: new Date().toISOString()
+        };
+        
+        // Add a new endpoint to handle adding messages
+        return api.post(`/groups/${groupId}/messages`, newMessage);
+    },
+    joinGroup: (postId) => {
+        const userId = authApi.getCurrentUserId() || "67fba7d7cc439d8b22e006c9";
+        return api.put(`/posts/join/${postId}`, { userId });
+    },
 };
 
 // Expense-related APIs
@@ -100,10 +106,10 @@ export const expenseApi = {
     getById: (id) => api.get(`/expenses/${id}`),
     create: (data) => api.post('/expenses', {
         ...data,
-        paid_by: authApi.getCurrentUserId()
+        paid_by: authApi.getCurrentUserId() || "67fba7d7cc439d8b22e006c9" // Use mock ID if needed
     }),
     update: (id, data) => api.put(`/expenses/${id}`, data),
     delete: (id) => api.delete(`/expenses/${id}`),
 };
 
-export default api; 
+export default api;

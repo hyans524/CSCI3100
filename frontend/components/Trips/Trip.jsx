@@ -23,23 +23,6 @@ const Trip = ({ heading = "Interested Trips to Join", headingStyle = "border-l-8
       } catch (error) {
         console.error("Error fetching trips:", error);
         setError("Failed to load trips. Please try again later.");
-        
-        // Fallback to mock data if API fails
-        const mockTrips = [
-          {
-            _id: '1',
-            user_id: 'user1',
-            text: "Experience the majestic Mount Fuji with breathtaking views. Perfect for hiking enthusiasts and nature lovers.",
-            image: null,
-            location: "Mount Fuji, Japan",
-            budget: "1001-2000",
-            activities: ["Hiking", "Photography", "Sightseeing"],
-            start_date: new Date("2025-06-10"),
-            end_date: new Date("2025-06-20")
-          },
-          // Other mock trips...
-        ];
-        setTrips(mockTrips);
       } finally {
         setLoading(false);
       }

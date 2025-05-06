@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { formatCurrency, formatDate } from '../../src/utils/formatters';
 import { expenseApi } from '../../src/utils/api';
 
@@ -11,10 +11,16 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
     date: new Date().toISOString().split('T')[0]
   });
   const [submitting, setSubmitting] = useState(false);
-
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [expenseToDelete, setExpenseToDelete] = useState(null);
+  
+  // Filter expenses for this group
+  const filteredExpenses = expenses ? expenses.filter(expense => 
+    String(expense.group_id._id) === String(groupId)) : [];
+  
   const calculateTotalExpenses = () => {
-    if (!expenses || expenses.length === 0) return 0;
-    return expenses.reduce((total, expense) => total + expense.amount, 0);
+    if (!filteredExpenses || filteredExpenses.length === 0) return 0;
+    return filteredExpenses.reduce((total, expense) => total + expense.amount, 0);
   };
 
   const calculateExpensePerPerson = () => {
@@ -23,9 +29,9 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
   };
 
   const getExpensesByCategory = () => {
-    if (!expenses || expenses.length === 0) return {};
+    if (!filteredExpenses || filteredExpenses.length === 0) return {};
     const categories = {};
-    expenses.forEach(expense => {
+    filteredExpenses.forEach(expense => {
       if (!categories[expense.category]) {
         categories[expense.category] = 0;
       }
@@ -34,18 +40,36 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
     return categories;
   };
 
-  const getExpensePayer = (userId) => {
-    if (!members) return "Unknown";
+  const getExpensePayer = (userObj) => {
+    if (!userObj || !members) return "Unknown";
+    
+    const userId = userObj._id;
+    
+    // Find matching member in the members array
     const member = members.find(m => m._id === userId);
-    return member?.name || "Unknown";
+    
+    if (member) {
+      return member.username;
+    }
+    return userObj.username || (userObj.user_id ? `User ${userObj.user_id}` : "Member");
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewExpense({
-      ...newExpense,
-      [name]: name === 'amount' ? parseFloat(value) || '' : value
-    });
+
+    if (name === 'amount') {
+      const intValue = parseInt(value, 10);
+      setNewExpense({
+        ...newExpense,
+        [name]: isNaN(intValue) ? '' : intValue
+      });
+
+    } else {
+      setNewExpense({
+        ...newExpense,
+        [name]: value
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -54,10 +78,22 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
 
     try {
       setSubmitting(true);
-      await expenseApi.create({
+      
+      // Mock user ID for testing
+      const mockUserId = "67fba7d7cc439d8b22e006c9";
+      
+      // Create the expense data with the mock user ID
+      const expenseData = {
         ...newExpense,
-        group_id: groupId
-      });
+        group_id: groupId,
+        paid_by: mockUserId
+      };
+      
+      console.log('Sending expense data:', expenseData);
+      
+      const response = await expenseApi.create(expenseData);
+      
+      console.log('Server response:', response);
       
       // Reset form
       setNewExpense({
@@ -68,12 +104,54 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
       });
       setIsAddingExpense(false);
       
-      // In a real app, you'd refresh the expenses list here
+      alert('Expense added successfully!');
+      
+
+      window.location.reload();
+
     } catch (error) {
       console.error('Failed to add expense:', error);
+      
+      // Detailed error logging
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+        console.error('Status:', error.response.status);
+      } else if (error.request) {
+        console.error('No response received:', error.request);
+      } else {
+        console.error('Error message:', error.message);
+      }
+      
       alert('Failed to add expense. Please try again.');
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  // Initialize delete confirmation
+  const initiateDelete = (expense) => {
+    setExpenseToDelete(expense);
+    setShowDeleteConfirm(true);
+  };
+
+  // Handle expense deletion with confirmation
+  const handleDeleteExpense = async () => {
+    if (!expenseToDelete) return;
+    
+    try {
+      await expenseApi.delete(expenseToDelete._id);
+      console.log('Expense deleted successfully');
+      
+      setShowDeleteConfirm(false);
+      setExpenseToDelete(null);
+      window.location.reload();
+
+    } catch (error) {
+      console.error('Failed to delete expense:', error);
+      
+      setShowDeleteConfirm(false);
+      setExpenseToDelete(null);
+      setError('Failed to delete expense. Please try again.');
     }
   };
 
@@ -81,6 +159,35 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
 
   return (
     <div className="bg-white rounded-xl shadow-md p-6 mb-8">
+      {/* Delete Confirmation Modal */}
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+            <h3 className="text-xl font-bold mb-4">Confirm Delete</h3>
+            <p className="mb-6">
+              Are you sure you want to delete the expense "{expenseToDelete?.description}" for {formatCurrency(expenseToDelete?.amount)}? This action cannot be undone.
+            </p>
+            <div className="flex justify-end space-x-3">
+              <button 
+                className="px-4 py-2 bg-white border border-gray-300 rounded text-gray-700 hover:bg-gray-100"
+                onClick={() => {
+                  setShowDeleteConfirm(false);
+                  setExpenseToDelete(null);
+                }}
+              >
+                Cancel
+              </button>
+              <button 
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                onClick={handleDeleteExpense}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-bold text-xl text-blue-700">Expenses</h2>
         <button 
@@ -122,7 +229,7 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
                   value={newExpense.amount}
                   onChange={handleInputChange}
                   className="w-full border rounded px-3 py-2"
-                  step="0.01"
+                  step="1"
                   min="0"
                   required
                 />
@@ -206,12 +313,12 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
       </div>
       
       <div className="space-y-3 max-h-64 overflow-y-auto">
-        {(!expenses || expenses.length === 0) ? (
+        {(!filteredExpenses || filteredExpenses.length === 0) ? (
           <div className="text-center py-4 text-gray-500">
             No expenses added yet.
           </div>
         ) : (
-          expenses.map((expense, index) => (
+          filteredExpenses.map((expense, index) => (
             <div key={index} className="border-b border-gray-100 pb-3 last:border-0">
               <div className="flex justify-between items-start">
                 <div>
@@ -220,11 +327,24 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
                     Paid by: {getExpensePayer(expense.paid_by)} • {formatDate(expense.date)}
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="font-semibold">{formatCurrency(expense.amount)}</div>
-                  <div className="text-xs px-2 py-1 rounded-full bg-gray-100 inline-block mt-1">
-                    {expense.category}
+                <div className="flex items-start">
+                  <div className="text-right mr-3">
+                    <div className="font-semibold">{formatCurrency(expense.amount)}</div>
+                    <div className="text-xs px-2 py-1 rounded-full bg-gray-100 inline-block mt-1">
+                      {expense.category}
+                    </div>
                   </div>
+
+                  {/* Delete button */}
+                  <button 
+                    onClick={() => initiateDelete(expense)}
+                    className="text-red-600 hover:text-red-800"
+                    title="Delete expense"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>

@@ -85,7 +85,7 @@ const PostTrip = ({ onClose, onTripPosted }) => {
                 "5001-10000": "3001+",
                 "10001+": "3001+"
             };
-
+    
             // Create form data for multipart/form-data (for image upload)
             const formData = new FormData();
             formData.append("user_id", mockUserId);
@@ -100,11 +100,10 @@ const PostTrip = ({ onClose, onTripPosted }) => {
                 formData.append("image", image);
             }
             
-            // Send post request using fetch
+            // Send post request using fetch to create post, trip and group
             const response = await fetch("/api/posts", {
                 method: 'POST',
                 body: formData
-                // No need to set Content-Type header, browser sets it with boundary for FormData
             });
             
             if (!response.ok) {
@@ -116,12 +115,10 @@ const PostTrip = ({ onClose, onTripPosted }) => {
             
             alert("Trip posted successfully!");
             
-            // If there's a callback function provided, call it with the new trip data
             if (onTripPosted) {
-                onTripPosted(response.data);
+                onTripPosted(data);
             }
             
-            // Close the modal
             onClose();
             
         } catch (error) {

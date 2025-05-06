@@ -4,6 +4,8 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const Post = require('../models/Post');
+const Trip = require('../models/Trip');
+const Group = require('../models/Group');
 
 // Setup image upload
 const uploadDir = path.join(__dirname, '..', 'uploads');
@@ -16,11 +18,37 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Create a new post
+// Create a new post, trip, and group
 router.post('/', upload.single('image'), async (req, res) => {
   try {
     const { user_id, text, location, budget, activities, start_date, end_date } = req.body;
 
+    // 1. Create a new group
+    const groupCount = await Group.countDocuments(); // what is this
+    const newGroupId = groupCount + 1;
+    
+    const newGroup = new Group({
+      group_id: newGroupId,
+      group_name: `${location} Trip`,
+      members: [user_id],
+      trip_summary: text
+    });
+    
+    const savedGroup = await newGroup.save();
+    
+    // 2. Create a new trip
+    const newTrip = new Trip({
+      destination: location,
+      start_date,
+      end_date,
+      budget: parseInt(budget.split('-')[1]) || 1000, // Use the upper limit of budget range
+      activity: activities.split(','),
+      group_id: newGroupId
+    });
+    
+    const savedTrip = await newTrip.save();
+    
+    // 3. Create a new post with reference to the trip
     const newPost = new Post({
       user_id,
       text,
@@ -30,12 +58,19 @@ router.post('/', upload.single('image'), async (req, res) => {
       start_date,
       end_date,
       image: req.file ? `/uploads/${req.file.filename}` : null,
+      trip_oid: savedTrip._id // Store reference to the trip
     });
 
-    const saved = await newPost.save();
-    res.status(201).json(saved);
+    const savedPost = await newPost.save();
+    
+    res.status(201).json({
+      post: savedPost,
+      trip: savedTrip,
+      group: savedGroup
+    });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to create post', detail: err.message });
+    console.error('Error creating post with trip:', err);
+    res.status(500).json({ error: 'Failed to create post and trip', detail: err.message });
   }
 });
 
@@ -129,6 +164,45 @@ router.post('/comment/:id', async (req, res) => {
     res.json(post.comments);
   } catch (err) {
     res.status(500).json({ error: 'Failed to comment' });
+  }
+});
+
+// Join a trip
+router.put('/join/:postId', async (req, res) => {
+  const { userId } = req.body;
+  
+  try {
+    // Find the post to get the trip_oid
+    const post = await Post.findById(req.params.postId);
+    if (!post || !post.trip_oid) {
+      return res.status(404).json({ error: 'Trip not found for this post' });
+    }
+    
+    // Find the trip to get the group_id
+    const trip = await Trip.findById(post.trip_oid);
+    if (!trip) {
+      return res.status(404).json({ error: 'Trip not found' });
+    }
+    
+    // Find the group and add the user
+    const group = await Group.findOne({ group_id: trip.group_id });
+    if (!group) {
+      return res.status(404).json({ error: 'Group not found for this trip' });
+    }
+    
+    // Check if user is already a member
+    if (group.members.some(member => member.toString() === userId)) {
+      return res.json({ message: 'User is already a member of this trip', group });
+    }
+    
+    // Add user to group members
+    group.members.push(userId);
+    await group.save();
+    
+    res.json({ message: 'Successfully joined the trip', group });
+  } catch (err) {
+    console.error('Error joining trip:', err);
+    res.status(500).json({ error: 'Failed to join trip' });
   }
 });
 

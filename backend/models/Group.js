@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const GroupSchema = new mongoose.Schema({
-    group_id:{type: Number, required: true, unique: true},
+    group_id: {type: Number, required: true, unique: true},
     group_name: { type: String, required: true },
-    members: [{type: Number, ref: 'User', required: true }],
+    members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}],
     trip_summary: { type: mongoose.Schema.Types.Mixed },
     messages: [{
         user_oid: {
@@ -22,4 +22,4 @@ const GroupSchema = new mongoose.Schema({
     }]
 });
 
-module.exports = mongoose.model('Group', GroupSchema); 
+module.exports = mongoose.model('Group', GroupSchema);
