@@ -2,10 +2,12 @@ import React from 'react'
 
 import './SearchResult.css'
 
-export const SearchResult = ({results}) => {
+const SearchResult = ({result}) => {
   return (
-    <div className="search-result">
-        {results.name}
+    <div className="search-result" onClick={(e) => alert(`You Click On ${(result.name)}`)}>
+        {result.name}
     </div>
   )
 }
+
+export default SearchResult
