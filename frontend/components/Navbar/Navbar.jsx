@@ -5,6 +5,7 @@ import PostTrip from "../Trips/PostTrip";
 function Navigation() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [isLogin, setLoginState] = useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -138,6 +139,19 @@ function Navigation() {
                         </svg>
                     </div>
                 </NavLink>
+                
+                <NavLink
+                            to="/LoginSignup"
+                            className={({ isActive }) =>
+                            `block py-3 px-4 rounded-lg hover:shadow-lg ${
+                                isActive ? "text-blue-800 font-medium" : "text-gray-700 hover:text-blue-500"
+                            }`
+                            }
+                            onClick={() => window.scrollTo(0, 0)}
+                        >
+                            Login & Sign Up
+                        </NavLink>
+
             </div>
         </div>
 
