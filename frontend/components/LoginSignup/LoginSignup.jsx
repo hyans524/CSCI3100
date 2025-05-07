@@ -18,18 +18,37 @@ const LoginSignup = () => {
             <div className="underline"></div>
         </div>
         <div className="inputs">
-            {action==="Login"?<div></div>:<div className="input">
-                <img src={user_icon} alt="" />
-                <input type="text" placeholder='Accountname' />
-            </div>}
-            <div className="input">
-                <img src={email_icon} alt="" />
-                <input type="email" placeholder='Email ID' />
-            </div>
-            <div className="input">
-                <img src={password_icon} alt="" />
-                <input type="password" placeholder='Password' />
-            </div>
+            {action==="Login"?<form action='/login' method='POST'>
+                <div className="input">
+                    <img src={email_icon} alt="" />
+                    <input type="email" name="email" id="email" placeholder='Email ID' required autoComplete='off'/>
+                </div>
+                <div className="input">
+                    <img src={password_icon} alt="" />
+                    <input type="password" name="password" id="password" placeholder='Password' required autoComplete='off'/>
+                </div>
+                <div className='submitbutton'>
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+            :<form action='/register' method='POST'>
+                <div className="input">
+                    <img src={user_icon} alt="" />
+                    <input type="text" name="username" id="username "placeholder='Accountname' required autoComplete='off'/>
+                </div>
+                <div className="input">
+                    <img src={email_icon} alt="" />
+                    <input type="email" name="email" id="email" placeholder='Email ID' required autoComplete='off'/>
+                </div>
+                <div className="input">
+                    <img src={password_icon} alt="" />
+                    <input type="password" name="password" id="password" placeholder='Password' required autoComplete='off'/>
+                </div>
+                <div className='submitbutton'>
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>};
+
         </div>
         {action==="Sign Up"?<div></div>:<div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
         <div className="submit-container">

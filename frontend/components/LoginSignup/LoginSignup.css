@@ -101,3 +101,24 @@
     background: #EAEAEA;
     color: #676767;
 }
+
+.submitbutton{
+    gap: 30px;
+    margin: 60px auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 59px;
+    color: #fff;
+    background: orange;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.submitbutton:hover{
+    color: gray;
+    background-color: yellow;
+}
