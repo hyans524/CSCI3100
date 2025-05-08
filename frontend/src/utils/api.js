@@ -54,12 +54,12 @@ export const authApi = {
     logout: () => {
         localStorage.removeItem('token');
         localStorage.removeItem('isAdmin');
-        localStorage.removeItem('userId');
+        localStorage.removeItem('useroid');
         localStorage.removeItem('username');
     },
     isAuthenticated: () => !!localStorage.getItem('token'),
     isAdmin: () => localStorage.getItem('isAdmin') === 'true',
-    getCurrentUserId: () => localStorage.getItem('userId'),
+    getCurrentUserId: () => localStorage.getItem('useroid'),
 };
 
 // Trip-related APIs
