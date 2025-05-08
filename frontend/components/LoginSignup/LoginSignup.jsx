@@ -49,6 +49,39 @@ function LoginSignup() {
         }
     };
     
+        // Signup form state
+        const [signupUsername, setSignupUsername] = useState('');
+        const [signupEmail, setSignupEmail] = useState('');
+        const [signupPassword, setSignupPassword] = useState('');
+       
+        const handleSignup = async (e) => {
+            e.preventDefault();
+            setError('');
+    
+            try {
+                const signupData = {
+                    username: signupUsername,
+                    email: signupEmail,
+                    password: signupPassword,
+                };
+                const response = await authApi.register(signupData);
+    
+                if (response.data) {
+                    // Optionally, log the user in immediately after signup:
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('isAdmin', response.data.isAdmin);
+                    localStorage.setItem('useroid', response.data.useroid);
+                    localStorage.setItem('username', signupUsername);
+    
+                    navigate('/profile');
+                }
+            } catch (err) {
+                console.error('Signup error:', err);
+                setError(err.response?.data?.message || 'Sign up failed. Please try again.');
+            }
+        };
+
+
     return (
         <div className='container'>
             <div className='header'>
@@ -60,11 +93,11 @@ function LoginSignup() {
 
                 <form action="javascript:void(0);" onSubmit={handleSubmit}>
                     <div className="input">
-                        <img src={email_icon} alt="" />
+                        <img src={user_icon} alt="" />
                         <input placeholder='Username' label="Username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
                     </div>
                     <div className="input">
-                        <img src={password_icon} alt="" />
+                        <img src={password_icon} alt="" /> 
                         <input placeholder='Password' type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                     </div>
                     <div className='submitbutton'>
@@ -74,18 +107,18 @@ function LoginSignup() {
 
                     : 
                     
-                    <form action='/register' method='POST'>
+                    <form action='javascript:void(0);' onSubmit={handleSignup}>
                         <div className="input">
                             <img src={user_icon} alt="" />
-                            <input type="text" name="username" id="username " placeholder='Accountname' required autoComplete='off' />
+                            <input placeholder='Username' label="Username" value={signupUsername} onChange={(e) => setSignupUsername(e.target.value)} required/>
                         </div>
                         <div className="input">
                             <img src={email_icon} alt="" />
-                            <input type="email" name="email" id="email" placeholder='Email ID' required autoComplete='off' />
+                            <input type="email" placeholder='Email ID' label="Email" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} required autoComplete='off' />
                         </div>
                         <div className="input">
                             <img src={password_icon} alt="" />
-                            <input type="password" name="password" id="password" placeholder='Password' required autoComplete='off' />
+                            <input placeholder='Password' type="password" label="Password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} required/>
                         </div>
                         <div className='submitbutton'>
                             <button type="submit">Sign Up</button>
