@@ -51,7 +51,6 @@ function LoginSignup() {
     
         // Signup form state
         const [signupUsername, setSignupUsername] = useState('');
-        const [signupEmail, setSignupEmail] = useState('');
         const [signupPassword, setSignupPassword] = useState('');
        
         const handleSignup = async (e) => {
@@ -61,7 +60,6 @@ function LoginSignup() {
             try {
                 const signupData = {
                     username: signupUsername,
-                    email: signupEmail,
                     password: signupPassword,
                 };
                 const response = await authApi.register(signupData);
@@ -111,10 +109,6 @@ function LoginSignup() {
                         <div className="input">
                             <img src={user_icon} alt="" />
                             <input placeholder='Username' label="Username" value={signupUsername} onChange={(e) => setSignupUsername(e.target.value)} required/>
-                        </div>
-                        <div className="input">
-                            <img src={email_icon} alt="" />
-                            <input type="email" placeholder='Email ID' label="Email" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} required autoComplete='off' />
                         </div>
                         <div className="input">
                             <img src={password_icon} alt="" />
