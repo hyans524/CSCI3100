@@ -54,12 +54,12 @@ export const authApi = {
     logout: () => {
         localStorage.removeItem('token');
         localStorage.removeItem('isAdmin');
-        localStorage.removeItem('userId');
+        localStorage.removeItem('useroid');
         localStorage.removeItem('username');
     },
     isAuthenticated: () => !!localStorage.getItem('token'),
     isAdmin: () => localStorage.getItem('isAdmin') === 'true',
-    getCurrentUserId: () => localStorage.getItem('userId'),
+    getCurrentUserId: () => localStorage.getItem('useroid'),
 };
 
 // Trip-related APIs
@@ -112,4 +112,10 @@ export const expenseApi = {
     delete: (id) => api.delete(`/expenses/${id}`),
 };
 
+
+export const licenseApi = {
+    getAll: () => api.get('/licenses'),
+    getById: (id) => api.get(`/licenses/${id}`),
+    isValidLicense: (key) => api.get(`/licenses/key/${key}`)
+};
 export default api;

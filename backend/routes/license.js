@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const License = require('../models/License');
-const auth = require('../middleware/auth');
 
 router.get('/', async (req, res) => {
     try {
@@ -78,4 +77,15 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.get('/key/:key', async (req, res) => {
+    try {
+        const license = await License.find({key: req.params.key});
+        if (!license) {
+            res.json()
+        }
+        res.json(license)
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 module.exports = router;
