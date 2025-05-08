@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-input{
+.inputss{
     background-color: transparent;
     border: none;
     height: 100%;
@@ -18,11 +18,11 @@ input{
     margin-left: 5px;
 }
 
-input:focus{
+.inputss:focus{
     outline: none;
 }
 
-input:hover{
+.inputss:hover{
     color: blueviolet;
 }
 #search-icon{
