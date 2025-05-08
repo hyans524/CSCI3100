@@ -1,0 +1,224 @@
+[
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f7f"
+        },
+        "group_id": 1,
+        "group_name": "Team 1",
+        "members": [
+            "681d0c490c2e20f5c8fe8b91"
+        ],
+        "trip_summary": "Trip to Pitcairn",
+        "messages": []
+    },
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f80"
+        },
+        "group_id": 2,
+        "group_name": "Team 2",
+        "members": [
+            "681d0c490c2e20f5c8fe8b96",
+            "681d0c490c2e20f5c8fe8b94"
+        ],
+        "trip_summary": "Trip to Slovakia",
+        "messages": [
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b8f",
+                "text": "Greetings",
+                "timestamp": "2025-05-06T04:55:53.273184"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f81"
+        },
+        "group_id": 3,
+        "group_name": "Team 3",
+        "members": [
+            "681d0c490c2e20f5c8fe8b94",
+            "681d0c490c2e20f5c8fe8b91",
+            "681d0c490c2e20f5c8fe8b92",
+            "681d0c490c2e20f5c8fe8b8e"
+        ],
+        "trip_summary": "Trip to Honduras",
+        "messages": [
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b93",
+                "text": ":)",
+                "timestamp": "2025-05-08T15:55:53.273184"
+            },
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b8d",
+                "text": "Hi",
+                "timestamp": "2025-05-05T00:55:53.273184"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f82"
+        },
+        "group_id": 4,
+        "group_name": "Team 4",
+        "members": [
+            "681d0c490c2e20f5c8fe8b92",
+            "681d0c490c2e20f5c8fe8b95"
+        ],
+        "trip_summary": "Trip to Iran",
+        "messages": [
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b94",
+                "text": "Look forward to our trip",
+                "timestamp": "2025-05-08T21:55:53.273184"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f83"
+        },
+        "group_id": 5,
+        "group_name": "Team 5",
+        "members": [
+            "681d0c490c2e20f5c8fe8b8f",
+            "681d0c490c2e20f5c8fe8b8d",
+            "681d0c490c2e20f5c8fe8b94",
+            "681d0c490c2e20f5c8fe8b95",
+            "681d0c490c2e20f5c8fe8b93"
+        ],
+        "trip_summary": "Trip to Kiribati",
+        "messages": [
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b94",
+                "text": ":)",
+                "timestamp": "2025-05-07T01:55:53.273184"
+            },
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b8d",
+                "text": "Hi",
+                "timestamp": "2025-05-05T13:55:53.273184"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f84"
+        },
+        "group_id": 6,
+        "group_name": "Team 6",
+        "members": [
+            "681d0c490c2e20f5c8fe8b8f",
+            "681d0c490c2e20f5c8fe8b91",
+            "681d0c490c2e20f5c8fe8b95",
+            "681d0c490c2e20f5c8fe8b8d"
+        ],
+        "trip_summary": "Trip to Norway",
+        "messages": [
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b95",
+                "text": ":)",
+                "timestamp": "2025-05-07T17:55:53.273184"
+            },
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b95",
+                "text": ":)",
+                "timestamp": "2025-05-06T07:55:53.273184"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f85"
+        },
+        "group_id": 7,
+        "group_name": "Team 7",
+        "members": [
+            "681d0c490c2e20f5c8fe8b92",
+            "681d0c490c2e20f5c8fe8b95",
+            "681d0c490c2e20f5c8fe8b96",
+            "681d0c490c2e20f5c8fe8b93",
+            "681d0c490c2e20f5c8fe8b91"
+        ],
+        "trip_summary": "Trip to Reunion",
+        "messages": [
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b96",
+                "text": "Look forward to our trip",
+                "timestamp": "2025-05-09T00:55:53.273184"
+            },
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b96",
+                "text": "Hi",
+                "timestamp": "2025-05-07T17:55:53.273184"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f86"
+        },
+        "group_id": 8,
+        "group_name": "Team 8",
+        "members": [
+            "681d0c490c2e20f5c8fe8b8e",
+            "681d0c490c2e20f5c8fe8b90",
+            "681d0c490c2e20f5c8fe8b8f",
+            "681d0c490c2e20f5c8fe8b93",
+            "681d0c490c2e20f5c8fe8b92"
+        ],
+        "trip_summary": "Trip to Montenegro",
+        "messages": [
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b8e",
+                "text": "Greetings",
+                "timestamp": "2025-05-07T08:55:53.273184"
+            },
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b8f",
+                "text": ":)",
+                "timestamp": "2025-05-07T03:55:53.273184"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f87"
+        },
+        "group_id": 9,
+        "group_name": "Team 9",
+        "members": [
+            "681d0c490c2e20f5c8fe8b91",
+            "681d0c490c2e20f5c8fe8b8f"
+        ],
+        "trip_summary": "Trip to Burkina Faso",
+        "messages": [
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b91",
+                "text": "Hi",
+                "timestamp": "2025-05-08T01:55:53.273184"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "681d0c490c2e20f5c8fe8f88"
+        },
+        "group_id": 10,
+        "group_name": "Team 10",
+        "members": [
+            "681d0c490c2e20f5c8fe8b94",
+            "681d0c490c2e20f5c8fe8b93",
+            "681d0c490c2e20f5c8fe8b90"
+        ],
+        "trip_summary": "Trip to Azerbaijan",
+        "messages": [
+            {
+                "user_oid": "681d0c490c2e20f5c8fe8b90",
+                "text": "Hello",
+                "timestamp": "2025-05-05T05:55:53.273184"
+            }
+        ]
+    }
+]
