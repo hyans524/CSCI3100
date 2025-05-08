@@ -112,4 +112,10 @@ export const expenseApi = {
     delete: (id) => api.delete(`/expenses/${id}`),
 };
 
+
+export const licenseApi = {
+    getAll: () => api.get('/licenses'),
+    getById: (id) => api.get(`/licenses/${id}`),
+    isValidLicense: (key) => api.get(`/licenses/key/${key}`)
+};
 export default api;

@@ -14,6 +14,7 @@ const Post = require('./models/Post');
 const Recommendation = require('./models/Recommendation');
 const Expense = require('./models/Expense');
 const Trip = require('./models/Trip');
+const License = require('./models/License');
 
 const app = express();
 
@@ -42,6 +43,7 @@ const recommendationRoutes = require('./routes/recommendations')
 const expenseRoutes = require('./routes/expenses')
 const tripRoutes = require('./routes/trips')
 const authRoutes = require('./routes/auth');
+const licenseRoutes = require('./routes/license');
 
 app.use('/api/groups', groupRoutes);
 app.use('/api/auth', authRoutes);
@@ -50,6 +52,7 @@ app.use('/api/posts', postRoutes);
 app.use('/api/recommendations', recommendationRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/trips', tripRoutes);
+app.use('/api/licenses', licenseRoutes);
 
 // Test endpoint for basic connectivity testing
 app.get('/api/test', (req, res) => {
@@ -147,6 +150,15 @@ app.get('/api/init-data', async (req, res) => {
         await db.collection("trips").insertMany(processedTrips);
         console.log(`Initialized ${processedTrips.length} trips`);
 
+        var license_json = require(DATA_PATH + "license.json");
+        license_json = bson.EJSON.parse(JSON.stringify(license_json));
+        const processedLicenses = license_json.map(license => {
+            return license;
+        });
+        await db.collection("licenses").deleteMany({});
+        await db.collection("licenses").insertMany(processedLicenses);
+        console.log(`Initialized ${processedLicenses.length} licenses`);
+
         res.json({
             message: 'Data initialized successfully',
             groupsCount: await Group.countDocuments(),
@@ -154,7 +166,8 @@ app.get('/api/init-data', async (req, res) => {
             postsCount: await Post.countDocuments(),
             recommendationsCount: await Recommendation.countDocuments(),
             expensesCount: await Expense.countDocuments(),
-            tripsCount: await Trip.countDocuments()
+            tripsCount: await Trip.countDocuments(),
+            licensesCount: await License.countDocuments()
         });
     } catch (error) {
         console.error('Error initializing data:', error);
