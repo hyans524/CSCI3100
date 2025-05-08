@@ -1,146 +1,1419 @@
 [
     {
         "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f89"
+            "$oid": "681d12ee0c2e20334cd41cff"
         },
-        "destination": "Pitcairn",
+        "destination": "Uganda",
         "group_id": 1,
-        "budget": 7900,
+        "budget": 9500,
         "activity": [
-            "Diving"
+            "Sightseeing",
+            "Staying in Resort"
         ],
-        "start_date": "2025-05-27T04:55:53.274201",
-        "end_date": "2025-05-28T20:55:53.274201"
+        "start_date": "2025-06-10T05:24:14.831120",
+        "end_date": "2025-06-18T11:24:14.831120"
     },
     {
         "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f8a"
+            "$oid": "681d12ee0c2e20334cd41d00"
         },
-        "destination": "Slovakia",
+        "destination": "Faroe Islands",
         "group_id": 2,
-        "budget": 5200,
+        "budget": 3500,
         "activity": [
-            "Staying in Resort",
-            "Biking"
-        ],
-        "start_date": "2025-05-24T13:55:53.274201",
-        "end_date": "2025-06-01T19:55:53.274201"
-    },
-    {
-        "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f8b"
-        },
-        "destination": "Honduras",
-        "group_id": 3,
-        "budget": 1300,
-        "activity": [
-            "Visit Temple",
-            "Staying in Resort",
-            "Dining"
-        ],
-        "start_date": "2025-06-11T23:55:53.274201",
-        "end_date": "2025-06-15T04:55:53.274201"
-    },
-    {
-        "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f8c"
-        },
-        "destination": "Iran",
-        "group_id": 4,
-        "budget": 6500,
-        "activity": [
-            "Staying in Resort",
             "Swimming"
         ],
-        "start_date": "2025-06-03T22:55:53.274201",
-        "end_date": "2025-06-10T11:55:53.274201"
+        "start_date": "2025-05-31T13:24:14.831120",
+        "end_date": "2025-06-03T18:24:14.831120"
     },
     {
         "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f8d"
+            "$oid": "681d12ee0c2e20334cd41d01"
         },
-        "destination": "Kiribati",
-        "group_id": 5,
-        "budget": 4600,
-        "activity": [
-            "Hiking",
-            "Staying in Resort",
-            "Visit Museum"
-        ],
-        "start_date": "2025-06-05T21:55:53.274201",
-        "end_date": "2025-06-07T18:55:53.274201"
-    },
-    {
-        "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f8e"
-        },
-        "destination": "Norway",
-        "group_id": 6,
-        "budget": 2600,
+        "destination": "Western Sahara",
+        "group_id": 3,
+        "budget": 5400,
         "activity": [
             "Staying in Resort",
-            "Swimming",
             "Dining"
         ],
-        "start_date": "2025-05-17T13:55:53.274201",
-        "end_date": "2025-05-22T08:55:53.274201"
+        "start_date": "2025-05-09T05:24:14.831120",
+        "end_date": "2025-05-17T00:24:14.831120"
     },
     {
         "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f8f"
+            "$oid": "681d12ee0c2e20334cd41d02"
         },
-        "destination": "Reunion",
-        "group_id": 7,
-        "budget": 6200,
+        "destination": "Germany",
+        "group_id": 4,
+        "budget": 1600,
         "activity": [
-            "Swimming",
+            "Biking",
+            "Staying in Resort"
+        ],
+        "start_date": "2025-06-05T19:24:14.831120",
+        "end_date": "2025-06-07T03:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d03"
+        },
+        "destination": "Western Sahara",
+        "group_id": 5,
+        "budget": 7500,
+        "activity": [
+            "Visit Museum",
             "Biking",
             "Visit Temple"
         ],
-        "start_date": "2025-05-17T23:55:53.274201",
-        "end_date": "2025-05-23T11:55:53.274201"
+        "start_date": "2025-05-13T08:24:14.831120",
+        "end_date": "2025-05-16T17:24:14.831120"
     },
     {
         "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f90"
+            "$oid": "681d12ee0c2e20334cd41d04"
         },
-        "destination": "Montenegro",
-        "group_id": 8,
-        "budget": 2700,
+        "destination": "Sint Maarten",
+        "group_id": 6,
+        "budget": 4300,
         "activity": [
-            "Visit Museum",
-            "Diving",
+            "Staying in Resort",
+            "Sightseeing",
+            "Hiking"
+        ],
+        "start_date": "2025-06-03T23:24:14.831120",
+        "end_date": "2025-06-09T02:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d05"
+        },
+        "destination": "Uruguay",
+        "group_id": 7,
+        "budget": 3100,
+        "activity": [
+            "Visit Temple",
+            "Staying in Resort",
+            "Hiking"
+        ],
+        "start_date": "2025-06-18T17:24:14.831120",
+        "end_date": "2025-06-26T15:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d06"
+        },
+        "destination": "Algeria",
+        "group_id": 8,
+        "budget": 2600,
+        "activity": [
+            "Staying in Resort",
+            "Hiking",
+            "Swimming"
+        ],
+        "start_date": "2025-05-12T14:24:14.831120",
+        "end_date": "2025-05-15T10:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d07"
+        },
+        "destination": "Belize",
+        "group_id": 9,
+        "budget": 3500,
+        "activity": [
+            "Swimming"
+        ],
+        "start_date": "2025-05-22T23:24:14.831120",
+        "end_date": "2025-05-27T01:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d08"
+        },
+        "destination": "Mexico",
+        "group_id": 10,
+        "budget": 2800,
+        "activity": [
+            "Visit Temple",
+            "Hiking",
+            "Swimming"
+        ],
+        "start_date": "2025-05-24T06:24:14.831120",
+        "end_date": "2025-05-29T05:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d09"
+        },
+        "destination": "Senegal",
+        "group_id": 11,
+        "budget": 3500,
+        "activity": [
+            "Biking",
+            "Hiking",
+            "Swimming"
+        ],
+        "start_date": "2025-06-19T06:24:14.831120",
+        "end_date": "2025-06-25T00:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d0a"
+        },
+        "destination": "Malaysia",
+        "group_id": 12,
+        "budget": 5900,
+        "activity": [
+            "Hiking",
+            "Staying in Resort",
+            "Visit Temple"
+        ],
+        "start_date": "2025-05-15T09:24:14.831120",
+        "end_date": "2025-05-18T07:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d0b"
+        },
+        "destination": "New Zealand",
+        "group_id": 13,
+        "budget": 8300,
+        "activity": [
+            "Sightseeing"
+        ],
+        "start_date": "2025-05-11T01:24:14.831120",
+        "end_date": "2025-05-16T05:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d0c"
+        },
+        "destination": "Mayotte",
+        "group_id": 14,
+        "budget": 2100,
+        "activity": [
+            "Visit Temple"
+        ],
+        "start_date": "2025-06-15T04:24:14.831120",
+        "end_date": "2025-06-23T09:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d0d"
+        },
+        "destination": "Vanuatu",
+        "group_id": 15,
+        "budget": 7200,
+        "activity": [
             "Staying in Resort"
         ],
-        "start_date": "2025-05-14T15:55:53.274201",
-        "end_date": "2025-05-19T07:55:53.274201"
+        "start_date": "2025-05-20T01:24:14.831120",
+        "end_date": "2025-05-26T19:24:14.831120"
     },
     {
         "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f91"
+            "$oid": "681d12ee0c2e20334cd41d0e"
         },
-        "destination": "Burkina Faso",
-        "group_id": 9,
+        "destination": "Peru",
+        "group_id": 16,
+        "budget": 8000,
+        "activity": [
+            "Swimming",
+            "Sightseeing",
+            "Visit Museum"
+        ],
+        "start_date": "2025-05-30T00:24:14.831120",
+        "end_date": "2025-06-05T09:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d0f"
+        },
+        "destination": "Palau",
+        "group_id": 17,
+        "budget": 9600,
+        "activity": [
+            "Swimming",
+            "Dining",
+            "Visit Museum"
+        ],
+        "start_date": "2025-05-14T01:24:14.831120",
+        "end_date": "2025-05-16T11:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d10"
+        },
+        "destination": "Saint Lucia",
+        "group_id": 18,
+        "budget": 3500,
+        "activity": [
+            "Diving"
+        ],
+        "start_date": "2025-06-18T17:24:14.831120",
+        "end_date": "2025-06-22T01:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d11"
+        },
+        "destination": "Vanuatu",
+        "group_id": 19,
+        "budget": 4200,
+        "activity": [
+            "Swimming",
+            "Diving"
+        ],
+        "start_date": "2025-05-23T06:24:14.831120",
+        "end_date": "2025-05-26T00:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d12"
+        },
+        "destination": "Namibia",
+        "group_id": 20,
+        "budget": 3600,
+        "activity": [
+            "Biking",
+            "Swimming",
+            "Sightseeing"
+        ],
+        "start_date": "2025-05-27T05:24:14.831120",
+        "end_date": "2025-05-31T17:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d13"
+        },
+        "destination": "Guinea",
+        "group_id": 21,
+        "budget": 4500,
+        "activity": [
+            "Dining",
+            "Swimming",
+            "Sightseeing"
+        ],
+        "start_date": "2025-05-31T08:24:14.831120",
+        "end_date": "2025-06-08T05:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d14"
+        },
+        "destination": "Moldova",
+        "group_id": 22,
+        "budget": 9200,
+        "activity": [
+            "Hiking",
+            "Visit Temple"
+        ],
+        "start_date": "2025-05-22T10:24:14.831120",
+        "end_date": "2025-05-26T10:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d15"
+        },
+        "destination": "Croatia",
+        "group_id": 23,
+        "budget": 4900,
+        "activity": [
+            "Swimming",
+            "Dining"
+        ],
+        "start_date": "2025-06-17T08:24:14.831120",
+        "end_date": "2025-06-20T11:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d16"
+        },
+        "destination": "Timor Leste",
+        "group_id": 24,
+        "budget": 7100,
+        "activity": [
+            "Hiking",
+            "Swimming"
+        ],
+        "start_date": "2025-06-12T22:24:14.831120",
+        "end_date": "2025-06-19T17:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d17"
+        },
+        "destination": "Liechtenstein",
+        "group_id": 25,
+        "budget": 6900,
+        "activity": [
+            "Hiking",
+            "Diving"
+        ],
+        "start_date": "2025-05-15T12:24:14.831120",
+        "end_date": "2025-05-19T09:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d18"
+        },
+        "destination": "Lithuania",
+        "group_id": 26,
         "budget": 2000,
+        "activity": [
+            "Visit Temple",
+            "Swimming",
+            "Dining"
+        ],
+        "start_date": "2025-05-19T17:24:14.831120",
+        "end_date": "2025-05-22T23:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d19"
+        },
+        "destination": "Bahrain",
+        "group_id": 27,
+        "budget": 2400,
+        "activity": [
+            "Hiking",
+            "Dining",
+            "Biking"
+        ],
+        "start_date": "2025-05-28T02:24:14.831120",
+        "end_date": "2025-06-01T19:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d1a"
+        },
+        "destination": "Belarus",
+        "group_id": 28,
+        "budget": 6100,
+        "activity": [
+            "Diving",
+            "Swimming"
+        ],
+        "start_date": "2025-06-17T05:24:14.831120",
+        "end_date": "2025-06-22T08:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d1b"
+        },
+        "destination": "Kyrgyzstan",
+        "group_id": 29,
+        "budget": 6300,
+        "activity": [
+            "Hiking"
+        ],
+        "start_date": "2025-06-08T23:24:14.831120",
+        "end_date": "2025-06-13T00:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d1c"
+        },
+        "destination": "Aland Islands",
+        "group_id": 30,
+        "budget": 7400,
+        "activity": [
+            "Swimming"
+        ],
+        "start_date": "2025-06-13T07:24:14.831120",
+        "end_date": "2025-06-20T21:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d1d"
+        },
+        "destination": "Switzerland",
+        "group_id": 31,
+        "budget": 9600,
+        "activity": [
+            "Staying in Resort",
+            "Visit Temple",
+            "Diving"
+        ],
+        "start_date": "2025-05-25T23:24:14.831120",
+        "end_date": "2025-05-31T04:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d1e"
+        },
+        "destination": "Trinidad and Tobago",
+        "group_id": 32,
+        "budget": 2200,
+        "activity": [
+            "Sightseeing",
+            "Swimming"
+        ],
+        "start_date": "2025-05-24T21:24:14.831120",
+        "end_date": "2025-05-29T04:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d1f"
+        },
+        "destination": "French Southern Territories",
+        "group_id": 33,
+        "budget": 6200,
+        "activity": [
+            "Hiking",
+            "Diving"
+        ],
+        "start_date": "2025-05-16T22:24:14.831120",
+        "end_date": "2025-05-24T07:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d20"
+        },
+        "destination": "Portugal",
+        "group_id": 34,
+        "budget": 9700,
+        "activity": [
+            "Biking",
+            "Staying in Resort",
+            "Visit Temple"
+        ],
+        "start_date": "2025-06-18T13:24:14.831120",
+        "end_date": "2025-06-20T19:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d21"
+        },
+        "destination": "Afghanistan",
+        "group_id": 35,
+        "budget": 7000,
+        "activity": [
+            "Swimming",
+            "Dining",
+            "Visit Temple"
+        ],
+        "start_date": "2025-05-18T05:24:14.831120",
+        "end_date": "2025-05-24T02:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d22"
+        },
+        "destination": "Uruguay",
+        "group_id": 36,
+        "budget": 5200,
+        "activity": [
+            "Swimming",
+            "Staying in Resort"
+        ],
+        "start_date": "2025-05-15T03:24:14.831120",
+        "end_date": "2025-05-22T08:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d23"
+        },
+        "destination": "Guatemala",
+        "group_id": 37,
+        "budget": 9900,
+        "activity": [
+            "Staying in Resort",
+            "Hiking",
+            "Biking"
+        ],
+        "start_date": "2025-05-20T02:24:14.831120",
+        "end_date": "2025-05-27T23:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d24"
+        },
+        "destination": "South Georgia and the South Sandwich Islands",
+        "group_id": 38,
+        "budget": 1100,
+        "activity": [
+            "Hiking",
+            "Sightseeing"
+        ],
+        "start_date": "2025-06-14T06:24:14.831120",
+        "end_date": "2025-06-18T23:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d25"
+        },
+        "destination": "Niue",
+        "group_id": 39,
+        "budget": 6500,
+        "activity": [
+            "Swimming",
+            "Visit Temple"
+        ],
+        "start_date": "2025-06-16T02:24:14.831120",
+        "end_date": "2025-06-18T22:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d26"
+        },
+        "destination": "Antarctica",
+        "group_id": 40,
+        "budget": 5700,
+        "activity": [
+            "Dining",
+            "Visit Museum",
+            "Hiking"
+        ],
+        "start_date": "2025-06-14T19:24:14.831120",
+        "end_date": "2025-06-20T17:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d27"
+        },
+        "destination": "Djibouti",
+        "group_id": 41,
+        "budget": 3800,
+        "activity": [
+            "Sightseeing"
+        ],
+        "start_date": "2025-05-24T02:24:14.831120",
+        "end_date": "2025-05-31T20:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d28"
+        },
+        "destination": "Mexico",
+        "group_id": 42,
+        "budget": 7300,
+        "activity": [
+            "Visit Museum"
+        ],
+        "start_date": "2025-05-25T02:24:14.831120",
+        "end_date": "2025-05-27T12:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d29"
+        },
+        "destination": "Democratic Republic of the Congo",
+        "group_id": 43,
+        "budget": 7700,
+        "activity": [
+            "Visit Museum",
+            "Staying in Resort",
+            "Dining"
+        ],
+        "start_date": "2025-05-31T07:24:14.831120",
+        "end_date": "2025-06-03T02:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d2a"
+        },
+        "destination": "French Polynesia",
+        "group_id": 44,
+        "budget": 1000,
+        "activity": [
+            "Visit Museum",
+            "Staying in Resort"
+        ],
+        "start_date": "2025-05-22T04:24:14.831120",
+        "end_date": "2025-05-29T11:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d2b"
+        },
+        "destination": "Tunisia",
+        "group_id": 45,
+        "budget": 1000,
+        "activity": [
+            "Visit Temple"
+        ],
+        "start_date": "2025-06-07T18:24:14.831120",
+        "end_date": "2025-06-14T10:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d2c"
+        },
+        "destination": "Kenya",
+        "group_id": 46,
+        "budget": 3100,
+        "activity": [
+            "Visit Museum",
+            "Sightseeing",
+            "Swimming"
+        ],
+        "start_date": "2025-05-09T22:24:14.831120",
+        "end_date": "2025-05-13T09:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d2d"
+        },
+        "destination": "Qatar",
+        "group_id": 47,
+        "budget": 3400,
+        "activity": [
+            "Diving"
+        ],
+        "start_date": "2025-06-04T05:24:14.831120",
+        "end_date": "2025-06-06T09:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d2e"
+        },
+        "destination": "Lithuania",
+        "group_id": 48,
+        "budget": 3600,
+        "activity": [
+            "Staying in Resort",
+            "Biking",
+            "Swimming"
+        ],
+        "start_date": "2025-06-05T23:24:14.831120",
+        "end_date": "2025-06-12T08:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d2f"
+        },
+        "destination": "Ivory Coast",
+        "group_id": 49,
+        "budget": 6000,
+        "activity": [
+            "Visit Temple",
+            "Swimming"
+        ],
+        "start_date": "2025-05-28T18:24:14.831120",
+        "end_date": "2025-06-02T14:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d30"
+        },
+        "destination": "Equatorial Guinea",
+        "group_id": 50,
+        "budget": 9700,
+        "activity": [
+            "Visit Museum",
+            "Dining"
+        ],
+        "start_date": "2025-06-18T06:24:14.831120",
+        "end_date": "2025-06-22T01:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d31"
+        },
+        "destination": "Belgium",
+        "group_id": 51,
+        "budget": 7900,
+        "activity": [
+            "Diving",
+            "Sightseeing"
+        ],
+        "start_date": "2025-06-10T18:24:14.831120",
+        "end_date": "2025-06-17T13:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d32"
+        },
+        "destination": "Barbados",
+        "group_id": 52,
+        "budget": 3300,
+        "activity": [
+            "Visit Temple",
+            "Biking"
+        ],
+        "start_date": "2025-06-11T18:24:14.831120",
+        "end_date": "2025-06-17T04:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d33"
+        },
+        "destination": "Antarctica",
+        "group_id": 53,
+        "budget": 5200,
+        "activity": [
+            "Sightseeing",
+            "Visit Temple"
+        ],
+        "start_date": "2025-06-08T02:24:14.831120",
+        "end_date": "2025-06-10T13:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d34"
+        },
+        "destination": "Gibraltar",
+        "group_id": 54,
+        "budget": 2500,
+        "activity": [
+            "Dining",
+            "Visit Temple"
+        ],
+        "start_date": "2025-06-01T19:24:14.831120",
+        "end_date": "2025-06-05T07:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d35"
+        },
+        "destination": "Japan",
+        "group_id": 55,
+        "budget": 3300,
+        "activity": [
+            "Visit Temple"
+        ],
+        "start_date": "2025-06-04T04:24:14.831120",
+        "end_date": "2025-06-08T13:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d36"
+        },
+        "destination": "San Marino",
+        "group_id": 56,
+        "budget": 7800,
+        "activity": [
+            "Biking",
+            "Visit Museum",
+            "Hiking"
+        ],
+        "start_date": "2025-05-20T17:24:14.831120",
+        "end_date": "2025-05-22T14:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d37"
+        },
+        "destination": "Monaco",
+        "group_id": 57,
+        "budget": 6700,
+        "activity": [
+            "Swimming",
+            "Sightseeing"
+        ],
+        "start_date": "2025-05-17T08:24:14.831120",
+        "end_date": "2025-05-24T04:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d38"
+        },
+        "destination": "Cocos Islands",
+        "group_id": 58,
+        "budget": 8100,
+        "activity": [
+            "Diving",
+            "Biking",
+            "Visit Temple"
+        ],
+        "start_date": "2025-06-19T02:24:14.831120",
+        "end_date": "2025-06-27T07:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d39"
+        },
+        "destination": "Turkmenistan",
+        "group_id": 59,
+        "budget": 7100,
+        "activity": [
+            "Sightseeing",
+            "Visit Temple"
+        ],
+        "start_date": "2025-05-15T20:24:14.831120",
+        "end_date": "2025-05-17T03:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d3a"
+        },
+        "destination": "Greenland",
+        "group_id": 60,
+        "budget": 8100,
+        "activity": [
+            "Staying in Resort"
+        ],
+        "start_date": "2025-05-19T00:24:14.831120",
+        "end_date": "2025-05-26T00:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d3b"
+        },
+        "destination": "Mayotte",
+        "group_id": 61,
+        "budget": 2400,
+        "activity": [
+            "Dining",
+            "Hiking",
+            "Staying in Resort"
+        ],
+        "start_date": "2025-05-12T15:24:14.831120",
+        "end_date": "2025-05-19T19:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d3c"
+        },
+        "destination": "Antarctica",
+        "group_id": 62,
+        "budget": 5200,
+        "activity": [
+            "Swimming"
+        ],
+        "start_date": "2025-06-08T01:24:14.831120",
+        "end_date": "2025-06-14T23:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d3d"
+        },
+        "destination": "Algeria",
+        "group_id": 63,
+        "budget": 3800,
+        "activity": [
+            "Swimming",
+            "Staying in Resort"
+        ],
+        "start_date": "2025-06-13T14:24:14.831120",
+        "end_date": "2025-06-20T21:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d3e"
+        },
+        "destination": "United States Minor Outlying Islands",
+        "group_id": 64,
+        "budget": 9000,
+        "activity": [
+            "Diving",
+            "Sightseeing"
+        ],
+        "start_date": "2025-05-23T01:24:14.831120",
+        "end_date": "2025-05-30T14:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d3f"
+        },
+        "destination": "Belgium",
+        "group_id": 65,
+        "budget": 2100,
+        "activity": [
+            "Biking",
+            "Visit Temple"
+        ],
+        "start_date": "2025-05-25T07:24:14.831120",
+        "end_date": "2025-05-27T21:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d40"
+        },
+        "destination": "Togo",
+        "group_id": 66,
+        "budget": 6900,
+        "activity": [
+            "Visit Museum"
+        ],
+        "start_date": "2025-05-30T04:24:14.831120",
+        "end_date": "2025-05-31T18:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d41"
+        },
+        "destination": "Djibouti",
+        "group_id": 67,
+        "budget": 9500,
+        "activity": [
+            "Hiking",
+            "Visit Museum",
+            "Diving"
+        ],
+        "start_date": "2025-05-30T17:24:14.831120",
+        "end_date": "2025-06-01T07:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d42"
+        },
+        "destination": "Malta",
+        "group_id": 68,
+        "budget": 3300,
+        "activity": [
+            "Swimming",
+            "Hiking",
+            "Staying in Resort"
+        ],
+        "start_date": "2025-05-27T08:24:14.831120",
+        "end_date": "2025-06-02T20:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d43"
+        },
+        "destination": "Netherlands Antilles",
+        "group_id": 69,
+        "budget": 9400,
+        "activity": [
+            "Diving"
+        ],
+        "start_date": "2025-06-19T20:24:14.831120",
+        "end_date": "2025-06-26T21:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d44"
+        },
+        "destination": "North Macedonia",
+        "group_id": 70,
+        "budget": 4500,
+        "activity": [
+            "Hiking",
+            "Visit Temple",
+            "Biking"
+        ],
+        "start_date": "2025-06-07T21:24:14.831120",
+        "end_date": "2025-06-09T17:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d45"
+        },
+        "destination": "Italy",
+        "group_id": 71,
+        "budget": 9800,
+        "activity": [
+            "Biking"
+        ],
+        "start_date": "2025-06-17T05:24:14.831120",
+        "end_date": "2025-06-23T23:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d46"
+        },
+        "destination": "British Indian Ocean Territory",
+        "group_id": 72,
+        "budget": 6600,
+        "activity": [
+            "Staying in Resort",
+            "Dining"
+        ],
+        "start_date": "2025-06-14T01:24:14.831120",
+        "end_date": "2025-06-19T14:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d47"
+        },
+        "destination": "Sri Lanka",
+        "group_id": 73,
+        "budget": 3200,
+        "activity": [
+            "Hiking",
+            "Diving",
+            "Visit Museum"
+        ],
+        "start_date": "2025-06-15T02:24:14.831120",
+        "end_date": "2025-06-18T03:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d48"
+        },
+        "destination": "Zimbabwe",
+        "group_id": 74,
+        "budget": 6200,
+        "activity": [
+            "Staying in Resort"
+        ],
+        "start_date": "2025-06-07T15:24:14.831120",
+        "end_date": "2025-06-09T06:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d49"
+        },
+        "destination": "South Sudan",
+        "group_id": 75,
+        "budget": 4500,
+        "activity": [
+            "Dining",
+            "Swimming",
+            "Hiking"
+        ],
+        "start_date": "2025-05-30T19:24:14.831120",
+        "end_date": "2025-06-05T02:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d4a"
+        },
+        "destination": "Greenland",
+        "group_id": 76,
+        "budget": 1700,
         "activity": [
             "Diving",
             "Visit Temple"
         ],
-        "start_date": "2025-06-18T14:55:53.274201",
-        "end_date": "2025-06-25T06:55:53.274201"
+        "start_date": "2025-06-03T13:24:14.831120",
+        "end_date": "2025-06-10T00:24:14.831120"
     },
     {
         "_id": {
-            "$oid": "681d0c490c2e20f5c8fe8f92"
+            "$oid": "681d12ee0c2e20334cd41d4b"
         },
-        "destination": "Azerbaijan",
-        "group_id": 10,
-        "budget": 4900,
+        "destination": "Nicaragua",
+        "group_id": 77,
+        "budget": 8100,
+        "activity": [
+            "Swimming",
+            "Staying in Resort",
+            "Hiking"
+        ],
+        "start_date": "2025-06-13T20:24:14.831120",
+        "end_date": "2025-06-14T17:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d4c"
+        },
+        "destination": "Palestinian Territory",
+        "group_id": 78,
+        "budget": 4100,
+        "activity": [
+            "Swimming"
+        ],
+        "start_date": "2025-05-31T19:24:14.831120",
+        "end_date": "2025-06-05T12:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d4d"
+        },
+        "destination": "Tokelau",
+        "group_id": 79,
+        "budget": 5500,
+        "activity": [
+            "Staying in Resort",
+            "Sightseeing",
+            "Visit Museum"
+        ],
+        "start_date": "2025-05-14T16:24:14.831120",
+        "end_date": "2025-05-22T01:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d4e"
+        },
+        "destination": "Western Sahara",
+        "group_id": 80,
+        "budget": 7200,
+        "activity": [
+            "Sightseeing",
+            "Swimming"
+        ],
+        "start_date": "2025-05-24T19:24:14.831120",
+        "end_date": "2025-06-01T10:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d4f"
+        },
+        "destination": "Estonia",
+        "group_id": 81,
+        "budget": 4000,
+        "activity": [
+            "Staying in Resort",
+            "Visit Museum",
+            "Swimming"
+        ],
+        "start_date": "2025-05-22T05:24:14.831120",
+        "end_date": "2025-05-26T12:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d50"
+        },
+        "destination": "Argentina",
+        "group_id": 82,
+        "budget": 6100,
+        "activity": [
+            "Visit Museum",
+            "Visit Temple",
+            "Hiking"
+        ],
+        "start_date": "2025-05-25T12:24:14.831120",
+        "end_date": "2025-05-31T06:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d51"
+        },
+        "destination": "Serbia",
+        "group_id": 83,
+        "budget": 8800,
         "activity": [
             "Dining",
+            "Swimming"
+        ],
+        "start_date": "2025-06-10T01:24:14.831120",
+        "end_date": "2025-06-13T21:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d52"
+        },
+        "destination": "Austria",
+        "group_id": 84,
+        "budget": 3300,
+        "activity": [
+            "Biking",
+            "Staying in Resort",
+            "Visit Museum"
+        ],
+        "start_date": "2025-06-11T06:24:14.831120",
+        "end_date": "2025-06-19T03:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d53"
+        },
+        "destination": "Comoros",
+        "group_id": 85,
+        "budget": 3100,
+        "activity": [
+            "Biking"
+        ],
+        "start_date": "2025-05-14T06:24:14.831120",
+        "end_date": "2025-05-16T12:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d54"
+        },
+        "destination": "Guinea-Bissau",
+        "group_id": 86,
+        "budget": 2400,
+        "activity": [
+            "Sightseeing",
+            "Visit Temple"
+        ],
+        "start_date": "2025-06-17T21:24:14.831120",
+        "end_date": "2025-06-24T22:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d55"
+        },
+        "destination": "Morocco",
+        "group_id": 87,
+        "budget": 4900,
+        "activity": [
+            "Visit Temple",
+            "Dining"
+        ],
+        "start_date": "2025-05-13T03:24:14.831120",
+        "end_date": "2025-05-17T23:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d56"
+        },
+        "destination": "Turks and Caicos Islands",
+        "group_id": 88,
+        "budget": 9200,
+        "activity": [
+            "Staying in Resort"
+        ],
+        "start_date": "2025-06-18T23:24:14.831120",
+        "end_date": "2025-06-20T20:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d57"
+        },
+        "destination": "Brunei",
+        "group_id": 89,
+        "budget": 9800,
+        "activity": [
+            "Hiking",
+            "Biking"
+        ],
+        "start_date": "2025-06-10T23:24:14.831120",
+        "end_date": "2025-06-12T02:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d58"
+        },
+        "destination": "Comoros",
+        "group_id": 90,
+        "budget": 3300,
+        "activity": [
+            "Swimming",
+            "Visit Temple"
+        ],
+        "start_date": "2025-05-19T10:24:14.831120",
+        "end_date": "2025-05-23T09:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d59"
+        },
+        "destination": "Haiti",
+        "group_id": 91,
+        "budget": 7000,
+        "activity": [
+            "Visit Temple",
+            "Visit Museum",
+            "Sightseeing"
+        ],
+        "start_date": "2025-05-18T10:24:14.831120",
+        "end_date": "2025-05-19T17:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d5a"
+        },
+        "destination": "Tuvalu",
+        "group_id": 92,
+        "budget": 5600,
+        "activity": [
+            "Diving",
+            "Dining"
+        ],
+        "start_date": "2025-06-02T02:24:14.831120",
+        "end_date": "2025-06-04T02:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d5b"
+        },
+        "destination": "Nicaragua",
+        "group_id": 93,
+        "budget": 6100,
+        "activity": [
+            "Sightseeing",
+            "Biking"
+        ],
+        "start_date": "2025-05-19T06:24:14.831120",
+        "end_date": "2025-05-26T21:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d5c"
+        },
+        "destination": "North Macedonia",
+        "group_id": 94,
+        "budget": 2200,
+        "activity": [
+            "Staying in Resort",
+            "Dining",
+            "Sightseeing"
+        ],
+        "start_date": "2025-06-13T03:24:14.831120",
+        "end_date": "2025-06-18T01:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d5d"
+        },
+        "destination": "El Salvador",
+        "group_id": 95,
+        "budget": 3900,
+        "activity": [
+            "Staying in Resort",
+            "Diving",
+            "Biking"
+        ],
+        "start_date": "2025-06-05T23:24:14.831120",
+        "end_date": "2025-06-07T08:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d5e"
+        },
+        "destination": "Pitcairn",
+        "group_id": 96,
+        "budget": 5000,
+        "activity": [
+            "Swimming",
+            "Visit Museum",
+            "Visit Temple"
+        ],
+        "start_date": "2025-05-09T20:24:14.831120",
+        "end_date": "2025-05-10T23:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d5f"
+        },
+        "destination": "Belgium",
+        "group_id": 97,
+        "budget": 2100,
+        "activity": [
+            "Diving",
+            "Sightseeing"
+        ],
+        "start_date": "2025-05-24T15:24:14.831120",
+        "end_date": "2025-05-29T07:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d60"
+        },
+        "destination": "American Samoa",
+        "group_id": 98,
+        "budget": 7600,
+        "activity": [
+            "Staying in Resort",
+            "Sightseeing",
             "Diving"
         ],
-        "start_date": "2025-05-21T00:55:53.274201",
-        "end_date": "2025-05-26T01:55:53.274201"
+        "start_date": "2025-06-12T11:24:14.831120",
+        "end_date": "2025-06-19T13:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d61"
+        },
+        "destination": "Tuvalu",
+        "group_id": 99,
+        "budget": 3300,
+        "activity": [
+            "Staying in Resort"
+        ],
+        "start_date": "2025-06-02T16:24:14.831120",
+        "end_date": "2025-06-07T10:24:14.831120"
+    },
+    {
+        "_id": {
+            "$oid": "681d12ee0c2e20334cd41d62"
+        },
+        "destination": "Panama",
+        "group_id": 100,
+        "budget": 7100,
+        "activity": [
+            "Diving",
+            "Staying in Resort",
+            "Dining"
+        ],
+        "start_date": "2025-06-11T16:24:14.831120",
+        "end_date": "2025-06-16T22:24:14.831120"
     }
 ]
