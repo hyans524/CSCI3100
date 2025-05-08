@@ -26,12 +26,12 @@ router.post('/register', async (req, res) => {
 
         // Generate token
         const token = jwt.sign(
-            { userId: user._id, isAdmin: user.isAdmin },
+            { useroid: user._id, isAdmin: user.isAdmin },
             process.env.JWT_SECRET,
             { expiresIn: '24h' }
         );
 
-        res.status(201).json({ token, userId: user._id, isAdmin: user.isAdmin });
+        res.status(201).json({ token, useroid: user._id, isAdmin: user.isAdmin });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -56,12 +56,12 @@ router.post('/login', async (req, res) => {
 
         // Generate token
         const token = jwt.sign(
-            { userId: user._id, isAdmin: user.isAdmin },
+            { useroid: user._id, isAdmin: user.isAdmin },
             process.env.JWT_SECRET,
             { expiresIn: '24h' }
         );
 
-        res.json({ token, userId: user._id, isAdmin: user.isAdmin });
+        res.json({ token, useroid: user._id, isAdmin: user.isAdmin });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

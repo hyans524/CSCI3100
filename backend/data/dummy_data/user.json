@@ -1,6 +1,19 @@
 [
   {
     "_id": {
+      "$oid": "67fba7d7cc439a8b22e006c6"
+    },
+    "user_id": 1000,
+    "username": "123",
+    "email": "1jane@example.com",
+    "password": "$2a$10$hlozDmTdH7NXM.FXHT8LYuhImE0MTZWoTeDlx4rJsNmJl5eFFuOIW",
+    "age": 28,
+    "gender": "Female",
+    "language": "English",
+    "phone": "+123"
+  },
+  {
+    "_id": {
       "$oid": "67fba7d7cc439d8b22e006c6"
     },
     "user_id": 1,
