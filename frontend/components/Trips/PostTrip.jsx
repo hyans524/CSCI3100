@@ -13,8 +13,8 @@ const PostTrip = ({ onClose, onTripPosted }) => {
     const [image, setImage] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    // Mock user ID (replace with actual user ID from auth context later)
-    const mockUserId = "67fba7d7cc439d8b22e006c9";
+    // Get current user ID
+    const currentUserId = authApi.getCurrentUserId();
 
     const calculateDuration = (from, to) => {
         if (from && to) {
