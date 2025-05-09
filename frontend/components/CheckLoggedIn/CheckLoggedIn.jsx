@@ -20,4 +20,4 @@ function constantCheckLoggedIn() {
 }
 
 export default constantCheckLoggedIn
-// only for copy, not for export
+
