@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import PostTrip from "../Trips/PostTrip";
+import { useNavigate } from "react-router-dom";
 
 function Navigation() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +15,19 @@ function Navigation() {
     setIsModalOpen(false);
   };
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+      // Clear local storage or session storage
+      localStorage.removeItem('token'); 
+      localStorage.removeItem('isAdmin'); 
+      localStorage.removeItemt('useroid');
+      localStorage.removeItem('username');
+      sessionStorage.clear();
+
+      // Redirect to login page
+      navigate('/LoginSignup');
+  };
   return (
     <div className="Container py-3 sm:py-0 shadow-md">
         <div className="flex items-center">
@@ -150,6 +164,16 @@ function Navigation() {
                             onClick={() => window.scrollTo(0, 0)}
                         >
                             Login & Sign Up
+                        </NavLink>
+                <NavLink
+                            className={({ isActive }) =>
+                            `block py-3 px-4 rounded-lg hover:shadow-lg ${
+                                isActive ? "text-blue-800 font-medium" : "text-gray-700 hover:text-blue-500"
+                            }`
+                            }
+                            onClick={handleLogout}
+                        >
+                            Logout
                         </NavLink>
 
             </div>
