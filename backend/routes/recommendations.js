@@ -19,15 +19,26 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const prompt = `Generate a ${duration}-day travel plan for a trip to ${location} with a ${budget} budget. The traveler enjoys these activities: ${activities.join(', ')}. Format: "Day X: Activity1, Activity2", one line per day.`;
+    // const prompt = `Generate a ${duration}-day travel plan for a trip to ${location} with a ${budget} budget. The traveler enjoys these activities: ${activities.join(', ')}. Format: "Day X: Activity1, Activity2", one line per day.`;
+    const prompt = `
+    Generate one such object for a ${duration}-day trip to ${location} with a ${budget} budget. The traveler enjoys these activities: ${activities.join(', ')}.
+    Format: place names use colon to split for each place, do not start newline. Example: Colosseum guided tour, Vatican Museum visit, Trevi Fountain visit, Authentic pasta-making class
+    Do not include any other text, just the list of activities.
+    `;
+
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
       model: "gpt-3.5-turbo",
       max_tokens: 700,
     });
 
-    const suggestionText = completion.choices[0].message.content;
-    const suggestions = suggestionText.split('\n').filter(line => line.trim() !== ''); // turns into an array
+    const suggestionText = completion.choices[0].message.content.trim();
+    // Split on "," and trim each entry
+    const suggestions = suggestionText
+      .split(',')
+      .map(s => s.trim())
+      .filter(s => s.length > 0);
+
 
     const newRecommendation = new Recommendation({
       user_id: userId || null,
