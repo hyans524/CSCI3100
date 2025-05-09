@@ -19,35 +19,35 @@ function LoginSignup() {
     const [action, setAction] = useState("Login");
     const [haslicense, setHasLicense] = useState(false)
 
-    /*
-    localStorage.setItem('license', "123")
-    const checkLicense = async () => {
-        
-        setError('');
-        console.log(haslicense)
-
-        if (haslicense != true) {
-            try {
-                const response = await licenseApi.getAll()
-
-                if (response.data) {
-                    setHasLicense(true)
-                    console.log(key)
-                }
-            }
-            catch (err) {
-            }
-
-        }
-    }
     useEffect(() => {
-        
         const license = localStorage.getItem('license')
         if (license == null) { setHasLicense(false) }
         else { setHasLicense(true) }
-        checkLicense();
+        setHasLicense(checkLicense())
     }, [])
-    */
+
+    const checkLicense = async () => {
+
+        while (!haslicense) {
+            const key = prompt("Please input a license")
+            try {
+                const response = await licenseApi.getAll()
+                const keys = response.data.map(license => license.key)
+
+                if (keys.includes(key)) {
+                    console.log(true)
+                    localStorage.setItem('license', key)
+                    return true
+                }
+                else{window.alert("Invalid license")}
+            }
+            catch (err) {
+                console.error("Error: ", err)
+            }
+        }
+        return true
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
