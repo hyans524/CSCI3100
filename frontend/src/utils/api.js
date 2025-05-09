@@ -118,4 +118,30 @@ export const licenseApi = {
     getById: (id) => api.get(`/licenses/${id}`),
     isValidLicense: (key) => api.get(`/licenses/key/${key}`)
 };
+
+// Post-related APIs
+export const postApi = {
+    getAll: (params) => api.get('/posts', { params }), // e.g. { location, budget, likedBy, keyword, trip_oid, limit, page }
+    getById: (id) => api.get(`/posts/${id}`),
+    create: (data) => api.post('/posts', data), // body: { text, location, budget, activities, start_date, end_date, image? }
+    update: (id, data) => api.put(`/posts/${id}`, data), // same shape as create
+    delete: (id) => api.delete(`/posts/${id}`),
+    like: (id, userId) => api.put(`/posts/like/${id}`, { userId }), // body: { userId }
+    unlike: (id, userId) => api.put(`/posts/unlike/${id}`, { userId }),
+    comment: (id, text) => {                                         
+        const userId = authApi.getCurrentUserId();
+        return api.post(`/posts/comment/${id}`, { userId, text }); // body: { userId, text }
+    },
+    joinTrip: (postId) => {
+        const userId = authApi.getCurrentUserId();
+        return api.put(`/posts/join/${postId}`, { userId });
+    },
+};
+
+// Recommendation-related APIs
+export const recommendationApi = {
+    getAll: (params) => api.get('/recommendations', { params }), // e.g. { tripId, userId }
+    create: (data) => api.post('/recommendations', data), // body: { location, budget, duration, activities, userId?, groupId? }
+};
+
 export default api;
