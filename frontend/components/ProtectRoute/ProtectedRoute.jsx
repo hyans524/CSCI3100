@@ -1,8 +1,15 @@
 import { Navigate } from 'react-router-dom';
 
+import { useState } from 'react';
+import { authApi } from '../../src/utils/api';
+
 function ProtectedRoute({ children }) {
-  const token = localStorage.getItem('token');
-  if (!token) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
+  userEffect (() => {
+  setIsAuthenticated(authApi.isAuthenticated());
+  }, []);
+  if (!isAuthenticated) {
     // Not logged in, redirect
     return <Navigate to="/LoginSignup" replace />;
   }
