@@ -150,6 +150,7 @@ app.get('/api/init-data', async (req, res) => {
         await db.collection("trips").insertMany(processedTrips);
         console.log(`Initialized ${processedTrips.length} trips`);
 
+        // Load and process license data
         var license_json = require(DATA_PATH + "license.json");
         license_json = bson.EJSON.parse(JSON.stringify(license_json));
         const processedLicenses = license_json.map(license => {
@@ -158,6 +159,24 @@ app.get('/api/init-data', async (req, res) => {
         await db.collection("licenses").deleteMany({});
         await db.collection("licenses").insertMany(processedLicenses);
         console.log(`Initialized ${processedLicenses.length} licenses`);
+
+        // Load and process Post data
+        var post_json = require(DATA_PATH + "post.json");
+        post_json = bson.EJSON.parse(JSON.stringify(post_json));
+        const processedPosts = post_json.map(post => {
+                return post;
+        });
+        await db.collection("posts").deleteMany({});
+        await db.collection("posts").insertMany(processedPosts);
+
+        // Load and process Recommendation data
+        var recommendation_json = require(DATA_PATH + "ai_recommendation.json");
+        recommendation_json = bson.EJSON.parse(JSON.stringify(recommendation_json));
+        const processedRecommendations = recommendation_json.map(recommendation => {
+            return recommendation;
+        });
+        await db.collection("recommendations").deleteMany({});
+        await db.collection("recommendations").insertMany(processedRecommendations);
 
         res.json({
             message: 'Data initialized successfully',
@@ -177,18 +196,20 @@ app.get('/api/init-data', async (req, res) => {
 
 app.get('/api/test-post', async (req, res) => {
     try {
-        let jsonPosts = require("./data/dummy_data/post.json");
-        jsonPosts = bson.EJSON.parse(JSON.stringify(jsonPosts));
+        let post_json = require("./data/dummy_data/post.json");
+        post_json = bson.EJSON.parse(JSON.stringify(post_json));
 
-        const processedPosts = await Promise.all(jsonPosts.map(async (post) => {
-            const user = await User.findOne({id: Number(post.user_id)});
+        const processedPosts = await Promise.all(post_json.map(async (post) => {
+            // const user = await User.findOne({id: Number(post.user_id)});
+            const user = await User.findOne({ _id: new mongoose.Types.ObjectId(post.user_id) });
             if (!user) throw new Error(`User with id ${post.user_id} not found`);
 
             const imagePath = path.join(__dirname, './data/dummy_data', post.image); 
             const imageBuffer = fs.readFileSync(imagePath).toString('base64');
 
             const comments = await Promise.all(post.comments.map(async comment => {
-                const commentUser = await User.findOne({id: Number(comment.user_id)} );
+                // const commentUser = await User.findOne({id: Number(comment.user_id)} );
+                const commentUser = await User.findOne({ _id: new mongoose.Types.ObjectId(comment.user_id) });
                 if (!commentUser) throw new Error(`User with id ${comment.user_id} not found`);
                 
                 return {
@@ -199,7 +220,8 @@ app.get('/api/test-post', async (req, res) => {
             }));
 
             const likes = await Promise.all(post.likes.map(async likeId => {
-                const likeUser = await User.findOne({ id: Number(likeId) });
+                // const likeUser = await User.findOne({ id: Number(likeId) });
+                const likeUser = await User.findOne({ _id: new mongoose.Types.ObjectId(likeId) });
                 return likeUser ? likeUser._id : null;
             })).then(results => results.filter(Boolean));
 
@@ -226,6 +248,37 @@ app.get('/api/test-post', async (req, res) => {
         res.status(500).json({ error: 'Error initializing data', details: error.message });
     }
 });
+
+app.get('/api/test-recommendation', async (req, res) => {
+    try {
+      // 1. Load & parse the static JSON
+      let rec_json = require("./data/dummy_data/ai_recommendation.json");
+      rec_json = bson.EJSON.parse(JSON.stringify(rec_json));
+  
+      // 2. Transform into the shape your model expects
+      const processedRecs = rec_json.map(r => ({
+        _id:        r._id && r._id.$oid ? new mongoose.Types.ObjectId(r._id.$oid) : undefined,
+        user_id:    new mongoose.Types.ObjectId(r.user_id),
+        group_id:   r.group_id ? new mongoose.Types.ObjectId(r.group_id) : null,
+        preferences: r.preferences,
+        suggestions: r.suggestions,
+        createdAt:  r.createdAt ? new Date(r.createdAt) : undefined
+      }));
+  
+      // 3. Wipe & bulk-insert
+      await Recommendation.deleteMany({});
+      await Recommendation.insertMany(processedRecs);
+  
+      // 4. Report back
+      res.json({
+        message: 'Recommendations seeded successfully',
+        count:   processedRecs.length
+      });
+    } catch (err) {
+      console.error('Error seeding recommendations:', err);
+      res.status(500).json({ error: err.message });
+    }
+  });
 
 // Add this to server.js for debugging
 app.get('/api/diagnostics', async (req, res) => {
