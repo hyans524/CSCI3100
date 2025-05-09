@@ -19,11 +19,12 @@ function LoginSignup() {
     const [action, setAction] = useState("Login");
     const [haslicense, setHasLicense] = useState(false)
 
+
     useEffect(() => {
         const license = localStorage.getItem('license')
-        if (license == null) { setHasLicense(false) }
-        else { setHasLicense(true) }
-        setHasLicense(checkLicense())
+        console.log(license)
+        if (license !== null) {setHasLicense(true)}
+        else {setHasLicense(checkLicense())}
     }, [])
 
     const checkLicense = async () => {
@@ -37,9 +38,10 @@ function LoginSignup() {
                 if (keys.includes(key)) {
                     console.log(true)
                     localStorage.setItem('license', key)
+                    window.confirm("You are using License: " + key.toString())
                     return true
                 }
-                else{window.alert("Invalid license")}
+                else { window.alert("Invalid license") }
             }
             catch (err) {
                 console.error("Error: ", err)
