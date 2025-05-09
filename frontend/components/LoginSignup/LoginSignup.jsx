@@ -80,6 +80,7 @@ function LoginSignup() {
             } catch (err) {
                 console.error('Login error:', err);
                 setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+                window.alert(err.response?.data?.message)
             }
         }
         if (action === "Sign Up") {

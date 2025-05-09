@@ -33,7 +33,6 @@ api.interceptors.response.use(
             localStorage.removeItem('isAdmin');
             localStorage.removeItem('useroid');
             localStorage.removeItem('username');
-            localStorage.removeItem('license');
             window.location.href = '/LoginSignup';
         }
         return Promise.reject(error);
