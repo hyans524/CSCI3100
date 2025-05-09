@@ -14,7 +14,7 @@ const TripCard = ({
   end_date, 
   likeCount, 
   commentCount,
-  trip_oid // New field that references the trip document
+  trip_oid
 }) => {
 
   // Get the image URL - handles both URL paths and base64 encoded images

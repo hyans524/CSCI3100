@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { formatDate, formatCurrency } from "../../src/utils/formatters";
-import { tripApi, groupApi } from "../../src/utils/api";
+import { authApi, tripApi, groupApi } from "../../src/utils/api";
 
 const TripOverview = ({ trip, group }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Get current user ID
+  const currentUserId = authApi.getCurrentUserId();
 
   const [formData, setFormData] = useState({
     title: group?.group_name || "",

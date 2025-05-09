@@ -27,7 +27,8 @@ router.get('/', async (req, res) => {
                 group_id: trip.group_id,
                 groupName: group ? group.group_name : "Unnamed Group",
                 memberCount: group && group.members ? group.members.length : 0,
-                hasGroup: !!group
+                hasGroup: !!group,
+                member: group.members
             };
         });
         

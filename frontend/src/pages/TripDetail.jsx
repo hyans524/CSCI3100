@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { userApi, groupApi } from "../utils/api";
+import { userApi, groupApi, postApi, authApi, tripApi } from "../utils/api";
 import Trip from "../../components/Trips/Trip";
 import Travel_animation from "../assets/travel_animation.jpg";
 
@@ -12,6 +12,15 @@ const TripDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [joinStatus, setJoinStatus] = useState("not-joined"); // "not-joined", "joining", "joined", "error"
+  const [newComment, setNewComment] = useState("");
+  const [isLiked, setIsLiked] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [commentUsers, setCommentUsers] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Get current user ID
+  const currentUserId = authApi.getCurrentUserId();
 
   useEffect(() => {
     const fetchTripAndUserDetails = async () => {
@@ -21,22 +30,46 @@ const TripDetail = () => {
 
           if (location.state) {
             tripData = location.state;
-
           } else {
             try {
-              const response = await fetch(`/api/posts/${id}`);
-              
-              if (!response.ok) {
-                throw new Error("Failed to fetch trip details");
-              }
-              
-              tripData = await response.json();
+              const response = await postApi.getById(id);
+              tripData = response.data;
             } catch (fetchError) {
               console.error("Error fetching trip:", fetchError);
             }
           }
           
           setTrip(tripData);
+          
+          // Set comments from the trip data
+          if (tripData.comments && Array.isArray(tripData.comments)) {
+            setComments(tripData.comments);
+            
+            // Fetch user details for each comment if not already populated
+            const userIds = [...new Set(tripData.comments
+              .filter(comment => comment.user_id && typeof comment.user_id === 'string')
+              .map(comment => comment.user_id))];
+              
+            if (userIds.length > 0) {
+              try {
+                const userResponse = await userApi.getByIds(userIds);
+                const userMap = {};
+                userResponse.data.forEach(user => {
+                  userMap[user._id] = user;
+                });
+                setCommentUsers(userMap);
+              } catch (error) {
+                console.error("Failed to fetch comment users:", error);
+              }
+            }
+          }
+          
+          // Set likes from the trip data
+          if (tripData.likes && Array.isArray(tripData.likes)) {
+            setLikes(tripData.likes);
+            // Check if current user has liked the post
+            setIsLiked(tripData.likes.includes(currentUserId));
+          }
 
           if (tripData.user_id) {
             setOrganizer({
@@ -44,7 +77,6 @@ const TripDetail = () => {
               name: tripData.user_id.username || "Trip Organizer",
               initials: getInitials(tripData.user_id.username || "Trip Organizer")
             });
-            
           } else {
             setOrganizer({
                 _id: tripData.user_id || 'unknown',
@@ -52,6 +84,17 @@ const TripDetail = () => {
                 initials: "TO"
             });
           }
+
+          if (currentUserId) {
+            const trip_detail = await tripApi.getById(trip.trip_oid);
+            const groupId = trip_detail.data.group_id;
+            const groupResponse = await groupApi.getByGroupId(groupId);
+            
+            if (groupResponse.data.members.contains(currentUserId)) {
+              setJoinStatus("joined");
+            }
+          }
+          
           
           setError(null);
         } catch (err) {
@@ -60,11 +103,10 @@ const TripDetail = () => {
         } finally {
           setLoading(false);
         }
-      };
+    };
 
     fetchTripAndUserDetails();
-  }, [id, location.state]);
-
+  }, [id, location.state, currentUserId]);
 
   const getInitials = (name) => {
     return name.split(' ').map(word => word.charAt(0)).join('').toUpperCase().substring(0, 2);
@@ -72,26 +114,108 @@ const TripDetail = () => {
 
   // Handle joining a trip
   const handleJoinTrip = async () => {
+
     if (!trip || !trip._id) {
       alert("Cannot join trip: trip information is missing");
+      return;
+    }
+
+    if (!currentUserId) {
+      alert("You need to be logged in to join trips");
       return;
     }
     
     try {
       setJoinStatus("joining");
       
-      // Use the right ID - post ID for joining
-      const postId = trip._id;
-      const response = await groupApi.joinGroup(postId);
+      const trip_detail = await tripApi.getById(trip.trip_oid);
+      const groupId = trip_detail.data.group_id;
+      const response = await groupApi.joinGroup(groupId);
       
       console.log("Join response:", response.data);
       setJoinStatus("joined");
       
       alert("You've successfully joined this trip!");
+
     } catch (error) {
       console.error("Failed to join trip:", error);
       setJoinStatus("error");
       alert("Failed to join trip. Please try again later.");
+    }
+  };
+
+  // Handle liking a post
+  const handleLikePost = async () => {
+    if (!trip || !trip._id || !currentUserId) {
+      alert("You need to be logged in to like posts");
+      return;
+    }
+
+    try {
+      if (isLiked) {
+        // Unlike the post
+        const response = await postApi.unlike(trip._id, currentUserId);
+        setLikes(response.data.likes);
+        setIsLiked(false);
+      } else {
+        // Like the post
+        const response = await postApi.like(trip._id, currentUserId);
+        setLikes(response.data.likes);
+        setIsLiked(true);
+      }
+    } catch (error) {
+      console.error("Failed to update like status:", error);
+      alert("Failed to update like status. Please try again later.");
+    }
+  };
+
+  // Handle adding a comment
+  const handleAddComment = async (e) => {
+    e.preventDefault();
+    
+    if (!trip || !trip._id || !currentUserId) {
+      alert("You need to be logged in to comment");
+      return;
+    } else {
+      console.log("Trip ID:", trip._id);
+      console.log("Current User ID:", currentUserId);
+    }
+
+    if (!newComment.trim()) {
+      alert("Comment cannot be empty");
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      const response = await postApi.comment(trip._id, newComment);
+      
+      // Update the comments state with the new comments
+      setComments(response.data);
+      setNewComment(""); // Clear the input field
+      
+      // If we need to fetch user details for new comments
+      const userIds = [...new Set(response.data
+        .filter(comment => comment.user_id && typeof comment.user_id === 'string')
+        .map(comment => comment.user_id))];
+        
+      if (userIds.length > 0) {
+        try {
+          const userResponse = await userApi.getByIds(userIds);
+          const newUserMap = {...commentUsers};
+          userResponse.data.forEach(user => {
+            newUserMap[user._id] = user;
+          });
+          setCommentUsers(newUserMap);
+        } catch (error) {
+          console.error("Failed to fetch new comment users:", error);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to add comment:", error);
+      alert("Failed to add comment. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -148,6 +272,21 @@ const TripDetail = () => {
     }
   };
 
+  // Format comment date
+  const formatCommentDate = (date) => {
+    try {
+      return new Date(date).toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric', 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } catch {
+      return "Date not available";
+    }
+  };
+
   // Calculate trip duration in days
   const calculateDuration = () => {
     try {
@@ -185,6 +324,30 @@ const TripDetail = () => {
     }
     
     return Travel_animation;
+  };
+
+  // Get comment user name
+  const getCommentUserName = (userId) => {
+    if (!userId) return "Anonymous";
+    
+    // If it's already an object with username
+    if (typeof userId === 'object' && userId.username) {
+      return userId.username;
+    }
+    
+    // If we have the user in our map
+    if (commentUsers[userId] && commentUsers[userId].username) {
+      return commentUsers[userId].username;
+    }
+    
+    // Return a generic name if we can't find the user
+    return "User";
+  };
+
+  // Get user initials for avatar
+  const getUserInitials = (userId) => {
+    const userName = getCommentUserName(userId);
+    return getInitials(userName);
   };
 
   // Join button state
@@ -280,7 +443,7 @@ const TripDetail = () => {
               </div>
             </div>
             
-            <div className="bg-blue-50 p-4 rounded-lg flex flex-col sm:flex-row items-center justify-between">
+            <div className="bg-blue-50 p-4 rounded-lg flex flex-col sm:flex-row items-center justify-between mb-6">
               <div>
                 <p className="font-medium text-blue-800">Interested in joining this trip?</p>
                 <p className="text-sm text-blue-600">Secure your spot before it's filled!</p>
@@ -296,6 +459,109 @@ const TripDetail = () => {
               >
                 {getJoinButtonContent()}
               </button>
+            </div>
+            
+            {/* Likes and interactions */}
+            <div className="border-t border-gray-200 pt-4 mt-4">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center space-x-2">
+                  <button 
+                    onClick={handleLikePost}
+                    className={`flex items-center space-x-1 px-3 py-1 rounded-full ${
+                      isLiked 
+                        ? "bg-red-100 text-red-600" 
+                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    }`}
+                  >
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      className="h-5 w-5" 
+                      fill={isLiked ? "currentColor" : "none"}
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={isLiked ? 0 : 2} 
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
+                      />
+                    </svg>
+                    <span>{isLiked ? "Liked" : "Like"}</span>
+                  </button>
+                  
+                  <div className="text-sm text-gray-500">
+                    {likes.length} {likes.length === 1 ? "person likes" : "people like"} this
+                  </div>
+                </div>
+                
+                <div className="text-sm text-gray-500">
+                  {comments.length} {comments.length === 1 ? "comment" : "comments"}
+                </div>
+              </div>
+              
+              {/* Comment form */}
+              <form onSubmit={handleAddComment} className="mb-6">
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">
+                    {currentUserId ? getUserInitials(currentUserId) : "?"}
+                  </div>
+                  <div className="flex-1">
+                    <textarea
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                      placeholder="Add a comment..."
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      rows="2"
+                    ></textarea>
+                    <div className="flex justify-end mt-2">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting || !newComment.trim()}
+                        className={`px-4 py-1 rounded-md font-medium transition ${
+                          !newComment.trim() || isSubmitting
+                            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                            : "bg-blue-600 text-white hover:bg-blue-700"
+                        }`}
+                      >
+                        {isSubmitting ? (
+                          <div className="flex items-center">
+                            <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></div>
+                            Posting...
+                          </div>
+                        ) : (
+                          "Post Comment"
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              
+              {/* Comments list */}
+              <div className="space-y-4 mt-2">
+                <h3 className="font-semibold text-lg">Comments</h3>
+                {comments.length === 0 ? (
+                  <p className="text-gray-500 text-center py-4">No comments yet. Be the first to comment!</p>
+                ) : (
+                  comments.map((comment, index) => (
+                    <div key={index} className="flex space-x-3">
+                      <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-bold text-xs">
+                        {getUserInitials(comment.user_id)}
+                      </div>
+                      <div className="flex-1">
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="font-medium">{getCommentUserName(comment.user_id)}</span>
+                            <span className="text-xs text-gray-500">{formatCommentDate(comment.date)}</span>
+                          </div>
+                          <p className="text-gray-700">{comment.text}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
             </div>
           </div>
         </div>

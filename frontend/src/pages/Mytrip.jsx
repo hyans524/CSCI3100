@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { tripApi } from "../utils/api";
+import { tripApi, authApi } from "../utils/api";
 import Temple from "../assets/Temple_background.png";
 import Fuji from "../assets/Fuji_background.jpg";
 import GreatWall from "../assets/great_wall.jpg";
@@ -13,27 +13,22 @@ const MyTrip = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  // Get current user ID
+  const currentUserId = authApi.getCurrentUserId();
+
   useEffect(() => {
     const fetchTrips = async () => {
       try {
         setLoading(true);
         
         const response = await tripApi.getAll();
-        const tripsData = response.data;
+        const beforeFilterTripsData = response.data;
 
-        console.log("API Response:", tripsData);
-        
-        // Debug the IDs in the response
-        if (Array.isArray(tripsData)) {
-          tripsData.forEach((trip, index) => {
-            console.log(`Trip ${index} ID information:`, {
-              _id: trip._id,
-              id: trip.id,
-              tripId: trip.tripId,
-              keys: Object.keys(trip)
-            });
-          });
-        }
+        const tripsData = Array.isArray(beforeFilterTripsData)
+          ? beforeFilterTripsData.filter(trip => {
+              return trip.member.includes(currentUserId);
+            })
+          : [];
         
         // Process the trips data to add UI-specific properties
         const processedTrips = tripsData.map(trip => {
@@ -55,7 +50,7 @@ const MyTrip = () => {
           
           // Ensure trip has an ID that can be used for navigation
           const tripId = trip._id || trip.id || trip.tripId;
-          console.log(`Processed trip: ${trip.destination}, using ID: ${tripId}`);
+          // console.log(`Processed trip: ${trip.destination}, using ID: ${tripId}`);
           
           return {
             ...trip,
@@ -212,7 +207,7 @@ const MyTrip = () => {
         <div className="space-y-6">
           {filteredTrips.map(trip => {
             // Log each trip ID as we render it
-            console.log(`Rendering trip card for ${trip.destination}, ID:`, trip._id);
+            // console.log(`Rendering trip card for ${trip.destination}, ID:`, trip._id);
             
             return (
               <div 
