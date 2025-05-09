@@ -21,63 +21,61 @@ function LoginSignup() {
         e.preventDefault();
         setError('');
 
-        try {
-            const credentials = {
-                username,
-                password
-            };
+        if (action === "Login") {
 
-            const response = await authApi.login(credentials);
+            try {
+                const credentials = {
+                    username,
+                    password
+                };
 
-            if (response.data) {
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('isAdmin', response.data.isAdmin);
-                localStorage.setItem('useroid', response.data.useroid);
-                localStorage.setItem('username', credentials.username);
+                const response = await authApi.login(credentials);
 
-                if (response.data.isAdmin) {
+                if (response.data) {
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('isAdmin', response.data.isAdmin);
+                    localStorage.setItem('useroid', response.data.useroid);
+                    localStorage.setItem('username', credentials.username);
 
-                } else {
-                    navigate('/profile')
+                    if (response.data.isAdmin) {
+
+                    } else {
+                        navigate('/profile')
+                    }
+
                 }
-
+            } catch (err) {
+                console.error('Login error:', err);
+                setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
             }
-        } catch (err) {
-            console.error('Login error:', err);
-            setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+        }
+        if (action === "Sign Up") {
+            try {
+                const credentials = {
+                    username,
+                    password
+                };
+
+                const response = await authApi.register(credentials);
+
+                if (response.data) {
+                    // Optionally, log the user in immediately after signup:
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('isAdmin', response.data.isAdmin);
+                    localStorage.setItem('useroid', response.data.useroid);
+                    localStorage.setItem('username', credentials.username);
+                    if (response.data.isAdmin) {
+
+                    } else {
+                        navigate('/profile')
+                    }
+                }
+            } catch (err) {
+                console.error('Signup error:', err);
+                setError(err.response?.data?.message || 'Sign up failed. Please try again.');
+            }
         }
     };
-
-    // Signup form state
-    const [signupUsername, setSignupUsername] = useState('');
-    const [signupPassword, setSignupPassword] = useState('');
-
-    const handleSignup = async (e) => {
-        e.preventDefault();
-        setError('');
-
-        try {
-            const signupData = {
-                username: signupUsername,
-                password: signupPassword,
-            };
-            const response = await authApi.register(signupData);
-
-            if (response.data) {
-                // Optionally, log the user in immediately after signup:
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('isAdmin', response.data.isAdmin);
-                localStorage.setItem('useroid', response.data.useroid);
-                localStorage.setItem('username', signupUsername);
-
-                navigate('/profile');
-            }
-        } catch (err) {
-            console.error('Signup error:', err);
-            setError(err.response?.data?.message || 'Sign up failed. Please try again.');
-        }
-    };
-
 
     return (
         <div className='container'>
@@ -91,11 +89,11 @@ function LoginSignup() {
                     <form action="javascript:void(0);" onSubmit={handleSubmit}>
                         <div className="input">
                             <img src={user_icon} alt="" />
-                            <input placeholder='Username' label="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                            <input placeholder='Username' value = {username} onChange={(e) => setUsername(e.target.value)} required />
                         </div>
                         <div className="input">
                             <img src={password_icon} alt="" />
-                            <input placeholder='Password' type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                            <input placeholder='Password' type="password" value = {password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
                         <div className='submitbutton'>
                             <button type="submit">Login</button>
@@ -104,14 +102,14 @@ function LoginSignup() {
 
                     :
 
-                    <form action='javascript:void(0);' onSubmit={handleSignup}>
+                    <form action='javascript:void(0);' onSubmit={handleSubmit}>
                         <div className="input">
                             <img src={user_icon} alt="" />
-                            <input placeholder='Username' label="Username" value={signupUsername} onChange={(e) => setSignupUsername(e.target.value)} required />
+                            <input placeholder='Username' value = {username} onChange={(e) => setUsername(e.target.value)} required />
                         </div>
                         <div className="input">
                             <img src={password_icon} alt="" />
-                            <input placeholder='Password' type="password" label="Password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} required />
+                            <input placeholder='Password' type="password" value = {password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
                         <div className='submitbutton'>
                             <button type="submit">Sign Up</button>
@@ -119,7 +117,6 @@ function LoginSignup() {
                     </form>};
 
             </div>
-            {action === "Sign Up" ? <div></div> : <div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
             <div className="submit-container">
                 <div className={action === "Login" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up") }}>Sign Up</div>
                 <div className={action === "Sign Up" ? "submit gray" : "submit"} onClick={() => { setAction("Login") }}>Login</div>

@@ -60,6 +60,7 @@ export const authApi = {
     isAuthenticated: () => !!localStorage.getItem('token'),
     isAdmin: () => localStorage.getItem('isAdmin') === 'true',
     getCurrentUserId: () => localStorage.getItem('useroid'),
+    register: (credentials) => api.post('/auth/register', credentials),
 };
 
 // Trip-related APIs

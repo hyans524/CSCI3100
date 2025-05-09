@@ -111,6 +111,9 @@ app.get('/api/init-data', async (req, res) => {
         }
         */
         // Load and process User data
+
+        mongoose.connection.db.dropCollection("users")
+        
         var user_json = require(DATA_PATH + "user.json");
         user_json = bson.EJSON.parse(JSON.stringify(user_json));
         const processedUsers = user_json.map(user => {
@@ -193,6 +196,24 @@ app.get('/api/init-data', async (req, res) => {
         res.status(500).json({ error: 'Error initializing data', details: error.message });
     }
 });
+
+app.get('/api/check-data', async (req, res) => {
+    try {
+        res.json({
+            groupsCount: await Group.countDocuments(),
+            usersCount: await User.countDocuments(),
+            postsCount: await Post.countDocuments(),
+            recommendationsCount: await Recommendation.countDocuments(),
+            expensesCount: await Expense.countDocuments(),
+            tripsCount: await Trip.countDocuments(),
+            licensesCount: await License.countDocuments()
+        });
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).json({ error: 'Error', details: error.message });
+    }
+});
+
 
 app.get('/api/test-post', async (req, res) => {
     try {

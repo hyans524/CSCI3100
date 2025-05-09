@@ -14,14 +14,19 @@ router.post('/register', async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ message: 'Username already exists' });
         }
-        const Users = await User.find()
-        const max_id = await Math.max(...Users.map(user => user_id))
+        const Users = await User.find().exec()
+        let max = 0;
+        Users.forEach(user => {
+            if (user.user_id > max) {
+                max = user.user_id;
+            }
+        });
 
         // Create new user
         const user = new User({
             username: username,
             password: password,
-            user_id: max_id + 1,
+            user_id: max + 1,
             isAdmin: false
         });
 
