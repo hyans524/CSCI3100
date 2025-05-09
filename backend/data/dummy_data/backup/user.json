@@ -1,0 +1,147 @@
+[
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439a8b22e006c6"
+    },
+    "user_id": 1000,
+    "username": "123",
+    "email": "1jane@example.com",
+    "password": "$2a$10$hlozDmTdH7NXM.FXHT8LYuhImE0MTZWoTeDlx4rJsNmJl5eFFuOIW",
+    "age": 28,
+    "gender": "Female",
+    "language": "English",
+    "phone": "+123"
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006c6"
+    },
+    "user_id": 1,
+    "username": "adventure_jane",
+    "email": "jane@example.com",
+    "password": "hashed1234",
+    "age": 28,
+    "gender": "Female",
+    "language": "English",
+    "phone": "+1234567899"
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006c7"
+    },
+    "user_id": 2,
+    "username": "traveler_mike",
+    "email": "mike@example.com",
+    "password": "hashed5678",
+    "age": 32,
+    "gender": "Male",
+    "language": "English",
+    "phone": "+0987654321"
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006c8"
+    },
+    "user_id": 3,
+    "username": "backpacker_sara",
+    "email": "sara1@example.com",
+    "password": "hashed9101",
+    "age": 24,
+    "gender": "Female",
+    "language": "English",
+    "phone": "+1122334455"
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006c9"
+    },
+    "user_id": 4,
+    "username": "traveler_john",
+    "password": "Travel123", 
+    "age": 28,
+    "phone": "+1234567890",
+    "gender": "Male",
+    "language": "English",
+    "email": "john@example.com"
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006ca"
+    },
+    "user_id": 5,
+    "username": "adventure_sara",
+    "password": "SaraPass456", 
+    "age": 32,
+    "phone": "+1987654321",
+    "gender": "Female",
+    "language": "Spanish",
+    "email": "sara@example.com"
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006cb"
+    },
+    "user_id": 6,
+    "username": "explorer_mike",
+    "password": "Mike789Adventure",
+    "age": 24,
+    "phone": "+11223344551",
+    "gender": "Male",
+    "language": "French",
+    "email": "mike1@example.com"
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006cc"
+    },
+    "user_id": 7,
+    "username": "admin_user",
+    "password": "AdminPass123", 
+    "age": 35,
+    "phone": "+1555555555",
+    "gender": "Female",
+    "language": "English",
+    "email": "admin@example.com",
+    "isAdmin": true
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006cd"
+    },
+    "user_id": 8,
+    "username": "testAdmin",
+    "password": "Adminadmin", 
+    "age": 20,
+    "phone": "+155554213",
+    "gender": "Male",
+    "language": "Chinese",
+    "email": "admin@test.com",
+    "isAdmin": true
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006ce"
+    },
+    "user_id": 9,
+    "username": "test_user",
+    "password": "Pass123901", 
+    "age": 18,
+    "phone": "+8612345678900",
+    "gender": "Female",
+    "language": "Chinese",
+    "email": "user@test.com"
+  },
+  {
+    "_id": {
+      "$oid": "67fba7d7cc439d8b22e006cf"
+    },
+    "user_id": 10,
+    "username": "feng_user",
+    "password": "feng1234", 
+    "age": 21,
+    "phone": "+85296684538",
+    "gender": "Male",
+    "language": "Chinese",
+    "email": "feng@example.com"
+  }
+]

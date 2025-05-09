@@ -122,7 +122,7 @@
     "_id": {
       "$oid": "67fbd152d2525d08daed895b"
     },
-    "user_id": "7",
+    "user_id": "67fba7d7cc439d8b22e006cc",
     "text": "Northern Lights chase in Iceland",
     "image": "images/iceland.jpg",
     "location": "Reykjavik, Iceland",
@@ -187,7 +187,7 @@
     "activities": ["Hiking", "Archaeology", "Nature photography"],
     "start_date": "2024-08-15",
     "end_date": "2024-08-25",
-    "likes": ["67fba7d7cc439d8b22e006c6", "67fba7d7cc439d8b22e006c9", "7"],
+    "likes": ["67fba7d7cc439d8b22e006c6", "67fba7d7cc439d8b22e006c9", "67fba7d7cc439d8b22e006cc"],
     "comments": [
       {
         "user_id": "67fba7d7cc439d8b22e006ca",

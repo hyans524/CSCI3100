@@ -1,0 +1,68 @@
+[
+    {
+      "_id": {
+      "$oid": "67fbcfadd2525d08daed8950"
+      },
+      "destination": "Tokyo, Japan",
+      "start_date": "2024-05-01",
+      "end_date": "2024-05-10",
+      "budget": 5000,
+      "activity": ["Visit Senso-ji Temple", "Sushi Cooking Class"],
+      "group_id": 101
+    },
+    {
+      "_id": {
+      "$oid": "67fbd013d2525d08daed8951"
+      },
+      "destination": "Paris, France",
+      "start_date": "2024-05-01",
+      "end_date": "2024-05-05",
+      "budget": 2500,
+      "activity": ["Eiffel Tower visit", "Louvre Museum tour", "Seine River cruise"],
+      "group_id": 102
+    },
+    {
+      "_id": {
+      "$oid": "67fbd013d2525d08daed8952"
+      },
+      "destination": "Tokyo, Japan",
+      "start_date": "2024-05-05",
+      "end_date": "2024-05-15",
+      "budget": 3000,
+      "activity": ["Shibuya Crossing exploration", "Tsukiji Market sushi experience", "Asakusa Temple visit"],
+      "group_id": 103
+    },
+    {
+      "_id": {
+      "$oid": "67fbd013d2525d08daed8953"
+      },
+      "destination": "New York, USA",
+      "start_date": "2024-06-01",
+      "end_date": "2024-06-10",
+      "budget": 3500,
+      "activity": ["Statue of Liberty cruise", "Broadway show tickets", "Central Park picnic"],
+      "group_id": 104
+    },
+    {
+      "_id": {
+      "$oid": "67fbd013d2525d08daed8954"
+      },
+      "destination": "Bali, Indonesia",
+      "start_date": "2024-07-01",
+      "end_date": "2024-07-10",
+      "budget": 2000,
+      "activity": ["Ubud Monkey Forest", "Tegallalang Rice Terraces", "Seminyak relaxation"],
+      "group_id": 105
+    },
+    {
+      "_id": {
+      "$oid": "67fbd013d2525d08daed8955"
+      },
+      "destination": "Rome, Italy",
+      "start_date": "2024-08-01",
+      "end_date": "2024-08-10",
+      "budget": 1800,
+      "activity": ["Colosseum guided tour", "Vatican Museum visit", "Gelato tasting tour"],
+      "group_id": 106
+    }
+  ]

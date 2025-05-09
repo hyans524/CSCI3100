@@ -17,7 +17,7 @@
       "$oid": "67fbd068d2525d08daed8954"
     }, 
     "user_id": "67fba7d7cc439d8b22e006c6",
-    "group_id": "101",
+    "group_id": "67fbd1f7d2525d08daed8957",
     "preferences": {
       "location": "Paris, France",
       "budget": "2000",
@@ -83,7 +83,7 @@
       "$oid": "67fbd068d2525d08daed8959"
     }, 
     "user_id": "67fba7d7cc439d8b22e006cb",
-    "group_id": "102",
+    "group_id": "67fbd1f7d2525d08daed8958",
     "preferences": {
       "location": "Cape Town, South Africa",
       "budget": "2200",
