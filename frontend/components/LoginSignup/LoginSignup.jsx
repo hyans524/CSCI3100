@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './LoginSignup.css'
@@ -8,6 +8,7 @@ import email_icon from '../../src/assets/email_icon.png'
 import password_icon from '../../src/assets/password.png'
 
 import { authApi } from '../../src/utils/api';
+import { licenseApi } from '../../src/utils/api';
 
 function LoginSignup() {
 
@@ -16,7 +17,32 @@ function LoginSignup() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [action, setAction] = useState("Login");
+    const [haslicense, setHasLicense] = useState(true)
+/*
+    async function checkLicense() {
 
+        const license = localStorage.getItem('license')
+        if (license == null) {
+            setHasLicense(false)
+        }
+        else {
+            setHasLicense(true)
+        }
+        console.log(haslicense)
+
+        if (haslicense != true) {
+            const key = prompt("Please input your license")
+            const response = await licenseApi.isValidLicense(key)
+            console.log(response.data)
+            console.log(key)
+            if (response.data != null) {
+                setHasLicense(true)
+                console.log(key)
+            }
+        }
+    }
+    checkLicense()
+*/
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -89,11 +115,11 @@ function LoginSignup() {
                     <form action="javascript:void(0);" onSubmit={handleSubmit}>
                         <div className="input">
                             <img src={user_icon} alt="" />
-                            <input placeholder='Username' value = {username} onChange={(e) => setUsername(e.target.value)} required />
+                            <input placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} required />
                         </div>
                         <div className="input">
                             <img src={password_icon} alt="" />
-                            <input placeholder='Password' type="password" value = {password} onChange={(e) => setPassword(e.target.value)} required />
+                            <input placeholder='Password' type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
                         <div className='submitbutton'>
                             <button type="submit">Login</button>
@@ -105,11 +131,11 @@ function LoginSignup() {
                     <form action='javascript:void(0);' onSubmit={handleSubmit}>
                         <div className="input">
                             <img src={user_icon} alt="" />
-                            <input placeholder='Username' value = {username} onChange={(e) => setUsername(e.target.value)} required />
+                            <input placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} required />
                         </div>
                         <div className="input">
                             <img src={password_icon} alt="" />
-                            <input placeholder='Password' type="password" value = {password} onChange={(e) => setPassword(e.target.value)} required />
+                            <input placeholder='Password' type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
                         <div className='submitbutton'>
                             <button type="submit">Sign Up</button>

@@ -31,7 +31,9 @@ api.interceptors.response.use(
             // Clear auth data on unauthorized
             localStorage.removeItem('token');
             localStorage.removeItem('isAdmin');
-            localStorage.removeItem('userId');
+            localStorage.removeItem('useroid');
+            localStorage.removeItem('username');
+            localStorage.removeItem('license');
             window.location.href = '/LoginSignup';
         }
         return Promise.reject(error);
