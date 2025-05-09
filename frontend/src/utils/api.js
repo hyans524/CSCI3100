@@ -71,34 +71,31 @@ export const tripApi = {
     getById: (id) => api.get(`/trips/${id}`),
     create: (data) => api.post('/trips', data),
     update: (id, data) => api.put(`/trips/${id}`, data),
-    delete: (id) => api.delete(`/trips/${id}`) || "67fba7d7cc439d8b22e006c9",
+    delete: (id) => api.delete(`/trips/${id}`),
 };
 
 // Group-related APIs
 export const groupApi = {
     getAll: () => api.get('/groups'),
     getById: (id) => api.get(`/groups/${id}`),
-    getByGroupId: (groupId) => api.get(`/groups/by-group-id/${groupId}`),
+    getByGroupId: (groupId) => api.get(`/groups/${groupId}`),
     create: (data) => api.post('/groups', data),
     update: (id, data) => api.put(`/groups/${id}`, data),
     delete: (id) => api.delete(`/groups/${id}`),
     addMessage: (groupId, text) => {
-        // Use mock user ID if auth is not implemented yet
-        const userId = authApi.getCurrentUserId() || "67fba7d7cc439d8b22e006c9";
-        
-        // Create a new message object
+        const userId = authApi.getCurrentUserId();
         const newMessage = {
             user_oid: userId,
             text: text,
             timestamp: new Date().toISOString()
         };
-        
-        // Add a new endpoint to handle adding messages
         return api.post(`/groups/${groupId}/messages`, newMessage);
     },
-    joinGroup: (postId) => {
-        const userId = authApi.getCurrentUserId() || "67fba7d7cc439d8b22e006c9";
-        return api.put(`/posts/join/${postId}`, { userId });
+    joinGroup: (groupId) => {
+        const userId = authApi.getCurrentUserId();
+        return api.put(`/groups/${groupId}`, { 
+            $push: { members: userId }
+        });
     },
 };
 
@@ -109,7 +106,7 @@ export const expenseApi = {
     getById: (id) => api.get(`/expenses/${id}`),
     create: (data) => api.post('/expenses', {
         ...data,
-        paid_by: authApi.getCurrentUserId() || "67fba7d7cc439d8b22e006c9" // Use mock ID if needed
+        paid_by: authApi.getCurrentUserId()
     }),
     update: (id, data) => api.put(`/expenses/${id}`, data),
     delete: (id) => api.delete(`/expenses/${id}`),

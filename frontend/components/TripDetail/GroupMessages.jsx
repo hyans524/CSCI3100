@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { formatDateTime } from '../../src/utils/formatters';
-import { groupApi } from '../../src/utils/api';
+import { groupApi, authApi } from '../../src/utils/api';
 import api from '../../src/utils/api';
 
 const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
@@ -12,8 +12,8 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [error, setError] = useState(null);
   
-  // Mock user_oid since auth isn't implemented yet
-  const currentUserId = "67fba7d7cc439d8b22e006c9";
+  // Get current user ID
+  const currentUserId = authApi.getCurrentUserId();
 
   useEffect(() => {
     setMessages(initialMessages || []);
@@ -52,16 +52,7 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
     try {
       setSending(true);
       
-      // Create new message object
-      const newMessageObj = {
-        user_oid: currentUserId,
-        text: newMessage.trim(),
-        timestamp: new Date().toISOString()
-      };
-      
-      // Send message using the new endpoint
-      const response = await api.post(`/groups/${groupId}/messages`, newMessageObj);
-      
+      const response = await groupApi.addMessage(groupId, newMessage.trim());
       console.log('Message sent response:', response.data);
       
       // Update local state with new message

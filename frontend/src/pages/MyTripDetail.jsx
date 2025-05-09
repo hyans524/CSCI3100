@@ -6,7 +6,7 @@ import GroupMembers from "../../components/TripDetail/GroupMembers";
 import ExpensesSection from "../../components/TripDetail/ExpensesSection";
 import GroupMessages from "../../components/TripDetail/GroupMessages";
 import { formatDate, formatCurrency, calculateDuration } from "../utils/formatters";
-import { tripApi, groupApi, expenseApi, userApi } from "../utils/api";
+import { tripApi, groupApi, expenseApi, authApi } from "../utils/api";
 
 const MyTripDetail = () => {
   const { id } = useParams();
@@ -15,6 +15,8 @@ const MyTripDetail = () => {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  
 
   useEffect(() => {
     const fetchTripDetails = async () => {

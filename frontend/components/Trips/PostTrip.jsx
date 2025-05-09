@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {authApi} from "../../src/utils/api.js";
 
 const PostTrip = ({ onClose, onTripPosted }) => {
     const [location, setLocation] = useState("");
@@ -71,6 +72,11 @@ const PostTrip = ({ onClose, onTripPosted }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!currentUserId) {
+            alert("You must be logged in to post a trip.");
+            return;
+        }
         
         if (!validateForm()) return;
         
@@ -88,7 +94,7 @@ const PostTrip = ({ onClose, onTripPosted }) => {
     
             // Create form data for multipart/form-data (for image upload)
             const formData = new FormData();
-            formData.append("user_id", mockUserId);
+            formData.append("user_id", currentUserId);
             formData.append("text", details);
             formData.append("location", location);
             formData.append("budget", budgetMapping[budget] || budget);

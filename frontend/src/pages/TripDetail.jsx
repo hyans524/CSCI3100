@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { userApi, groupApi, postApi, authApi } from "../utils/api";
+import { userApi, groupApi, postApi, authApi, tripApi } from "../utils/api";
 import Trip from "../../components/Trips/Trip";
 import Travel_animation from "../assets/travel_animation.jpg";
 
@@ -32,7 +32,6 @@ const TripDetail = () => {
             tripData = location.state;
           } else {
             try {
-              // Use postApi to fetch the trip details
               const response = await postApi.getById(id);
               tripData = response.data;
             } catch (fetchError) {
@@ -85,6 +84,17 @@ const TripDetail = () => {
                 initials: "TO"
             });
           }
+
+          if (currentUserId) {
+            const trip_detail = await tripApi.getById(trip.trip_oid);
+            const groupId = trip_detail.data.group_id;
+            const groupResponse = await groupApi.getByGroupId(groupId);
+            
+            if (groupResponse.data.members.contains(currentUserId)) {
+              setJoinStatus("joined");
+            }
+          }
+          
           
           setError(null);
         } catch (err) {
@@ -104,22 +114,29 @@ const TripDetail = () => {
 
   // Handle joining a trip
   const handleJoinTrip = async () => {
+
     if (!trip || !trip._id) {
       alert("Cannot join trip: trip information is missing");
+      return;
+    }
+
+    if (!currentUserId) {
+      alert("You need to be logged in to join trips");
       return;
     }
     
     try {
       setJoinStatus("joining");
       
-      // Use the right ID - post ID for joining
-      const postId = trip._id;
-      const response = await groupApi.joinGroup(postId);
+      const trip_detail = await tripApi.getById(trip.trip_oid);
+      const groupId = trip_detail.data.group_id;
+      const response = await groupApi.joinGroup(groupId);
       
       console.log("Join response:", response.data);
       setJoinStatus("joined");
       
       alert("You've successfully joined this trip!");
+
     } catch (error) {
       console.error("Failed to join trip:", error);
       setJoinStatus("error");

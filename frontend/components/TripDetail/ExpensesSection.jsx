@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { formatCurrency, formatDate } from '../../src/utils/formatters';
-import { expenseApi } from '../../src/utils/api';
+import { expenseApi, authApi } from '../../src/utils/api';
 
 const ExpensesSection = ({ expenses, members, groupId }) => {
   const [isAddingExpense, setIsAddingExpense] = useState(false);
@@ -78,15 +78,15 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
 
     try {
       setSubmitting(true);
+
+      // Get current user ID
+      const currentUserId = authApi.getCurrentUserId();
       
-      // Mock user ID for testing
-      const mockUserId = "67fba7d7cc439d8b22e006c9";
-      
-      // Create the expense data with the mock user ID
+      // Create the expense data with the user ID
       const expenseData = {
         ...newExpense,
         group_id: groupId,
-        paid_by: mockUserId
+        paid_by: currentUserId
       };
       
       console.log('Sending expense data:', expenseData);
@@ -137,6 +137,12 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
   // Handle expense deletion with confirmation
   const handleDeleteExpense = async () => {
     if (!expenseToDelete) return;
+
+    if (expenseToDelete.paid_by !== authApi.getCurrentUserId()) {
+      alert('You can only delete your own expenses.');
+      return;
+    }
+
     
     try {
       await expenseApi.delete(expenseToDelete._id);

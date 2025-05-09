@@ -26,11 +26,13 @@ router.post('/', async (req, res) => {
     Do not include any other text, just the list of activities.
     `;
 
+    console.log("Prompt: ", prompt);
+
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
       model: "gpt-3.5-turbo",
       max_tokens: 700,
-    });
+    });     
 
     const suggestionText = completion.choices[0].message.content.trim();
     // Split on "," and trim each entry
