@@ -22,12 +22,11 @@ function LoginSignup() {
         setError('');
 
         try {
-            // test using name = 123, pw = 123
             const credentials = {
                 username,
                 password
             };
-            
+
             const response = await authApi.login(credentials);
 
             if (response.data) {
@@ -48,36 +47,36 @@ function LoginSignup() {
             setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
         }
     };
-    
-        // Signup form state
-        const [signupUsername, setSignupUsername] = useState('');
-        const [signupPassword, setSignupPassword] = useState('');
-       
-        const handleSignup = async (e) => {
-            e.preventDefault();
-            setError('');
-    
-            try {
-                const signupData = {
-                    username: signupUsername,
-                    password: signupPassword,
-                };
-                const response = await authApi.register(signupData);
-    
-                if (response.data) {
-                    // Optionally, log the user in immediately after signup:
-                    localStorage.setItem('token', response.data.token);
-                    localStorage.setItem('isAdmin', response.data.isAdmin);
-                    localStorage.setItem('useroid', response.data.useroid);
-                    localStorage.setItem('username', signupUsername);
-    
-                    navigate('/profile');
-                }
-            } catch (err) {
-                console.error('Signup error:', err);
-                setError(err.response?.data?.message || 'Sign up failed. Please try again.');
+
+    // Signup form state
+    const [signupUsername, setSignupUsername] = useState('');
+    const [signupPassword, setSignupPassword] = useState('');
+
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        try {
+            const signupData = {
+                username: signupUsername,
+                password: signupPassword,
+            };
+            const response = await authApi.register(signupData);
+
+            if (response.data) {
+                // Optionally, log the user in immediately after signup:
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('isAdmin', response.data.isAdmin);
+                localStorage.setItem('useroid', response.data.useroid);
+                localStorage.setItem('username', signupUsername);
+
+                navigate('/profile');
             }
-        };
+        } catch (err) {
+            console.error('Signup error:', err);
+            setError(err.response?.data?.message || 'Sign up failed. Please try again.');
+        }
+    };
 
 
     return (
@@ -87,32 +86,32 @@ function LoginSignup() {
                 <div className="underline"></div>
             </div>
             <div className="inputs">
-                {action === "Login" ? 
+                {action === "Login" ?
 
-                <form action="javascript:void(0);" onSubmit={handleSubmit}>
-                    <div className="input">
-                        <img src={user_icon} alt="" />
-                        <input placeholder='Username' label="Username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
-                    </div>
-                    <div className="input">
-                        <img src={password_icon} alt="" /> 
-                        <input placeholder='Password' type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                    </div>
-                    <div className='submitbutton'>
-                        <button type="submit">Login</button>
-                    </div>
-                </form>
-
-                    : 
-                    
-                    <form action='javascript:void(0);' onSubmit={handleSignup}>
+                    <form action="javascript:void(0);" onSubmit={handleSubmit}>
                         <div className="input">
                             <img src={user_icon} alt="" />
-                            <input placeholder='Username' label="Username" value={signupUsername} onChange={(e) => setSignupUsername(e.target.value)} required/>
+                            <input placeholder='Username' label="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
                         </div>
                         <div className="input">
                             <img src={password_icon} alt="" />
-                            <input placeholder='Password' type="password" label="Password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} required/>
+                            <input placeholder='Password' type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        </div>
+                        <div className='submitbutton'>
+                            <button type="submit">Login</button>
+                        </div>
+                    </form>
+
+                    :
+
+                    <form action='javascript:void(0);' onSubmit={handleSignup}>
+                        <div className="input">
+                            <img src={user_icon} alt="" />
+                            <input placeholder='Username' label="Username" value={signupUsername} onChange={(e) => setSignupUsername(e.target.value)} required />
+                        </div>
+                        <div className="input">
+                            <img src={password_icon} alt="" />
+                            <input placeholder='Password' type="password" label="Password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} required />
                         </div>
                         <div className='submitbutton'>
                             <button type="submit">Sign Up</button>

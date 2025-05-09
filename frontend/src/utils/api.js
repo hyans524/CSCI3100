@@ -32,7 +32,7 @@ api.interceptors.response.use(
             localStorage.removeItem('token');
             localStorage.removeItem('isAdmin');
             localStorage.removeItem('userId');
-            // window.location.href = '';
+            window.location.href = '/LoginSignup';
         }
         return Promise.reject(error);
     }
