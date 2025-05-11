@@ -47,7 +47,7 @@ const TravelProfile = () => {
         const mockUser = {
           name: 'WeTraveler',
           location: 'Hong Kong SAR, China',
-          bio: 'Digital nomad & adventure seeker. 54 countries visited and counting!',
+          bio: 'Waiting for you to write!',
           avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
           coverPhoto: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
           stats: {
