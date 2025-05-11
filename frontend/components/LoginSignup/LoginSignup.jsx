@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './LoginSignup.css'
@@ -8,6 +8,7 @@ import email_icon from '../../src/assets/email_icon.png'
 import password_icon from '../../src/assets/password.png'
 
 import { authApi } from '../../src/utils/api';
+import { licenseApi } from '../../src/utils/api';
 
 function LoginSignup() {
 
@@ -16,6 +17,38 @@ function LoginSignup() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [action, setAction] = useState("Login");
+    const [haslicense, setHasLicense] = useState(false)
+
+
+    useEffect(() => {
+        const license = localStorage.getItem('license')
+        console.log(license)
+        if (license !== null) {setHasLicense(true)}
+        else {setHasLicense(checkLicense())}
+    }, [])
+
+    const checkLicense = async () => {
+
+        while (!haslicense) {
+            const key = prompt("Please input a license")
+            try {
+                const response = await licenseApi.getAll()
+                const keys = response.data.map(license => license.key)
+
+                if (keys.includes(key)) {
+                    console.log(true)
+                    localStorage.setItem('license', key)
+                    window.confirm("You are using License: " + key.toString())
+                    return true
+                }
+                else { window.alert("Invalid license") }
+            }
+            catch (err) {
+                console.error("Error: ", err)
+            }
+        }
+        return true
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,19 +80,34 @@ function LoginSignup() {
             } catch (err) {
                 console.error('Login error:', err);
                 setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+                window.alert(err.response?.data?.message)
             }
         }
         if (action === "Sign Up") {
             try {
+
+                const userIdResponse = await fetch('http://localhost:5000/api/users');
+                const users = await userIdResponse.json();
+                const nextUserId = users.length > 0 ? Math.max(...users.map(u => u.user_id)) + 1 : 1;
+
+                const usernameExists = users.some(user => user.username.toLowerCase() === username.toLowerCase());
+                if (usernameExists) {
+                    setError('Username already exists. Please choose a different username.');
+                    window.alert('Username already exists. Please choose a different username.');
+                    return;
+                }
+
                 const credentials = {
+                    user_id: nextUserId,
                     username,
                     password
                 };
 
+                console.log(credentials)
+
                 const response = await authApi.register(credentials);
 
                 if (response.data) {
-                    // Optionally, log the user in immediately after signup:
                     localStorage.setItem('token', response.data.token);
                     localStorage.setItem('isAdmin', response.data.isAdmin);
                     localStorage.setItem('useroid', response.data.useroid);
@@ -89,11 +137,11 @@ function LoginSignup() {
                     <form action="javascript:void(0);" onSubmit={handleSubmit}>
                         <div className="input">
                             <img src={user_icon} alt="" />
-                            <input placeholder='Username' value = {username} onChange={(e) => setUsername(e.target.value)} required />
+                            <input placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} required />
                         </div>
                         <div className="input">
                             <img src={password_icon} alt="" />
-                            <input placeholder='Password' type="password" value = {password} onChange={(e) => setPassword(e.target.value)} required />
+                            <input placeholder='Password' type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
                         <div className='submitbutton'>
                             <button type="submit">Login</button>
@@ -105,16 +153,17 @@ function LoginSignup() {
                     <form action='javascript:void(0);' onSubmit={handleSubmit}>
                         <div className="input">
                             <img src={user_icon} alt="" />
-                            <input placeholder='Username' value = {username} onChange={(e) => setUsername(e.target.value)} required />
+                            <input placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} required />
                         </div>
                         <div className="input">
                             <img src={password_icon} alt="" />
-                            <input placeholder='Password' type="password" value = {password} onChange={(e) => setPassword(e.target.value)} required />
+                            <input placeholder='Password' type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
                         <div className='submitbutton'>
                             <button type="submit">Sign Up</button>
                         </div>
-                    </form>};
+                    </form>
+                }
 
             </div>
             <div className="submit-container">

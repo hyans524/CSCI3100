@@ -100,6 +100,31 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get a single post by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id)
+      .populate('user_id', 'username')
+      .populate('likes', 'username')
+      .populate('comments.user_id', 'username');
+    
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+    
+    const enrichedPost = {
+      ...post.toObject(),
+      likeCount: post.likes.length,
+      commentCount: post.comments.length
+    };
+    
+    res.json(enrichedPost);
+  } catch (err) {
+    console.error('Error fetching post:', err);
+    res.status(500).json({ error: 'Failed to fetch post' });
+  }
+});
+
 // Update post
 router.put('/:id', upload.single('image'), async (req, res) => {
   try {

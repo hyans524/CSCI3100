@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { formatCurrency, formatDate } from '../../src/utils/formatters';
-import { expenseApi } from '../../src/utils/api';
+import { expenseApi, authApi } from '../../src/utils/api';
 
 const ExpensesSection = ({ expenses, members, groupId }) => {
   const [isAddingExpense, setIsAddingExpense] = useState(false);
@@ -13,6 +13,10 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
   const [submitting, setSubmitting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [expenseToDelete, setExpenseToDelete] = useState(null);
+
+  // Get current user ID
+  const currentUserId = authApi.getCurrentUserId();
+  const isGroupLeader = members[0]._id === currentUserId;
   
   // Filter expenses for this group
   const filteredExpenses = expenses ? expenses.filter(expense => 
@@ -78,15 +82,15 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
 
     try {
       setSubmitting(true);
+
+      // Get current user ID
+      const currentUserId = authApi.getCurrentUserId();
       
-      // Mock user ID for testing
-      const mockUserId = "67fba7d7cc439d8b22e006c9";
-      
-      // Create the expense data with the mock user ID
+      // Create the expense data with the user ID
       const expenseData = {
         ...newExpense,
         group_id: groupId,
-        paid_by: mockUserId
+        paid_by: currentUserId
       };
       
       console.log('Sending expense data:', expenseData);
@@ -137,6 +141,16 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
   // Handle expense deletion with confirmation
   const handleDeleteExpense = async () => {
     if (!expenseToDelete) return;
+
+    console.log('paid_by:', expenseToDelete.paid_by);
+    console.log('currentUserId:', currentUserId);
+    console.log('isGroupLeader:', isGroupLeader);
+
+    if ((expenseToDelete.paid_by._id !== currentUserId) && (!isGroupLeader)) {
+      alert('You can only delete your own expenses, unless you are group leader.');
+      return;
+    }
+
     
     try {
       await expenseApi.delete(expenseToDelete._id);

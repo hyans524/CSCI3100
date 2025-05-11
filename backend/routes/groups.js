@@ -146,6 +146,15 @@ router.put('/:id', async (req, res) => {
                     group[field].push(req.body.$push[field]);
                 }
             }
+        } else if (req.body.$pull) {
+            for (const field in req.body.$pull) {
+                if (Array.isArray(group[field])) {
+                    // Remove the specified item from the array
+                    group[field] = group[field].filter(item => 
+                        item.toString() !== req.body.$pull[field].toString()
+                    );
+                }
+            }
         } else {
             // Regular update
             Object.assign(group, req.body);

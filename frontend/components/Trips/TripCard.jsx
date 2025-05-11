@@ -14,7 +14,7 @@ const TripCard = ({
   end_date, 
   likeCount, 
   commentCount,
-  trip_oid // New field that references the trip document
+  trip_oid
 }) => {
 
   // Get the image URL - handles both URL paths and base64 encoded images
@@ -119,7 +119,13 @@ const TripCard = ({
           <div className="flex items-center gap-2 opacity-70">
             <span>{formatDateRange()}</span>
           </div>
-          <p className="line-clamp-2">{text}</p>
+
+          <div className="h-[48px] overflow-hidden">
+            <p className="line-clamp-2">
+              {text.length > 150 ? `${text.substring(0, 150)}...` : text}
+            </p>
+          </div>
+
           <div className="flex flex-wrap gap-1 mt-2">
             {processedActivities.slice(0, 3).map((activity, index) => (
               <span key={index} className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">

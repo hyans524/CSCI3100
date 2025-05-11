@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
         res.status(201).json(newLicense);
     } catch (error) {
         if (error.code === 11000) {
-            return res.status(400).json({ 
+            return res.status(400).json({
                 message: `License key '${req.body.key}' already exists`
             });
         }
@@ -56,7 +56,7 @@ router.put('/:id', async (req, res) => {
         res.json(updatedLicense);
     } catch (error) {
         if (error.code === 11000) {
-            return res.status(400).json({ 
+            return res.status(400).json({
                 message: `License key '${req.body.key}' already exists`
             });
         }
@@ -79,13 +79,10 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/key/:key', async (req, res) => {
     try {
-        const license = await License.find({key: req.params.key});
-        if (!license) {
-            res.json()
-        }
+        const license = await License.findOne({ key: req.params.key });
         res.json(license)
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        return res.status(404);
     }
 });
 module.exports = router;
