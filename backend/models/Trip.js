@@ -6,7 +6,8 @@ const TripSchema = new mongoose.Schema({
     end_date: { type: Date },
     budget: { type: Number },
     activity: { type: [String], default: [] },
-    group_id: { type: Number, ref: 'Group', required: true }
+    group_id: { type: Number, ref: 'Group', required: true },
+    image: { type: String }
 });
 
 module.exports = mongoose.model('Trip', TripSchema); 

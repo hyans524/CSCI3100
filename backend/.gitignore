@@ -33,3 +33,7 @@ pids
 .Trashes
 ehthumbs.db
 Thumbs.db 
+
+# Uploaded files - prevent user uploads from being committed
+/uploads/
+/backend/uploads/

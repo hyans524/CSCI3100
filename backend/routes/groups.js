@@ -73,7 +73,7 @@ router.get('/by-group-id/:groupId', async (req, res) => {
                 ]
             }).lean();
             
-            console.log(`Found ${populatedMembers.length} users for ${memberIds.length} member IDs`);
+            //console.log(`Found ${populatedMembers.length} users for ${memberIds.length} member IDs`);
         }
         
         // Also populate message users

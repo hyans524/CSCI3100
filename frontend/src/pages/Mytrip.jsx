@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { tripApi, authApi } from "../utils/api";
-import Temple from "../assets/Temple_background.png";
-import Fuji from "../assets/Fuji_background.jpg";
-import GreatWall from "../assets/great_wall.jpg";
+import travelAnimation from "../assets/travel_animation.jpg";
 import { formatDate, formatCurrency } from "../utils/formatters";
 
 const MyTrip = () => {
@@ -30,31 +28,31 @@ const MyTrip = () => {
             })
           : [];
         
-        // Process the trips data to add UI-specific properties
         const processedTrips = tripsData.map(trip => {
           const today = new Date();
           const endDate = new Date(trip.end_date);
           const status = endDate < today ? "completed" : "upcoming";
           
-          // Use the groupName directly from the API response
           const groupName = trip.groupName || "Unnamed Group";
           const memberCount = trip.memberCount || 0;
 
-          // Assign placeholder image based on destination
-          let image = Temple;
-          if (trip.destination && trip.destination.toLowerCase().includes('japan')) {
-            image = Fuji;
-          } else if (trip.destination && trip.destination.toLowerCase().includes('china')) {
-            image = GreatWall;
+          // add image handling
+          let image;
+          if (trip.image && trip.image.startsWith('/uploads/')) {
+            image = `http://localhost:5000${trip.image}`;
+          } else if (trip.image && trip.image.startsWith('http')) {
+            image = trip.image;
+          } else {
+            image = travelAnimation; // default image
           }
           
-          // Ensure trip has an ID that can be used for navigation
+
           const tripId = trip._id || trip.id || trip.tripId;
           // console.log(`Processed trip: ${trip.destination}, using ID: ${tripId}`);
           
           return {
             ...trip,
-            _id: tripId, // Ensure the _id is set for navigation
+            _id: tripId,
             image,
             status,
             groupName,
@@ -215,15 +213,18 @@ const MyTrip = () => {
                   handleTripClick(trip._id);
                 }}
               >
-                <div className="flex flex-col md:flex-row">
-                  <div className="md:w-1/3 h-48 md:h-64 overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-3">
+                  <div className="h-64 md:h-72 overflow-hidden">
                     <img 
                       src={trip.image} 
                       alt={trip.destination} 
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-center"
+                      style={{ 
+                        objectPosition: "center 30%" 
+                      }}
                     />
                   </div>
-                  <div className="p-6 md:w-2/3">
+                  <div className="p-6 md:col-span-2">
                     <div className="flex justify-between items-start">
                       <h2 className="text-xl font-bold text-blue-700 mb-2">
                         {trip.groupName || 'Unnamed Group'}

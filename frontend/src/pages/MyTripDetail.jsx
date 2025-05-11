@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-
+import travelAnimation from "../assets/travel_animation.jpg";
 import TripOverview from "../../components/TripDetail/TripOverview";
 import GroupMembers from "../../components/TripDetail/GroupMembers";
 import ExpensesSection from "../../components/TripDetail/ExpensesSection";
@@ -37,12 +37,14 @@ const MyTripDetail = () => {
           return;
         }
         
-        // Add image for UI display based on destination
-        let image = "https://placekitten.com/1200/600"; // Default placeholder
-        if (tripData.destination && tripData.destination.toLowerCase().includes('japan')) {
-          image = 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&h=600&q=80';
-        } else if (tripData.destination && tripData.destination.toLowerCase().includes('france')) {
-          image = 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&h=600&q=80';
+        // add image handling 
+        let image;
+        if (tripData.image && tripData.image.startsWith('/uploads/')) {
+          image = `http://localhost:5000${tripData.image}`;
+        } else if (tripData.image && tripData.image.startsWith('http')) {
+          image = tripData.image;
+        } else {
+          image = travelAnimation; // default image
         }
         
         // Preserve all original trip data fields and add image

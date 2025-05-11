@@ -26,6 +26,13 @@ app.use(cors({
 }));
 app.use(express.json());
 
+
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/WeTravel', {
     useNewUrlParser: true,
@@ -298,43 +305,6 @@ app.get('/api/test-recommendation', async (req, res) => {
     } catch (err) {
       console.error('Error seeding recommendations:', err);
       res.status(500).json({ error: err.message });
-    }
-  });
-
-// Add this to server.js for debugging
-app.get('/api/diagnostics', async (req, res) => {
-    try {
-      // Fetch a sample trip and group
-      const sampleTrip = await Trip.findOne().lean();
-      let groupInfo = null;
-      
-      if (sampleTrip && sampleTrip.group_id) {
-        // Check if group_id is a string or ObjectId
-        const groupIdType = typeof sampleTrip.group_id;
-        const isObjectId = sampleTrip.group_id instanceof mongoose.Types.ObjectId;
-        
-        // Try to find the group
-        const group = await Group.findOne({ group_id: sampleTrip.group_id }).lean();
-        groupInfo = {
-          found: !!group,
-          groupDetails: group,
-          idType: groupIdType,
-          isObjectId
-        };
-      }
-      
-      // Return diagnostic info
-      res.json({
-        tripExample: sampleTrip,
-        groupReference: groupInfo,
-        collections: {
-          tripCount: await Trip.countDocuments(),
-          groupCount: await Group.countDocuments()
-        }
-      });
-    } catch (error) {
-      console.error('Diagnostic error:', error);
-      res.status(500).json({ error: error.message });
     }
   });
 

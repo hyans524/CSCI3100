@@ -17,22 +17,19 @@ const TripCard = ({
   trip_oid
 }) => {
 
-  // Get the image URL - handles both URL paths and base64 encoded images
   const getImageUrl = () => {
     if (!image) return Travel_animation;
     
-    // If image is a path (from backend uploads folder)
     if (typeof image === 'string') {
       if (image.startsWith('/uploads/')) {
-        // Use absolute URL for server-side images
-        return `${window.location.origin}${image}`;
+        return `http://localhost:5000${image}`;
       }
+
       if (image.startsWith('http')) {
         return image;
       }
     }
     
-    // Fallback to default image
     return Travel_animation;
   };
   

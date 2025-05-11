@@ -24,7 +24,7 @@ router.post('/', upload.single('image'), async (req, res) => {
     const { user_id, text, location, budget, activities, start_date, end_date } = req.body;
 
     // 1. Create a new group
-    const groupCount = await Group.countDocuments(); // what is this
+    const groupCount = await Group.countDocuments();
     const newGroupId = groupCount + 1;
     
     const newGroup = new Group({
@@ -41,9 +41,10 @@ router.post('/', upload.single('image'), async (req, res) => {
       destination: location,
       start_date,
       end_date,
-      budget: parseInt(budget.split('-')[1]) || 1000, // Use the upper limit of budget range
+      budget: parseInt(budget.split('-')[1]) || 1000,
       activity: activities.split(','),
-      group_id: newGroupId
+      group_id: newGroupId,
+      image: req.file ? `/uploads/${req.file.filename}` : null
     });
     
     const savedTrip = await newTrip.save();
@@ -58,7 +59,7 @@ router.post('/', upload.single('image'), async (req, res) => {
       start_date,
       end_date,
       image: req.file ? `/uploads/${req.file.filename}` : null,
-      trip_oid: savedTrip._id // Store reference to the trip
+      trip_oid: savedTrip._id
     });
 
     const savedPost = await newPost.save();
