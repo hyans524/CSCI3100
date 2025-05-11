@@ -13,6 +13,10 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
   const [submitting, setSubmitting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [expenseToDelete, setExpenseToDelete] = useState(null);
+
+  // Get current user ID
+  const currentUserId = authApi.getCurrentUserId();
+  const isGroupLeader = members[0]._id === currentUserId;
   
   // Filter expenses for this group
   const filteredExpenses = expenses ? expenses.filter(expense => 
@@ -138,8 +142,12 @@ const ExpensesSection = ({ expenses, members, groupId }) => {
   const handleDeleteExpense = async () => {
     if (!expenseToDelete) return;
 
-    if (expenseToDelete.paid_by !== authApi.getCurrentUserId()) {
-      alert('You can only delete your own expenses.');
+    console.log('paid_by:', expenseToDelete.paid_by);
+    console.log('currentUserId:', currentUserId);
+    console.log('isGroupLeader:', isGroupLeader);
+
+    if ((expenseToDelete.paid_by._id !== currentUserId) && (!isGroupLeader)) {
+      alert('You can only delete your own expenses, unless you are group leader.');
       return;
     }
 

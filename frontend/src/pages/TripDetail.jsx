@@ -7,11 +7,12 @@ import Travel_animation from "../assets/travel_animation.jpg";
 const TripDetail = () => {
   const location = useLocation();
   const { id } = useParams();
+  const [username, setUsername] = useState("?");
   const [trip, setTrip] = useState(null);
   const [organizer, setOrganizer] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [joinStatus, setJoinStatus] = useState("not-joined"); // "not-joined", "joining", "joined", "error"
+  const [joinStatus, setJoinStatus] = useState("not-joined"); // "not-joined", "joining", "joined", "error", "leaving"
   const [newComment, setNewComment] = useState("");
   const [isLiked, setIsLiked] = useState(false);
   const [comments, setComments] = useState([]);
@@ -23,90 +24,149 @@ const TripDetail = () => {
   const currentUserId = authApi.getCurrentUserId();
 
   useEffect(() => {
+
     const fetchTripAndUserDetails = async () => {
+      try {
+        setLoading(true);
+
+        if (currentUserId) {
+          const usernameResponse = await userApi.getById(currentUserId);
+          if (usernameResponse.data && usernameResponse.data.username) {
+            setUsername(usernameResponse.data.username);
+          }
+        }
+
+        let tripData;
+
         try {
-          setLoading(true);
-          let tripData;
-
-          if (location.state) {
-            tripData = location.state;
-          } else {
-            try {
-              const response = await postApi.getById(id);
-              tripData = response.data;
-            } catch (fetchError) {
-              console.error("Error fetching trip:", fetchError);
-            }
-          }
+          const response = await postApi.getById(id);
+          tripData = response.data;
+        } catch (fetchError) {
+          console.error("Error fetching trip:", fetchError);
+        }
+        
+        setTrip(tripData);
+        
+        // Set comments from the trip data
+        if (tripData.comments && Array.isArray(tripData.comments)) {
+          setComments(tripData.comments);
           
-          setTrip(tripData);
-          
-          // Set comments from the trip data
-          if (tripData.comments && Array.isArray(tripData.comments)) {
-            setComments(tripData.comments);
+          // Fetch user details for each comment if not already populated
+          const userIds = [...new Set(tripData.comments
+            .filter(comment => comment.user_id && typeof comment.user_id === 'string')
+            .map(comment => comment.user_id))];
             
-            // Fetch user details for each comment if not already populated
-            const userIds = [...new Set(tripData.comments
-              .filter(comment => comment.user_id && typeof comment.user_id === 'string')
-              .map(comment => comment.user_id))];
-              
-            if (userIds.length > 0) {
-              try {
-                const userResponse = await userApi.getByIds(userIds);
-                const userMap = {};
-                userResponse.data.forEach(user => {
-                  userMap[user._id] = user;
-                });
-                setCommentUsers(userMap);
-              } catch (error) {
-                console.error("Failed to fetch comment users:", error);
-              }
+          if (userIds.length > 0) {
+            try {
+              const userResponse = await userApi.getByIds(userIds);
+              const userMap = {};
+              userResponse.data.forEach(user => {
+                userMap[user._id] = user;
+              });
+              setCommentUsers(userMap);
+            } catch (error) {
+              console.error("Failed to fetch comment users:", error);
             }
           }
-          
-          // Set likes from the trip data
-          if (tripData.likes && Array.isArray(tripData.likes)) {
-            setLikes(tripData.likes);
-            // Check if current user has liked the post
-            setIsLiked(tripData.likes.includes(currentUserId));
-          }
+        }
+        
+        // Set likes from the trip data
+        if (tripData.likes && Array.isArray(tripData.likes)) {
+          setLikes(tripData.likes);
+          // Check if current user has liked the post
+          setIsLiked(tripData.likes.includes(currentUserId));
+        }
 
-          if (tripData.user_id) {
-            setOrganizer({
-              _id: tripData.user_id._id || 'unknown',
-              name: tripData.user_id.username || "Trip Organizer",
-              initials: getInitials(tripData.user_id.username || "Trip Organizer")
-            });
-          } else {
-            setOrganizer({
-                _id: tripData.user_id || 'unknown',
-                name: "Trip Organizer",
-                initials: "TO"
-            });
-          }
+        if (tripData.user_id) {
 
+          setOrganizer({
+            _id: tripData.user_id._id || 'unknown',
+            name: tripData.user_id.username || "Trip Organizer",
+            initials: getInitials(tripData.user_id.username || "Trip Organizer")
+          });
+        } else {
+          setOrganizer({
+              _id: tripData.user_id || 'unknown',
+              name: "Trip Organizer",
+              initials: "TO"
+          });
+        }
+
+        try {
           if (currentUserId) {
-            const trip_detail = await tripApi.getById(trip.trip_oid);
+            const trip_detail = await tripApi.getById(tripData.trip_oid);
             const groupId = trip_detail.data.group_id;
             const groupResponse = await groupApi.getByGroupId(groupId);
             
-            if (groupResponse.data.members.contains(currentUserId)) {
+            const isMember = groupResponse.data.members.some(member => 
+              member._id === currentUserId
+            );
+            
+            if (isMember) {
               setJoinStatus("joined");
             }
           }
-          
-          
-          setError(null);
-        } catch (err) {
-          console.error("Error fetching trip details:", err);
-          setError("Failed to load trip details. Please try again later.");
-        } finally {
-          setLoading(false);
+
+        } catch (error) {
+          console.error("Error checking group membership:", error);
         }
+        
+        
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching trip details:", err);
+        setError("Failed to load trip details. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchTripAndUserDetails();
   }, [id, location.state, currentUserId]);
+
+  useEffect(() => {
+    if (!trip || !trip._id) return;
+    
+    const pollInterval = 5000;
+    const fetchUpdatedComments = async () => {
+      try {
+        const response = await postApi.getById(trip._id);
+        
+        if (response.data && response.data.comments) {
+          // Update comments only if there are changes (to avoid unnecessary rerenders)
+          if (JSON.stringify(response.data.comments) !== JSON.stringify(comments)) {
+            console.log("New comments detected, updating state");
+            setComments(response.data.comments);
+            
+            // Update user info for any new commenters
+            const userIds = [...new Set(response.data.comments
+              .filter(comment => comment.user_id && typeof comment.user_id === 'string')
+              .map(comment => comment.user_id))];
+              
+            if (userIds.length > 0) {
+              const userResponse = await userApi.getByIds(userIds);
+              const userMap = {...commentUsers};
+              userResponse.data.forEach(user => {
+                if (!userMap[user._id]) {
+                  userMap[user._id] = user;
+                }
+              });
+              setCommentUsers(userMap);
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error polling for comments:", error);
+      }
+    };
+    
+    const intervalId = setInterval(fetchUpdatedComments, pollInterval);
+    
+    return () => {
+      console.log("Cleaning up comment polling interval");
+      clearInterval(intervalId);
+    };
+  }, [trip, comments, commentUsers]);
 
   const getInitials = (name) => {
     return name.split(' ').map(word => word.charAt(0)).join('').toUpperCase().substring(0, 2);
@@ -127,15 +187,31 @@ const TripDetail = () => {
     
     try {
       setJoinStatus("joining");
-      
-      const trip_detail = await tripApi.getById(trip.trip_oid);
-      const groupId = trip_detail.data.group_id;
-      const response = await groupApi.joinGroup(groupId);
-      
-      console.log("Join response:", response.data);
-      setJoinStatus("joined");
-      
-      alert("You've successfully joined this trip!");
+
+      if (joinStatus === "joined") {
+        setJoinStatus("leaving");
+        
+        const trip_detail = await tripApi.getById(trip.trip_oid);
+        const groupId = trip_detail.data.group_id;
+        const groupResponse = await groupApi.getByGroupId(groupId);
+        const response = await groupApi.leaveGroup(groupResponse.data._id);
+        
+        setJoinStatus("not-joined");
+        
+        alert("You've successfully left this trip!");
+        
+      } else if (joinStatus === "not-joined") {
+        setJoinStatus("joining");
+        
+        const trip_detail = await tripApi.getById(trip.trip_oid);
+        const groupId = trip_detail.data.group_id;
+        const groupResponse = await groupApi.getByGroupId(groupId);
+        const response = await groupApi.joinGroup(groupResponse.data._id);
+        
+        setJoinStatus("joined");
+        
+        alert("You've successfully joined this trip!");
+      }
 
     } catch (error) {
       console.error("Failed to join trip:", error);
@@ -176,9 +252,6 @@ const TripDetail = () => {
     if (!trip || !trip._id || !currentUserId) {
       alert("You need to be logged in to comment");
       return;
-    } else {
-      console.log("Trip ID:", trip._id);
-      console.log("Current User ID:", currentUserId);
     }
 
     if (!newComment.trim()) {
@@ -188,29 +261,34 @@ const TripDetail = () => {
 
     try {
       setIsSubmitting(true);
+      
       const response = await postApi.comment(trip._id, newComment);
+      const updatedPost = await postApi.getById(trip._id);
       
-      // Update the comments state with the new comments
-      setComments(response.data);
-      setNewComment(""); // Clear the input field
-      
-      // If we need to fetch user details for new comments
-      const userIds = [...new Set(response.data
-        .filter(comment => comment.user_id && typeof comment.user_id === 'string')
-        .map(comment => comment.user_id))];
+      if (updatedPost.data && updatedPost.data.comments) {
         
-      if (userIds.length > 0) {
-        try {
-          const userResponse = await userApi.getByIds(userIds);
-          const newUserMap = {...commentUsers};
-          userResponse.data.forEach(user => {
-            newUserMap[user._id] = user;
-          });
-          setCommentUsers(newUserMap);
-        } catch (error) {
-          console.error("Failed to fetch new comment users:", error);
+        setComments(updatedPost.data.comments);
+        setNewComment("");
+        
+        // Update user details for any new commenters
+        const userIds = [...new Set(updatedPost.data.comments
+          .filter(comment => comment.user_id && typeof comment.user_id === 'string')
+          .map(comment => comment.user_id))];
+          
+        if (userIds.length > 0) {
+          try {
+            const userResponse = await userApi.getByIds(userIds);
+            const newUserMap = {...commentUsers};
+            userResponse.data.forEach(user => {
+              newUserMap[user._id] = user;
+            });
+            setCommentUsers(newUserMap);
+          } catch (error) {
+            console.error("Failed to fetch new comment users:", error);
+          }
         }
       }
+
     } catch (error) {
       console.error("Failed to add comment:", error);
       alert("Failed to add comment. Please try again later.");
@@ -330,17 +408,10 @@ const TripDetail = () => {
   const getCommentUserName = (userId) => {
     if (!userId) return "Anonymous";
     
-    // If it's already an object with username
-    if (typeof userId === 'object' && userId.username) {
+    if (userId.username) {
       return userId.username;
     }
     
-    // If we have the user in our map
-    if (commentUsers[userId] && commentUsers[userId].username) {
-      return commentUsers[userId].username;
-    }
-    
-    // Return a generic name if we can't find the user
     return "User";
   };
 
@@ -360,13 +431,20 @@ const TripDetail = () => {
             Joining...
           </div>
         );
+      case "leaving":
+        return (
+          <div className="flex items-center">
+            <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></div>
+            Leaving...
+          </div>
+        );
       case "joined":
         return (
           <div className="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            Joined Trip
+            Leave Trip
           </div>
         );
       case "error":
@@ -455,7 +533,7 @@ const TripDetail = () => {
                     : "bg-blue-600 hover:bg-blue-700 text-white"
                 }`}
                 onClick={handleJoinTrip}
-                disabled={joinStatus === "joining" || joinStatus === "joined"}
+                disabled={joinStatus === "joining" || joinStatus === "leaving"}
               >
                 {getJoinButtonContent()}
               </button>
@@ -504,7 +582,7 @@ const TripDetail = () => {
               <form onSubmit={handleAddComment} className="mb-6">
                 <div className="flex items-start space-x-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">
-                    {currentUserId ? getUserInitials(currentUserId) : "?"}
+                    {username.charAt(0).toUpperCase()}
                   </div>
                   <div className="flex-1">
                     <textarea
@@ -562,6 +640,7 @@ const TripDetail = () => {
                   ))
                 )}
               </div>
+
             </div>
           </div>
         </div>

@@ -90,10 +90,16 @@ export const groupApi = {
         };
         return api.post(`/groups/${groupId}/messages`, newMessage);
     },
-    joinGroup: (groupId) => {
+    joinGroup: (group_oid) => {
         const userId = authApi.getCurrentUserId();
-        return api.put(`/groups/${groupId}`, { 
+        return api.put(`/groups/${group_oid}`, { 
             $push: { members: userId }
+        });
+    },
+    leaveGroup: (group_oid) => {
+        const userId = authApi.getCurrentUserId();
+        return api.put(`/groups/${group_oid}`, { 
+            $pull: { members: userId }
         });
     },
 };

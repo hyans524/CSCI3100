@@ -85,15 +85,29 @@ function LoginSignup() {
         }
         if (action === "Sign Up") {
             try {
+
+                const userIdResponse = await fetch('http://localhost:5000/api/users');
+                const users = await userIdResponse.json();
+                const nextUserId = users.length > 0 ? Math.max(...users.map(u => u.user_id)) + 1 : 1;
+
+                const usernameExists = users.some(user => user.username.toLowerCase() === username.toLowerCase());
+                if (usernameExists) {
+                    setError('Username already exists. Please choose a different username.');
+                    window.alert('Username already exists. Please choose a different username.');
+                    return;
+                }
+
                 const credentials = {
+                    user_id: nextUserId,
                     username,
                     password
                 };
 
+                console.log(credentials)
+
                 const response = await authApi.register(credentials);
 
                 if (response.data) {
-                    // Optionally, log the user in immediately after signup:
                     localStorage.setItem('token', response.data.token);
                     localStorage.setItem('isAdmin', response.data.isAdmin);
                     localStorage.setItem('useroid', response.data.useroid);
@@ -148,7 +162,8 @@ function LoginSignup() {
                         <div className='submitbutton'>
                             <button type="submit">Sign Up</button>
                         </div>
-                    </form>};
+                    </form>
+                }
 
             </div>
             <div className="submit-container">

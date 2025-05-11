@@ -11,38 +11,46 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
   const [messageToDelete, setMessageToDelete] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [error, setError] = useState(null);
-  
+  const [pollInterval, setPollInterval] = useState(null);
+
   // Get current user ID
   const currentUserId = authApi.getCurrentUserId();
+  const isGroupLeader = members[0]._id === currentUserId;
 
   useEffect(() => {
-    setMessages(initialMessages || []);
-  }, [initialMessages]);
+
+    const fetchMessages = async () => {
+      try {
+        const response = await groupApi.getByGroupId(groupId);
+        if (response.data && response.data.messages) {
+          setMessages(response.data.messages);
+        }
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+
+    const interval = setInterval(fetchMessages, 5000);
+    setPollInterval(interval);
+  
+    fetchMessages();
+  
+    // Clean up interval on unmount
+    return () => {
+      if (pollInterval) {
+        clearInterval(pollInterval);
+      }
+    };
+  }, [groupId]);
 
   const getMessageAuthor = (message, userId) => {
-    if (message.user) {
-      return message.user.username || `User ${message.user.user_id || ''}`;
-    }
-    
-    if (!members || !Array.isArray(members)) return "Unknown";
-    
-    // Try to match by _id or user_id
-    const member = members.find(m => 
-      (m._id && m._id.toString() === userId.toString()) || 
-      (m.user_id && m.user_id.toString() === userId.toString())
-    );
-    
-    if (member) {
-      return member.username || member.name || `User ${member.user_id || ''}`;
-    }
-    
-    return "Unknown User";
+    if (!userId) return "Unknown User";
+    return userId.username;
+
   };
 
-  // Check if a message belongs to the current user
-  const isCurrentUserMessage = (message) => {
-    const userId = message.user_oid?.toString() || message.user_id?.toString() || (message.user && message.user._id?.toString());
-    return userId === currentUserId;
+  const isCurrentUserMessageOrLeader = (message_userId) => {
+    return message_userId._id === currentUserId || isGroupLeader;
   };
 
   const handleSendMessage = async (e) => {
@@ -52,11 +60,13 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
     try {
       setSending(true);
       
-      const response = await groupApi.addMessage(groupId, newMessage.trim());
-      console.log('Message sent response:', response.data);
+      await groupApi.addMessage(groupId, newMessage.trim());
       
-      // Update local state with new message
-      setMessages([...messages, {...newMessageObj, _id: response.data.messages[response.data.messages.length - 1]._id}]);
+      const response = await groupApi.getByGroupId(groupId);
+      if (response.data && response.data.messages) {
+        setMessages(response.data.messages);
+      }
+
       setNewMessage('');
 
     } catch (error) {
@@ -119,7 +129,7 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-black bg-opacity-30" onClick={() => setError(null)}></div>
           <div className="bg-gray-800 text-white rounded-lg shadow-lg p-6 max-w-md w-full mx-4 z-10">
-            <h3 className="font-medium mb-2">localhost:5173 says</h3>
+            <h3 className="font-medium mb-2">Error: </h3>
             <p className="mb-6">{error}</p>
             <div className="flex justify-end">
               <button 
@@ -182,10 +192,11 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
       <div className="space-y-4 max-h-96 overflow-y-auto mb-4">
         {messages && messages.length > 0 ? (
           messages.map((message, index) => {
+
             const userId = message.user?._id || message.user_oid || message.user_id;
             const author = message.user?.username || getMessageAuthor(message, userId);
             const firstLetter = author.charAt(0).toUpperCase();
-            const canDelete = isEditMode && isCurrentUserMessage(message);
+            const canDelete = isEditMode && isCurrentUserMessageOrLeader(userId);
             
             return (
               <div key={index} className="flex space-x-3">

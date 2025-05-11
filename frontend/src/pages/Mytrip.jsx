@@ -206,9 +206,6 @@ const MyTrip = () => {
       ) : (
         <div className="space-y-6">
           {filteredTrips.map(trip => {
-            // Log each trip ID as we render it
-            // console.log(`Rendering trip card for ${trip.destination}, ID:`, trip._id);
-            
             return (
               <div 
                 key={trip._id || `trip-${Math.random()}`} 

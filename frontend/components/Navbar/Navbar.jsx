@@ -1,9 +1,12 @@
 import { use, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import PostTrip from "../Trips/PostTrip";
-import { useNavigate } from "react-router-dom";
+import { authApi } from "../../src/utils/api";
 
 function Navigation() {
+
+    const currentUser = authApi.getCurrentUserId();
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleOpenModal = () => {
         setIsModalOpen(true);
@@ -150,25 +153,36 @@ function Navigation() {
                         </div>
                     </NavLink>
 
-                    <NavLink
-                        to="/LoginSignup"
-                        className={({ isActive }) =>
-                            `block py-3 px-4 rounded-lg hover:shadow-lg ${isActive ? "text-blue-800 font-medium" : "text-gray-700 hover:text-blue-500"
-                            }`
+                    {(() => {
+                        if (currentUser) {
+                            return (
+                            <NavLink
+                                className={({ isActive }) =>
+                                `block py-3 px-4 rounded-lg hover:shadow-lg ${
+                                    isActive ? "text-blue-800 font-medium" : "text-gray-700 hover:text-blue-500"
+                                }`
+                                }
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </NavLink>
+                            );
+                        } else {
+                            return (
+                            <NavLink
+                                to="/LoginSignup"
+                                className={({ isActive }) =>
+                                `block py-3 px-4 rounded-lg hover:shadow-lg ${
+                                    isActive ? "text-blue-800 font-medium" : "text-gray-700 hover:text-blue-500"
+                                }`
+                                }
+                                onClick={() => window.scrollTo(0, 0)}
+                            >
+                                Login & Sign Up
+                            </NavLink>
+                            );
                         }
-                        onClick={() => window.scrollTo(0, 0)}
-                    >
-                        Login & Sign Up
-                    </NavLink>
-                    <NavLink
-                        className={({ isActive }) =>
-                            `block py-3 px-4 rounded-lg hover:shadow-lg ${isActive ? "text-blue-800 font-medium" : "text-gray-700 hover:text-blue-500"
-                            }`
-                        }
-                        onClick={handleLogout}
-                    >
-                        Logout
-                    </NavLink>
+                    })()}
 
                 </div>
             </div>
