@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { formatDateTime } from '../../src/utils/formatters';
 import { groupApi, authApi } from '../../src/utils/api';
 import api from '../../src/utils/api';
+import { useNavigate } from 'react-router-dom';
 
 const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
   const [newMessage, setNewMessage] = useState('');
@@ -12,6 +13,7 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [error, setError] = useState(null);
   const [pollInterval, setPollInterval] = useState(null);
+  const navigate = useNavigate();
 
   // Get current user ID
   const currentUserId = authApi.getCurrentUserId();
@@ -197,13 +199,24 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
             
             return (
               <div key={index} className="flex space-x-3">
-                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 font-semibold text-lg">
+                <div
+                  className="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 font-semibold text-lg cursor-pointer hover:bg-blue-200 transition"
+                  onClick={() => userId && navigate(`/profile/${userId._id}`)}
+                  title="View user's profile"
+                  style={{ userSelect: "none" }}
+                >
                   {firstLetter}
                 </div>
                 <div className="flex-1 bg-gray-50 rounded-lg p-3">
                   <div className="flex items-baseline justify-between">
                     <div>
-                      <span className="font-medium text-blue-600">{author}</span>
+                      <span
+                        className="font-medium text-blue-600 cursor-pointer hover:underline"
+                        onClick={() => userId && navigate(`/profile/${userId._id}`)}
+                        title="View user's profile"
+                      >
+                        {author}
+                      </span>
                       <span className="ml-2 text-xs text-gray-500">{formatDateTime(message.timestamp)}</span>
                     </div>
                     {canDelete && (
@@ -229,6 +242,7 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
           </div>
         )}
       </div>
+
       <form onSubmit={handleSendMessage} className="mt-4 flex">
         <input 
           type="text" 

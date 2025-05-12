@@ -23,6 +23,7 @@ const App = () => {
             <Route path="/AIrecommendation" element={<AIrec />} />
             <Route path="/browse" element={<Browse />} />
             <Route path="/mytrip" element={<MyTrip />} />
+            <Route path="/profile/:id" element={<Profile />} />
             <Route path="/profile" element={<Profile />}/>
             <Route path="/trip/:id" element={<TripDetail />} />
             <Route path="/mytrip/:id" element={<MyTripDetail />} />

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { userApi, groupApi, postApi, authApi, tripApi } from "../utils/api";
 import Trip from "../../components/Trips/Trip";
 import Travel_animation from "../assets/travel_animation.jpg";
 
 const TripDetail = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams();
   const [username, setUsername] = useState("?");
@@ -493,10 +494,17 @@ const TripDetail = () => {
             {/* Trip organizer info */}
             {organizer && (
               <div className="flex items-center mb-6 pb-4 border-b">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold">
-                  {organizer.initials}
+                <div
+                  className="flex items-center cursor-pointer hover:bg-blue-50 transition rounded px-2 py-1"
+                  onClick={() => navigate(`/profile/${organizer._id}`)}
+                  title="View organizer's profile"
+                  style={{ userSelect: "none" }}
+                >
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold">
+                    {organizer.initials}
+                  </div>
+                  <h2 className="text-xl pl-3 font-semibold">{organizer.name}</h2>
                 </div>
-                <h2 className="text-xl pl-3 font-semibold">{organizer.name}</h2>
               </div>
             )}
             
@@ -629,13 +637,32 @@ const TripDetail = () => {
                 ) : (
                   comments.map((comment, index) => (
                     <div key={index} className="flex space-x-3">
-                      <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-bold text-xs">
+                      {/* Make avatar and username clickable */}
+                      <div
+                        className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-bold text-xs cursor-pointer hover:bg-blue-100 transition"
+                        onClick={() => {
+                          // Try to get the user id from comment.user_id (object or string)
+                          let userId = comment.user_id && comment.user_id._id ? comment.user_id._id : comment.user_id;
+                          if (userId) navigate(`/profile/${userId}`);
+                        }}
+                        title="View user's profile"
+                        style={{ userSelect: "none" }}
+                      >
                         {getUserInitials(comment.user_id)}
                       </div>
                       <div className="flex-1">
                         <div className="bg-gray-50 p-3 rounded-lg">
                           <div className="flex items-center justify-between mb-1">
-                            <span className="font-medium">{getCommentUserName(comment.user_id)}</span>
+                            <span
+                              className="font-medium cursor-pointer hover:underline"
+                              onClick={() => {
+                                let userId = comment.user_id && comment.user_id._id ? comment.user_id._id : comment.user_id;
+                                if (userId) navigate(`/profile/${userId}`);
+                              }}
+                              title="View user's profile"
+                            >
+                              {getCommentUserName(comment.user_id)}
+                            </span>
                             <span className="text-xs text-gray-500">{formatCommentDate(comment.date)}</span>
                           </div>
                           <p className="text-gray-700">{comment.text}</p>

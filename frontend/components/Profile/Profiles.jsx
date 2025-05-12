@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { userApi, authApi } from '../../src/utils/api';
 import user_icon2 from '../../src/assets/user_icon2.jpg';
 
-const TravelProfile = () => {
+const TravelProfile = ({ userId: propUserId}) => {
   // State management
   const [user, setUser] = useState(null);
   const [userId, setUserId] = useState(null)
@@ -24,6 +24,8 @@ const TravelProfile = () => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const currentUserId = authApi.getCurrentUserId();
 
   // Editing state
   const [editFields, setEditFields] = useState({
@@ -56,8 +58,13 @@ const TravelProfile = () => {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
         setIsLoading(true);
-        const id = authApi.getCurrentUserId();
+
+        let id = propUserId;
+        if (!id) {
+          id = authApi.getCurrentUserId();
+        }
         setUserId(id);
+
         const response = await userApi.getById(id);
         const mockUser = {
           name: response.data.username,
@@ -266,13 +273,15 @@ const TravelProfile = () => {
               ) : (
                 <>
                   <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 truncate">{user.name}</h1>
-                  <button
-                    className="ml-3 px-3 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
-                    onClick={() => startEdit('name')}
-                    title="Edit username"
-                  >
-                    Edit
-                  </button>
+                  {currentUserId === userId && (
+                    <button
+                      className="ml-3 px-3 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
+                      onClick={() => startEdit('name')}
+                      title="Edit username"
+                    >
+                      Edit
+                    </button>
+                  )}
                 </>
               )}
             </div>
@@ -306,13 +315,15 @@ const TravelProfile = () => {
               ) : (
                 <>
                   <span className="text-gray-500 truncate">{user.email}</span>
-                  <button
-                    className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
-                    onClick={() => startEdit('email')}
-                    title="Edit email"
-                  >
-                    Edit
-                  </button>
+                    {currentUserId === userId && (
+                      <button
+                      className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
+                      onClick={() => startEdit('email')}
+                      title="Edit email"
+                    >
+                      Edit
+                    </button>
+                  )}
                 </>
               )}
             </div>
@@ -346,13 +357,15 @@ const TravelProfile = () => {
               ) : (
                 <>
                   <span className="text-gray-500 truncate">{user.language}</span>
-                  <button
-                    className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
-                    onClick={() => startEdit('language')}
-                    title="Edit language"
-                  >
-                    Edit
-                  </button>
+                  {currentUserId === userId && (
+                    <button
+                      className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
+                      onClick={() => startEdit('language')}
+                      title="Edit language"
+                    >
+                      Edit
+                    </button>
+                  )}
                 </>
               )}
             </div>
@@ -384,13 +397,15 @@ const TravelProfile = () => {
               ) : (
                 <>
                   <span className="text-gray-500 truncate">{user.gender}</span>
-                  <button
-                    className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
-                    onClick={() => startEdit('gender')}
-                    title="Edit gender"
-                  >
-                    Edit
-                  </button>
+                  {currentUserId === userId && (
+                    <button
+                      className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
+                      onClick={() => startEdit('gender')}
+                      title="Edit gender"
+                    >
+                      Edit
+                    </button>
+                  )}
                 </>
               )}
             </div>
@@ -422,13 +437,15 @@ const TravelProfile = () => {
               ) : (
                 <>
                   <span className="text-gray-500 truncate">{user.age}</span>
-                  <button
-                    className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
-                    onClick={() => startEdit('age')}
-                    title="Edit age"
-                  >
-                    Edit
-                  </button>
+                  {currentUserId === userId && (
+                    <button
+                      className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
+                      onClick={() => startEdit('age')}
+                      title="Edit age"
+                    >
+                      Edit
+                    </button>
+                  )}
                 </>
               )}
             </div>

@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GroupMembers = ({ members }) => {
+  const navigate = useNavigate();
+
   const getDisplayName = (member) => {
     return member.username;
   };
@@ -10,7 +13,6 @@ const GroupMembers = ({ members }) => {
     const name = getDisplayName(member);
     return name.charAt(0).toUpperCase();
   };
-  
   
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
@@ -26,11 +28,22 @@ const GroupMembers = ({ members }) => {
           <ul className="divide-y divide-gray-200">
             {members.map((member, index) => (
               <li key={member._id || `member-${index}`} className="py-3 flex items-center">
-                <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold mr-3">
+                <div
+                  className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold mr-3 cursor-pointer hover:bg-blue-200 transition"
+                  onClick={() => member._id && navigate(`/profile/${member._id}`)}
+                  title="View user's profile"
+                  style={{ userSelect: "none" }}
+                >
                   {getAvatarText(member)}
                 </div>
                 <div>
-                  <div className="font-medium">{getDisplayName(member)}</div>
+                  <div
+                    className="font-medium cursor-pointer hover:underline"
+                    onClick={() => member._id && navigate(`/profile/${member._id}`)}
+                    title="View user's profile"
+                  >
+                    {getDisplayName(member)}
+                  </div>
                   <div className="text-sm text-gray-500">{member.email || `member${index}@example.com`}</div>
                 </div>
               </li>

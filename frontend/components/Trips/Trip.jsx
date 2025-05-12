@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TripCard from "./TripCard";
-import { postApi } from "../../src/utils/api";
+import { postApi, tripApi } from "../../src/utils/api";
 
 const Trip = ({ 
   searchCriteria = null,
@@ -81,7 +81,7 @@ const Trip = ({
     }
     
     if (searchCriteria.budget) {
-      filtered = filtered.filter(trip => {
+      filtered = filtered.filter(async trip => {
         const maxBudgetValue = parseInt(searchCriteria.budget);
         
         if (typeof trip.budget === 'string') {
