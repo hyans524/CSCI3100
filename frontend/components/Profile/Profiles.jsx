@@ -12,7 +12,7 @@ import {
   FaPlus
 } from 'react-icons/fa';
 import { MdLocalDining, MdOutlineHiking } from 'react-icons/md';
-
+import { useNavigate } from 'react-router-dom';
 import { userApi, authApi } from '../../src/utils/api';
 const TravelProfile = () => {
   // State management
@@ -30,6 +30,11 @@ const TravelProfile = () => {
     bio: false,
     badges: false,
   });
+  const navigate = useNavigate()
+  
+  const handleClick = () => {
+      navigate('/mytrip')
+    }
   const [editValues, setEditValues] = useState({
     name: '',
     location: '',
@@ -44,9 +49,12 @@ const TravelProfile = () => {
       try {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
-        
+        setIsLoading(true);
+        const id = authApi.getCurrentUserId();
+        setUserId(id);
+        const response = await userApi.getById(id);
         const mockUser = {
-          name: 'WeTraveler',
+          name: response.data.username,
           location: 'Hong Kong SAR, China',
           bio: 'Waiting for you to write!',
           avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
@@ -127,13 +135,34 @@ const TravelProfile = () => {
     }));
   };
 
-  const saveEdit = (field) => {
+  const saveEdit = async(field) => {
     if (field === 'badges') {
       setUser((old) => ({ ...old, badges: editValues.badges.filter(Boolean) }));
-    } else {
-      setUser((old) => ({ ...old, [field]: editValues[field].trim() || old[field] }));
+      setEditFields({ ...editFields, [field]: false });
+      return;
+    } 
+    if (field === 'name') {
+      try {
+        setIsLoading(true);
+        const newName = editValues.name.trim();
+        // update name in backend
+        await userApi.update(userId, { username: newName });
+        // fetch updated user info
+        const updated = await userApi.getById(userId);
+        setUser(updated.data);
+        setEditFields({ ...editFields, username: false });
+        setIsLoading(false);
+      } catch (err) {
+        setError('Failed to update name.');
+        setIsLoading(false);
+        console.error('Error updating name:', err);
+      }
     }
-    setEditFields({ ...editFields, [field]: false });
+    else {
+      setUser((old) => ({ ...old, [field]: editValues[field].trim() || old[field] }));
+      setEditFields({ ...editFields, [field]: false });
+    }
+    
   };
 
   // Handle badges (labels)
@@ -486,7 +515,7 @@ const TravelProfile = () => {
                     <div className="font-bold text-blue-600 text-lg sm:text-xl truncate">{trip.destination}</div>
                     <div className="text-gray-500 text-sm sm:text-base">{trip.date}</div>
                   </div>
-                  <button className="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm sm:text-base">
+                  <button className="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm sm:text-base" onClick={handleClick}>
                     View Details
                   </button>
                 </div>
