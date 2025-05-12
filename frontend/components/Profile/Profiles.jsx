@@ -17,6 +17,7 @@ import { userApi, authApi } from '../../src/utils/api';
 const TravelProfile = () => {
   // State management
   const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState(null)
   const [activeTab, setActiveTab] = useState('trips');
   const [isFollowing, setIsFollowing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);

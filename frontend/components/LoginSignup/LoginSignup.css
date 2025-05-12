@@ -117,7 +117,18 @@
     font-weight: 700;
     cursor: pointer;
 }
-.submitbutton:hover{
-    color: gray;
-    background-color: yellow;
+.submitbutton button {
+    width: 100%;         
+    padding: 16px 0;
+    background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submitbutton button:hover {
+    background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
 }

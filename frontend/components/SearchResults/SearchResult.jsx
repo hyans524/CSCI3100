@@ -1,11 +1,16 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import './SearchResult.css'
 
 const SearchResult = ({result}) => {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate('/mytrip')
+  }
   return (
-    <div className="search-result" onClick={(e) => alert(`You Click On ${(result.name)}`)}>
-        {result.name}
+    <div className="search-result" onClick={handleClick}>
+        {result.destination}
     </div>
   )
 }
