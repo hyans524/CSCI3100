@@ -47,6 +47,7 @@ cd ../frontend
 :: Install frontend dependencies
 echo Installing frontend dependencies...
 call npm install
+call npm install @mui/material @emotion/react @emotion/styled @mui/icons-material 
 if errorlevel 1 (
     echo Failed to install frontend dependencies
     pause

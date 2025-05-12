@@ -7,6 +7,7 @@ import ExpensesSection from "../../components/TripDetail/ExpensesSection";
 import GroupMessages from "../../components/TripDetail/GroupMessages";
 import { formatDate, formatCurrency, calculateDuration } from "../utils/formatters";
 import { tripApi, groupApi, expenseApi, authApi } from "../utils/api";
+import constantCheckLoggedIn from "../../components/CheckLoggedIn/CheckLoggedIn";
 
 const MyTripDetail = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const MyTripDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  
+  constantCheckLoggedIn()
 
   useEffect(() => {
     const fetchTripDetails = async () => {

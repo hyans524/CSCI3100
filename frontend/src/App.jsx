@@ -11,7 +11,7 @@ import Profile from "./pages/Profile"
 import TripDetail from "./pages/TripDetail"
 import MyTripDetail from "./pages/MyTripDetail"
 import LoginSignup from "../components/LoginSignup/LoginSignup"
-
+import Admin from "../components/Admin/Admin"
 const App = () => {
   return (
     <>
@@ -25,6 +25,7 @@ const App = () => {
             <Route path="/mytrip" element={<MyTrip />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/profile" element={<Profile />}/>
+            <Route path="/admin" element={<Admin />}/>
             <Route path="/trip/:id" element={<TripDetail />} />
             <Route path="/mytrip/:id" element={<MyTripDetail />} />
             <Route path="*" element={<NoPage />} />

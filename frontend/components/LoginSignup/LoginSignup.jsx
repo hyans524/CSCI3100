@@ -71,7 +71,7 @@ function LoginSignup() {
                     localStorage.setItem('username', credentials.username);
 
                     if (response.data.isAdmin) {
-
+                        navigate('/admin')
                     } else {
                         navigate('/profile')
                     }

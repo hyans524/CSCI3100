@@ -27,8 +27,21 @@ router.get('/:id', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
+
+    const existingUser = await User.findOne({ username: req.body.username });
+    if (existingUser) {
+        return res.status(400).json({ message: 'User already exists' });
+    }
+    const Users = await User.find().exec()
+    let max = 0;
+    Users.forEach(user => {
+        if (user.user_id > max) {
+            max = user.user_id;
+        }
+    });
+
     const user = new User({
-        user_id: req.body.user_id,
+        user_id: max + 1,
         username: req.body.username,
         password: req.body.password,
         isAdmin: req.body.isAdmin,
@@ -50,11 +63,11 @@ router.post('/', async (req, res) => {
 router.post('/byids', async (req, res) => {
     try {
         const { userIds } = req.body;
-        
+
         if (!Array.isArray(userIds)) {
             return res.status(400).json({ message: 'userIds must be an array' });
         }
-        
+
         const users = await User.find({ user_id: { $in: userIds } });
         res.json(users);
     } catch (error) {
@@ -83,7 +96,7 @@ router.delete('/:id', async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        await user.findByIdAndDelete(req.params.id);
+        await User.deleteOne({ _id: req.params.id }).exec();
         res.json({ message: 'User deleted' });
     } catch (error) {
         res.status(500).json({ message: error.message });
