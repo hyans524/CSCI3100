@@ -29,6 +29,8 @@ const TravelProfile = () => {
     name: false,
     email: false,
     language: false,
+    age: false,
+    gender: false,
     badges: false,
   });
   const navigate = useNavigate()
@@ -40,6 +42,8 @@ const TravelProfile = () => {
     name: '',
     email: '',
     language: '',
+    age: '',
+    gender: '',
     badges: [],
     addBadge: '',
   });
@@ -58,18 +62,11 @@ const TravelProfile = () => {
           name: response.data.username,
           email: response.data.email, // 新增email字段
           language: response.data.language,       // 新增language字段
+          age: response.data.age,
+          gender: response.data.gender,
           avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
           coverPhoto: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-          stats: {
-            countries: 2,
-            trips: 0,
-            followers: 0,
-            following: 0,
-          },
-          upcomingTrips: [
-            { destination: 'Bali, Indonesia', date: 'June 2023' },
-            { destination: 'Patagonia, Chile', date: 'September 2023' },
-          ],
+
         };
 
         setUser(mockUser);
@@ -168,6 +165,38 @@ const TravelProfile = () => {
         const updated = await userApi.getById(userId);
         setUser({ ...user, language: updated.data.language });
         setEditFields({ ...editFields, language: false });
+        setIsLoading(false);
+        window.location.reload();
+      } catch (err) {
+        setError('Failed to update language.');
+        setIsLoading(false);
+        console.error('Error updating language:', err);
+      }
+    }
+    else if (field === 'age') {
+      try {
+        setIsLoading(true);
+        const newAge = editValues.age.trim();
+        await userApi.update(userId, { age: newAge });
+        const updated = await userApi.getById(userId);
+        setUser({ ...user, age: updated.data.age });
+        setEditFields({ ...editFields, age: false });
+        setIsLoading(false);
+        window.location.reload();
+      } catch (err) {
+        setError('Failed to update language.');
+        setIsLoading(false);
+        console.error('Error updating language:', err);
+      }
+    }
+      else if (field === 'gender') {
+      try {
+        setIsLoading(true);
+        const newGender = editValues.gender.trim();
+        await userApi.update(userId, { gender: newGender });
+        const updated = await userApi.getById(userId);
+        setUser({ ...user, gender: updated.data.gender });
+        setEditFields({ ...editFields, gender: false });
         setIsLoading(false);
         window.location.reload();
       } catch (err) {
@@ -278,6 +307,7 @@ const TravelProfile = () => {
             </div>
             {/* Email */}
             <div className="flex items-center gap-2 mb-3">
+              <p>Email :</p>
               <FaGlobeAmericas className="text-blue-500" /> {/* 换一个图标更适合email，可根据需求调整 */}
               {editFields.email ? (
                 <>
@@ -318,6 +348,7 @@ const TravelProfile = () => {
             {/* Language */}
             <div className="flex items-center gap-2 mb-3">
               <FaGlobeAmericas className="text-green-500" />
+              <p>Language :</p>
               {editFields.language ? (
                 <>
                   <input
@@ -354,137 +385,94 @@ const TravelProfile = () => {
                 </>
               )}
             </div>
+             <div className="flex items-center mb-1">
+              <p>Gender :</p>
+              {editFields.gender ? (
+                <>
+                  <input
+                    type="text"
+                    value={editValues.gender}
+                    maxLength={24}
+                    onChange={e => setEditValues({ ...editValues, gender: e.target.value })}
+                    className="text-gray-500 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    style={{ maxWidth: '160px' }}
+                  />
+                  <button
+                    className="ml-2 px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
+                    onClick={() => saveEdit('gender')}
+                  >
+                    Save
+                  </button>
+                  <button
+                    className="ml-1 px-2 py-1 bg-gray-300 text-gray-800 text-xs rounded hover:bg-gray-400 transition-colors"
+                    onClick={() => cancelEdit('gender')}
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <>
+                  <span className="text-gray-500 truncate">{user.gender}</span>
+                  <button
+                    className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
+                    onClick={() => startEdit('gender')}
+                    title="Edit gender"
+                  >
+                    Edit
+                  </button>
+                </>
+              )}
+            </div>
+             <div className="flex items-center mb-1">
+              <p>age :</p>
+              {editFields.age ? (
+                <>
+                  <input
+                    type="text"
+                    value={editValues.age}
+                    maxLength={24}
+                    onChange={e => setEditValues({ ...editValues, age: e.target.value })}
+                    className="text-gray-500 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    style={{ maxWidth: '160px' }}
+                  />
+                  <button
+                    className="ml-2 px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
+                    onClick={() => saveEdit('age')}
+                  >
+                    Save
+                  </button>
+                  <button
+                    className="ml-1 px-2 py-1 bg-gray-300 text-gray-800 text-xs rounded hover:bg-gray-400 transition-colors"
+                    onClick={() => cancelEdit('age')}
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <>
+                  <span className="text-gray-500 truncate">{user.age}</span>
+                  <button
+                    className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
+                    onClick={() => startEdit('age')}
+                    title="Edit age"
+                  >
+                    Edit
+                  </button>
+                </>
+              )}
+            </div>
             {/* Badges/Labels */}
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="w-full flex flex-wrap justify-between border-t border-b border-gray-200 py-4 sm:py-6 mt-6">
-          {Object.entries(user.stats).map(([key, value]) => (
-            <div key={key} className="text-center px-2 sm:px-4 py-2 w-1/2 sm:w-auto">
-              <span className="block text-xl sm:text-2xl font-bold text-blue-600">{value}</span>
-              <span className="text-xs sm:text-sm text-gray-500 capitalize">{key}</span>
-            </div>
-          ))}
-        </div>
+
+
+
+
       </div>
 
-      {/* Features Section */}
-      <div className="px-6 sm:px-8 py-10 bg-gradient-to-br from-gray-50 to-gray-100">
-        <h2 className="text-2xl sm:text-3xl text-center font-bold text-gray-800 mb-8 sm:mb-10">Travel Features</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {[
-            { icon: <FaPlane className="text-3xl sm:text-4xl" />, title: "Trip Planner", desc: "Plan your perfect itinerary with our smart trip planner." },
-            { icon: <MdLocalDining className="text-3xl sm:text-4xl" />, title: "Local Experiences", desc: "Discover authentic local activities and hidden gems." },
-            { icon: <FaGlobeAmericas className="text-3xl sm:text-4xl" />, title: "Travel Map", desc: "Visualize all your travels on an interactive world map." },
-            { icon: <FaCamera className="text-3xl sm:text-4xl" />, title: "Photo Gallery", desc: "Showcase your travel memories in a beautiful gallery." },
-            { icon: <FaHeart className="text-3xl sm:text-4xl" />, title: "Bucket List", desc: "Create and manage your travel bucket list destinations." },
-            { icon: <FaStar className="text-3xl sm:text-4xl" />, title: "Reviews", desc: "Share your honest reviews of hotels and attractions." },
-            { icon: <MdOutlineHiking className="text-3xl sm:text-4xl" />, title: "Adventure Finder", desc: "Find thrilling activities based on your preferences." },
-            { icon: <FaUserFriends className="text-3xl sm:text-4xl" />, title: "Travel Community", desc: "Connect with fellow travelers and share experiences." },
-          ].map((feature, index) => (
-            <div
-              key={index}
-              className="bg-white p-4 sm:p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 text-center"
-            >
-              <div className="text-orange-500 mb-3 sm:mb-4 flex justify-center">{feature.icon}</div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
-              <p className="text-gray-500 text-xs sm:text-sm">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Tabs */}
-      <div className="flex overflow-x-auto border-b border-gray-200 px-6 sm:px-8 hide-scrollbar">
-        {['trips', 'photos', 'reviews', 'bucketlist'].map((tab) => (
-          <button
-            key={tab}
-            className={`px-4 sm:px-6 py-3 sm:py-4 font-medium text-gray-500 whitespace-nowrap relative transition-colors ${
-              activeTab === tab ? 'text-blue-600' : 'hover:text-gray-700'
-            }`}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab === 'trips' && 'My Trips'}
-            {tab === 'photos' && 'Photos'}
-            {tab === 'reviews' && 'Reviews'}
-            {tab === 'bucketlist' && 'Bucket List'}
-            {activeTab === tab && (
-              <span className="absolute bottom-0 left-0 w-full h-1 bg-orange-500 rounded-t"></span>
-            )}
-          </button>
-        ))}
-      </div>
 
-      {/* Tab Content */}
-      <div className="p-6 sm:p-8">
-        {activeTab === 'trips' && (
-          <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">Upcoming Trips</h3>
-            <div className="space-y-3 sm:space-y-4">
-              {user.upcomingTrips.map((trip, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-4 sm:p-5 rounded-lg shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4"
-                >
-                  <div className="flex-1 min-w-0">
-                    <div className="font-bold text-blue-600 text-lg sm:text-xl truncate">{trip.destination}</div>
-                    <div className="text-gray-500 text-sm sm:text-base">{trip.date}</div>
-                  </div>
-                  <button className="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm sm:text-base" onClick={handleClick}>
-                    View Details
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'photos' && (
-          <div className="text-center py-8 sm:py-10">
-            <div className="text-gray-400 mb-4">
-              <FaCamera className="mx-auto text-4xl sm:text-5xl" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-medium text-gray-600 mb-2">Your Travel Photos</h3>
-            <p className="text-gray-500 max-w-md mx-auto">
-              Upload and organize your travel memories to share with the community
-            </p>
-            <button className="mt-6 px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
-              Upload Photos
-            </button>
-          </div>
-        )}
-
-        {activeTab === 'reviews' && (
-          <div className="text-center py-8 sm:py-10">
-            <div className="text-gray-400 mb-4">
-              <FaStar className="mx-auto text-4xl sm:text-5xl" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-medium text-gray-600 mb-2">Your Travel Reviews</h3>
-            <p className="text-gray-500 max-w-md mx-auto">
-              Share your experiences and help other travelers make better decisions
-            </p>
-            <button className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-              Write a Review
-            </button>
-          </div>
-        )}
-
-        {activeTab === 'bucketlist' && (
-          <div className="text-center py-8 sm:py-10">
-            <div className="text-gray-400 mb-4">
-              <FaHeart className="mx-auto text-4xl sm:text-5xl" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-medium text-gray-600 mb-2">Your Bucket List</h3>
-            <p className="text-gray-500 max-w-md mx-auto">
-              Keep track of destinations you dream of visiting
-            </p>
-            <button className="mt-6 px-6 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors">
-              Add Destination
-            </button>
-          </div>
-        )}
-      </div>
     </div>
   );
 };
