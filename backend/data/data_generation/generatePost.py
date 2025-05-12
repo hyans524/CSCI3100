@@ -5,16 +5,16 @@ import os
 from datetime import datetime, timedelta
 from bson import ObjectId
 
-# --- Configuration paths ---
+# --- Paths ---
 HERE     = os.path.dirname(__file__)
-DATA_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "dummy_data")) + os.sep
-UPLOADS  = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir, "uploads")) + os.sep
+DATA_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "dummy_data"))
+UPLOADS  = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir, "uploads"))
 
-# --- Pools for randomization ---
+# --- Pools ---
 ADJECTIVES = [
-    "vibrant", "breathtaking", "serene", "adventurous", "unforgettable",
-    "scenic", "cultural", "immersive", "picturesque", "lively",
-    "tranquil", "thrilling", "historic", "exotic", "luxurious"
+    "vibrant","breathtaking","serene","adventurous","unforgettable",
+    "scenic","cultural","immersive","picturesque","lively",
+    "tranquil","thrilling","historic","exotic","luxurious"
 ]
 
 POST_TEMPLATES = [
@@ -53,6 +53,16 @@ COMMENT_POOL = [
     "Would love to see your full itinerary."
 ]
 
+# --- Budget brackets matching your schema ---
+BUDGET_RANGES = [
+    (0,      1000,   "0-1000"),
+    (1001,   3000,   "1001-3000"),
+    (3001,   5000,   "3001-5000"),
+    (5001,   10000,  "5001-10000"),
+    (10001,  float("inf"), "10001+")
+]
+
+# --- Helpers ---
 def choose_adj():
     return random.choice(ADJECTIVES)
 
@@ -76,17 +86,20 @@ user_ids = [u["_id"]["$oid"] for u in users]
 
 # map group_id → member list
 group_members = {
-    g["group_id"]: [m["$oid"] if isinstance(m, dict) else str(m) for m in g["members"]]
+    g["group_id"]: [
+        m["$oid"] if isinstance(m, dict) and "$oid" in m else str(m)
+        for m in g["members"]
+    ]
     for g in groups
 }
 
 posts = []
 for trip in trips:
-    # pick an author
+    # choose an author from the trip's group or any user
     members = group_members.get(trip["group_id"], user_ids)
     author  = random.choice(members)
 
-    # parse dates or fallback
+    # parse dates or fallback to random past
     try:
         start = datetime.fromisoformat(trip["start_date"])
         end   = datetime.fromisoformat(trip["end_date"])
@@ -94,48 +107,42 @@ for trip in trips:
         start = datetime.now() - timedelta(days=random.randint(10, 365))
         end   = start + timedelta(days=random.randint(3, 14))
 
-    # likes & comments
+    # likes
     likers = [u for u in user_ids if u != author]
     likes  = random.sample(likers, k=random.randint(1, min(3, len(likers))))
+
+    # comments
     comments = []
     for _ in range(random.randint(0,2)):
         cuser = random.choice([u for u in user_ids if u != author])
         cdate = start + timedelta(days=random.randint(0, max((end-start).days,1)))
         tpl   = random.choice(COMMENT_POOL)
         text  = tpl.format(adjective=choose_adj()) if "{adjective}" in tpl else tpl
-        comments.append({"user_id": cuser, "text": text, "date": cdate.isoformat()})
+        comments.append({
+            "user_id": cuser,
+            "text":    text,
+            "date":    cdate.isoformat()
+        })
 
     # budget normalization
-    raw_bud = trip.get("budget", 1000)
-    if isinstance(raw_bud, str) and raw_bud in ['0-1000','1001-2000','2001-3000','3001+']:
-        budget_lbl = raw_bud
-    else:
-        budget_lbl = next(lab for lo,hi,lab in [
-            (0,1000,"0-1000"),
-            (1001,2000,"1001-2000"),
-            (2001,3000,"2001-3000"),
-            (3001,float("inf"),"3001+")
-        ] if lo <= int(raw_bud) <= hi)
+    raw_bud = trip.get("budget", 0)
+    budget_lbl = next(
+        label for lo, hi, label in BUDGET_RANGES
+        if lo <= int(raw_bud) <= hi
+    )
 
-    # image path
-    img_name = f"dummy_{trip['destination']}.jpeg"
-    img_path = os.path.join(UPLOADS, img_name)
-    if os.path.isfile(img_path):
-        image_field = f"/uploads/{img_name}"
-    else:
-        image_field = None
+    # detect image file
+    dest_safe = trip["destination"].replace(" ", "_")
+    img_name  = f"dummy_{dest_safe}.jpeg"
+    img_path  = os.path.join(UPLOADS, img_name)
+    image_field = f"/uploads/{img_name}" if os.path.isfile(img_path) else None
 
-
-    # build post record
+    # assemble post record
     post = {
         "_id":        {"$oid": str(ObjectId())},
         "user_id":    author,
         "trip_oid":   trip["_id"]["$oid"],
         "text":       pick_template(trip["destination"]),
-    }
-    if image_field:
-        post["image"] = image_field
-    post.update({
         "location":   trip["destination"],
         "budget":     budget_lbl,
         "activities": trip.get("activity", []) or trip.get("activities", []),
@@ -143,11 +150,13 @@ for trip in trips:
         "end_date":   iso_date(end),
         "likes":      likes,
         "comments":   comments
-    })
+    }
+    if image_field:
+        post["image"] = image_field
 
-    posts.append(post) 
+    posts.append(post)
 
-# write out
+# write out to post.json
 output_path = os.path.join(DATA_DIR, "post.json")
 with open(output_path, "w") as f:
     json.dump(posts, f, indent=2)
