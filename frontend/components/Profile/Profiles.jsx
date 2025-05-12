@@ -152,6 +152,7 @@ const TravelProfile = () => {
         setUser(updated.data);
         setEditFields({ ...editFields, username: false });
         setIsLoading(false);
+        window.location.reload();
       } catch (err) {
         setError('Failed to update name.');
         setIsLoading(false);
