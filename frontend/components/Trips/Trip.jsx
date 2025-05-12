@@ -45,7 +45,12 @@ const Trip = ({
     if (!trips || trips.length === 0) return;
     
     if (!searchCriteria) {
-      setFilteredTrips(trips);
+
+      const sortedTrips = trips.sort((a, b) => {
+        return new Date(a.start_date) - new Date(b.start_date);
+      });
+
+      setFilteredTrips(sortedTrips);
       return;
     }
     
@@ -94,8 +99,12 @@ const Trip = ({
         return true;
       });
     }
-    
-    setFilteredTrips(filtered);
+
+    const sortedTrips = filtered.sort((a, b) => {
+      return new Date(a.start_date) - new Date(b.start_date);
+    });
+
+    setFilteredTrips(sortedTrips);
   }, [trips, searchCriteria]);
 
   const tripsToDisplay = filteredTrips;

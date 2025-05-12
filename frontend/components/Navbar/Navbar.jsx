@@ -52,6 +52,7 @@ function Navigation() {
                                 Home
                             </NavLink>
                         </li>
+                        {/*
                         <li className="my-1">
                             <NavLink
                                 to="/browse"
@@ -64,6 +65,7 @@ function Navigation() {
                                 Browse
                             </NavLink>
                         </li>
+                        */}
                         <li className="my-1">
                             <NavLink
                                 to="/AIrecommendation"

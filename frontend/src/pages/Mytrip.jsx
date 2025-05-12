@@ -60,18 +60,14 @@ const MyTrip = () => {
           };
         });
 
-        // Sort by status (upcoming first) then by start date within each status
         const sortedTrips = processedTrips.sort((a, b) => {
-          // First sort by status (upcoming first)
           if (a.status !== b.status) {
             return a.status === "upcoming" ? -1 : 1;
           }
-          // Then sort by date within each status group
           return new Date(a.start_date) - new Date(b.start_date);
         });
         setTrips(sortedTrips);
         
-        setTrips(sortedTrips);
         setError(null);
       } catch (err) {
         console.error("Failed to fetch trips:", err);

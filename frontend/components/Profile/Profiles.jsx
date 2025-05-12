@@ -14,6 +14,7 @@ import {
 import { MdLocalDining, MdOutlineHiking } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { userApi, authApi } from '../../src/utils/api';
+import user_icon2 from '../../src/assets/user_icon2.jpg';
 
 const TravelProfile = () => {
   // State management
@@ -220,48 +221,18 @@ const TravelProfile = () => {
         className="h-72 w-full bg-cover bg-center relative"
         style={{ backgroundImage: `url(${user.coverPhoto})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-        <div className="absolute top-5 right-5">
-          <button
-            className={`px-6 py-3 rounded-full font-bold text-white shadow-lg transition-all duration-300 flex items-center gap-2 ${
-              isFollowing
-                ? 'bg-green-600 hover:bg-green-700'
-                : 'bg-orange-500 hover:bg-orange-600'
-            }`}
-            onClick={() => setIsFollowing(!isFollowing)}
-          >
-            {isFollowing ? (
-              <>
-                <span>Following</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </>
-            ) : (
-              <>
-                <span>Follow</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
-                </svg>
-              </>
-            )}
-          </button>
-        </div>
+        
       </div>
 
       {/* Profile Info */}
       <div className="px-6 sm:px-8 py-6 relative">
         <div className="flex flex-col sm:flex-row items-start">
           {/* Avatar */}
-          <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-4 border-white shadow-lg -mt-20 bg-white z-10 overflow-hidden">
+          <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full shadow-lg -mt-20 bg-white z-10 overflow-hidden">
             <img
-              src={user.avatar}
+              src={user_icon2}
               alt="Profile"
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp';
-              }}
+              className="w-full h-full object-contain rounded-full scale-85"
             />
           </div>
 
