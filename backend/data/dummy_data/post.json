@@ -1,198 +1,2780 @@
 [
   {
     "_id": {
-      "$oid": "67fbd152d2525d08daed8955"
+      "$oid": "6822327d53dbae0b41e7a023"
     },
-    "user_id": "67fba7d7cc439d8b22e006c6",
-    "text": "Amazing cultural experience in Kyoto!",
-    "image": "images/kyoto.jpg",
-    "location": "Kyoto, Japan",
-    "budget": "2001-3000",
-    "activities": ["Temple visits", "Tea ceremonies", "Gardens"],
-    "start_date": "2024-04-01",
-    "end_date": "2024-04-10",
-    "likes": ["67fba7d7cc439d8b22e006c7", "67fba7d7cc439d8b22e006c8", "67fba7d7cc439d8b22e006c9"],
+    "user_id": "681d12ee0c2e20334cd417df",
+    "trip_oid": "681d12ee0c2e20334cd41cff",
+    "text": "From start to finish, Uganda was cultural.",
+    "image": "/uploads/dummy_Uganda.jpeg",
+    "location": "Uganda",
+    "budget": "3001+",
+    "activities": [
+      "Sightseeing",
+      "Staying in Resort"
+    ],
+    "start_date": "2025-06-10",
+    "end_date": "2025-06-18",
+    "likes": [
+      "681d12ee0c2e20334cd4181a"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a024"
+    },
+    "user_id": "681d12ee0c2e20334cd4153f",
+    "trip_oid": "681d12ee0c2e20334cd41d00",
+    "text": "Truly scenic memories made at Faroe Islands.",
+    "image": "/uploads/dummy_Faroe Islands.jpeg",
+    "location": "Faroe Islands",
+    "budget": "3001+",
+    "activities": [
+      "Swimming"
+    ],
+    "start_date": "2025-05-31",
+    "end_date": "2025-06-03",
+    "likes": [
+      "681d12ee0c2e20334cd416ac"
+    ],
     "comments": [
       {
-        "user_id": "67fba7d7cc439d8b22e006c7",
-        "text": "Those gardens look incredible!",
-        "date": "2024-04-02T09:15:00Z"
+        "user_id": "681d12ee0c2e20334cd4163c",
+        "text": "Did you try any hidden gems there?",
+        "date": "2025-05-31T13:24:14.831120"
       },
       {
-        "user_id": "67fba7d7cc439d8b22e006ce",
-        "text": "Looks great!",
-        "date": "2024-04-08T14:30:00Z"
+        "user_id": "681d12ee0c2e20334cd417a7",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-06-02T13:24:14.831120"
       }
     ]
   },
   {
     "_id": {
-      "$oid": "67fbd152d2525d08daed8956"
+      "$oid": "6822327d53dbae0b41e7a025"
     },
-    "user_id": "67fba7d7cc439d8b22e006c8",
-    "text": "Best pizza tour in Naples!",
-    "image": "images/naples.jpg",
-    "location": "Naples, Italy",
+    "user_id": "681d12ee0c2e20334cd41683",
+    "trip_oid": "681d12ee0c2e20334cd41d01",
+    "text": "From start to finish, Western Sahara was thrilling.",
+    "location": "Western Sahara",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Dining"
+    ],
+    "start_date": "2025-05-09",
+    "end_date": "2025-05-17",
+    "likes": [
+      "681d12ee0c2e20334cd4159f"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41573",
+        "text": "Did you try any hidden gems there?",
+        "date": "2025-05-10T05:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a026"
+    },
+    "user_id": "681d12ee0c2e20334cd4165d",
+    "trip_oid": "681d12ee0c2e20334cd41d02",
+    "text": "If you love exotic adventures, you need to visit Germany.",
+    "image": "/uploads/dummy_Germany.jpeg",
+    "location": "Germany",
     "budget": "1001-2000",
-    "activities": ["Food tours", "Historic sites", "Market visits"],
-    "start_date": "2024-05-15",
-    "end_date": "2024-05-22",
-    "likes": ["67fba7d7cc439d8b22e006c6", "67fba7d7cc439d8b22e006ca"],
-    "comments": [
-      {
-        "user_id": "67fba7d7cc439d8b22e006c9",
-        "text": "Which pizzeria was your favorite?",
-        "date": "2024-05-16T14:30:00Z"
-      }
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "67fbd152d2525d08daed8957"
-    },
-    "user_id": "67fba7d7cc439d8b22e006ca",
-    "text": "Unforgettable safari adventure!",
-    "image": "images/safari.jpg",
-    "location": "Serengeti, Tanzania",
-    "budget": "3001+",
-    "activities": ["Wildlife viewing", "Camping", "Photography"],
-    "start_date": "2024-06-01",
-    "end_date": "2024-06-10",
-    "likes": ["67fba7d7cc439d8b22e006cb", "67fba7d7cc439d8b22e006cc", "67fba7d7cc439d8b22e006cd", "67fba7d7cc439d8b22e006ce"],
+    "activities": [
+      "Biking",
+      "Staying in Resort"
+    ],
+    "start_date": "2025-06-05",
+    "end_date": "2025-06-07",
+    "likes": [
+      "681d12ee0c2e20334cd41580",
+      "681d12ee0c2e20334cd41690",
+      "681d12ee0c2e20334cd4168f"
+    ],
     "comments": []
   },
   {
     "_id": {
-      "$oid": "67fbd152d2525d08daed8958"
+      "$oid": "6822327d53dbae0b41e7a027"
     },
-    "user_id": "67fba7d7cc439d8b22e006c7",
-    "text": "Skiing paradise in the Alps 🏂",
-    "image": "images/alps.jpg",
-    "location": "Swiss Alps",
+    "user_id": "681d12ee0c2e20334cd4173f",
+    "trip_oid": "681d12ee0c2e20334cd41d03",
+    "text": "Western Sahara delivered one vibrant experience after another.",
+    "location": "Western Sahara",
     "budget": "3001+",
-    "activities": ["Skiing", "Snowboarding", "Mountain tours"],
-    "start_date": "2024-01-10",
-    "end_date": "2024-01-20",
-    "likes": ["67fba7d7cc439d8b22e006c6", "67fba7d7cc439d8b22e006c8", "67fba7d7cc439d8b22e006ca"],
+    "activities": [
+      "Visit Museum",
+      "Biking",
+      "Visit Temple"
+    ],
+    "start_date": "2025-05-13",
+    "end_date": "2025-05-16",
+    "likes": [
+      "681d12ee0c2e20334cd41697",
+      "681d12ee0c2e20334cd41521",
+      "681d12ee0c2e20334cd4184d"
+    ],
     "comments": [
       {
-        "user_id": "67fba7d7cc439d8b22e006cc",
-        "text": "Which resort did you stay at?",
-        "date": "2024-01-12T11:20:00Z"
+        "user_id": "681d12ee0c2e20334cd416b8",
+        "text": "Those photos must look incredible.",
+        "date": "2025-05-15T08:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41528",
+        "text": "Would love to see your full itinerary.",
+        "date": "2025-05-16T08:24:14.831120"
       }
     ]
   },
   {
     "_id": {
-      "$oid": "67fbd152d2525d08daed8959"
+      "$oid": "6822327d53dbae0b41e7a028"
     },
-    "user_id": "67fba7d7cc439d8b22e006c9",
-    "text": "Beach relaxation in Bali 🌴",
-    "image": "images/bali.jpg",
-    "location": "Bali, Indonesia",
+    "user_id": "681d12ee0c2e20334cd416e2",
+    "trip_oid": "681d12ee0c2e20334cd41d04",
+    "text": "Sint Maarten delivered one luxurious experience after another.",
+    "image": "/uploads/dummy_Sint Maarten.jpeg",
+    "location": "Sint Maarten",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Sightseeing",
+      "Hiking"
+    ],
+    "start_date": "2025-06-03",
+    "end_date": "2025-06-09",
+    "likes": [
+      "681d12ee0c2e20334cd4155d"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4167e",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-06-06T23:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd4171a",
+        "text": "How long did you stay?",
+        "date": "2025-06-07T23:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a029"
+    },
+    "user_id": "681d12ee0c2e20334cd415d9",
+    "trip_oid": "681d12ee0c2e20334cd41d05",
+    "text": "Truly adventurous memories made at Uruguay.",
+    "image": "/uploads/dummy_Uruguay.jpeg",
+    "location": "Uruguay",
+    "budget": "3001+",
+    "activities": [
+      "Visit Temple",
+      "Staying in Resort",
+      "Hiking"
+    ],
+    "start_date": "2025-06-18",
+    "end_date": "2025-06-26",
+    "likes": [
+      "681d12ee0c2e20334cd41837",
+      "681d12ee0c2e20334cd41517"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4163c",
+        "text": "I can\u2019t believe how vibrant that must have been!",
+        "date": "2025-06-20T17:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd416f2",
+        "text": "Did you meet any interesting people?",
+        "date": "2025-06-18T17:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a02a"
+    },
+    "user_id": "681d12ee0c2e20334cd4186b",
+    "trip_oid": "681d12ee0c2e20334cd41d06",
+    "text": "Truly lively memories made at Algeria.",
+    "image": "/uploads/dummy_Algeria.jpeg",
+    "location": "Algeria",
     "budget": "2001-3000",
-    "activities": ["Surfing", "Yoga", "Beach hopping"],
-    "start_date": "2024-03-05",
-    "end_date": "2024-03-15",
-    "likes": ["67fba7d7cc439d8b22e006ce", "67fba7d7cc439d8b22e006cf"],
+    "activities": [
+      "Staying in Resort",
+      "Hiking",
+      "Swimming"
+    ],
+    "start_date": "2025-05-12",
+    "end_date": "2025-05-15",
+    "likes": [
+      "681d12ee0c2e20334cd4177f",
+      "681d12ee0c2e20334cd41841",
+      "681d12ee0c2e20334cd41734"
+    ],
     "comments": [
       {
-        "user_id": "67fba7d7cc439d8b22e006cb",
-        "text": "Perfect sunset shots!",
-        "date": "2024-03-07T18:45:00Z"
+        "user_id": "681d12ee0c2e20334cd41757",
+        "text": "Those photos must look incredible.",
+        "date": "2025-05-13T14:24:14.831120"
       }
     ]
   },
   {
     "_id": {
-      "$oid": "67fbd152d2525d08daed895a"
+      "$oid": "6822327d53dbae0b41e7a02b"
     },
-    "user_id": "67fba7d7cc439d8b22e006c6",
-    "text": "Urban exploration in NYC",
-    "image": "images/nyc.jpg",
-    "location": "New York City, USA",
+    "user_id": "681d12ee0c2e20334cd41581",
+    "trip_oid": "681d12ee0c2e20334cd41d07",
+    "text": "Belize exceeded all expectations\u2014what a scenic trip!",
+    "image": "/uploads/dummy_Belize.jpeg",
+    "location": "Belize",
+    "budget": "3001+",
+    "activities": [
+      "Swimming"
+    ],
+    "start_date": "2025-05-22",
+    "end_date": "2025-05-27",
+    "likes": [
+      "681d12ee0c2e20334cd41624",
+      "681d12ee0c2e20334cd41631",
+      "681d12ee0c2e20334cd41702"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd417a6",
+        "text": "That sounds amazing!",
+        "date": "2025-05-23T23:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a02c"
+    },
+    "user_id": "681d12ee0c2e20334cd4163f",
+    "trip_oid": "681d12ee0c2e20334cd41d08",
+    "text": "From start to finish, Mexico was unforgettable.",
+    "image": "/uploads/dummy_Mexico.jpeg",
+    "location": "Mexico",
+    "budget": "2001-3000",
+    "activities": [
+      "Visit Temple",
+      "Hiking",
+      "Swimming"
+    ],
+    "start_date": "2025-05-24",
+    "end_date": "2025-05-29",
+    "likes": [
+      "681d12ee0c2e20334cd4168d",
+      "681d12ee0c2e20334cd415e8",
+      "681d12ee0c2e20334cd4150a"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41772",
+        "text": "How long did you stay?",
+        "date": "2025-05-25T06:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a02d"
+    },
+    "user_id": "681d12ee0c2e20334cd415eb",
+    "trip_oid": "681d12ee0c2e20334cd41d09",
+    "text": "Senegal was more exotic than I ever imagined!",
+    "image": "/uploads/dummy_Senegal.jpeg",
+    "location": "Senegal",
+    "budget": "3001+",
+    "activities": [
+      "Biking",
+      "Hiking",
+      "Swimming"
+    ],
+    "start_date": "2025-06-19",
+    "end_date": "2025-06-25",
+    "likes": [
+      "681d12ee0c2e20334cd4160c",
+      "681d12ee0c2e20334cd4161d",
+      "681d12ee0c2e20334cd4172d"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a02e"
+    },
+    "user_id": "681d12ee0c2e20334cd4163d",
+    "trip_oid": "681d12ee0c2e20334cd41d0a",
+    "text": "My trip to Malaysia was truly historic.",
+    "location": "Malaysia",
+    "budget": "3001+",
+    "activities": [
+      "Hiking",
+      "Staying in Resort",
+      "Visit Temple"
+    ],
+    "start_date": "2025-05-15",
+    "end_date": "2025-05-18",
+    "likes": [
+      "681d12ee0c2e20334cd41654"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a02f"
+    },
+    "user_id": "681d12ee0c2e20334cd416da",
+    "trip_oid": "681d12ee0c2e20334cd41d0b",
+    "text": "Packing my bags for another lively adventure in New Zealand!",
+    "image": "/uploads/dummy_New Zealand.jpeg",
+    "location": "New Zealand",
+    "budget": "3001+",
+    "activities": [
+      "Sightseeing"
+    ],
+    "start_date": "2025-05-11",
+    "end_date": "2025-05-16",
+    "likes": [
+      "681d12ee0c2e20334cd4178c",
+      "681d12ee0c2e20334cd41676",
+      "681d12ee0c2e20334cd417b2"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd414d7",
+        "text": "Those photos must look incredible.",
+        "date": "2025-05-11T01:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41506",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-05-12T01:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a030"
+    },
+    "user_id": "681d12ee0c2e20334cd416fe",
+    "trip_oid": "681d12ee0c2e20334cd41d0c",
+    "text": "Feeling so serene after my stay in Mayotte.",
+    "image": "/uploads/dummy_Mayotte.jpeg",
+    "location": "Mayotte",
+    "budget": "2001-3000",
+    "activities": [
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-15",
+    "end_date": "2025-06-23",
+    "likes": [
+      "681d12ee0c2e20334cd41874",
+      "681d12ee0c2e20334cd415c9"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41747",
+        "text": "How long did you stay?",
+        "date": "2025-06-16T04:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a031"
+    },
+    "user_id": "681d12ee0c2e20334cd41692",
+    "trip_oid": "681d12ee0c2e20334cd41d0d",
+    "text": "Dreaming of those breathtaking moments in Vanuatu.",
+    "image": "/uploads/dummy_Vanuatu.jpeg",
+    "location": "Vanuatu",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort"
+    ],
+    "start_date": "2025-05-20",
+    "end_date": "2025-05-26",
+    "likes": [
+      "681d12ee0c2e20334cd417f9"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a032"
+    },
+    "user_id": "681d12ee0c2e20334cd41850",
+    "trip_oid": "681d12ee0c2e20334cd41d0e",
+    "text": "Truly serene memories made at Peru.",
+    "image": "/uploads/dummy_Peru.jpeg",
+    "location": "Peru",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Sightseeing",
+      "Visit Museum"
+    ],
+    "start_date": "2025-05-30",
+    "end_date": "2025-06-05",
+    "likes": [
+      "681d12ee0c2e20334cd41721",
+      "681d12ee0c2e20334cd41590",
+      "681d12ee0c2e20334cd415db"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd417ce",
+        "text": "That sounds amazing!",
+        "date": "2025-06-03T00:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd415cf",
+        "text": "Did you try any hidden gems there?",
+        "date": "2025-05-30T00:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a033"
+    },
+    "user_id": "681d12ee0c2e20334cd417b2",
+    "trip_oid": "681d12ee0c2e20334cd41d0f",
+    "text": "Truly breathtaking memories made at Palau.",
+    "image": "/uploads/dummy_Palau.jpeg",
+    "location": "Palau",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Dining",
+      "Visit Museum"
+    ],
+    "start_date": "2025-05-14",
+    "end_date": "2025-05-16",
+    "likes": [
+      "681d12ee0c2e20334cd4163a",
+      "681d12ee0c2e20334cd4153e",
+      "681d12ee0c2e20334cd417ad"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a034"
+    },
+    "user_id": "681d12ee0c2e20334cd4182a",
+    "trip_oid": "681d12ee0c2e20334cd41d10",
+    "text": "Can't forget the immersive views in Saint Lucia.",
+    "location": "Saint Lucia",
+    "budget": "3001+",
+    "activities": [
+      "Diving"
+    ],
+    "start_date": "2025-06-18",
+    "end_date": "2025-06-22",
+    "likes": [
+      "681d12ee0c2e20334cd41825",
+      "681d12ee0c2e20334cd417d3"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a035"
+    },
+    "user_id": "681d12ee0c2e20334cd41840",
+    "trip_oid": "681d12ee0c2e20334cd41d11",
+    "text": "Can't forget the serene views in Vanuatu.",
+    "image": "/uploads/dummy_Vanuatu.jpeg",
+    "location": "Vanuatu",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Diving"
+    ],
+    "start_date": "2025-05-23",
+    "end_date": "2025-05-26",
+    "likes": [
+      "681d12ee0c2e20334cd416fd",
+      "681d12ee0c2e20334cd4170a",
+      "681d12ee0c2e20334cd416d1"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a036"
+    },
+    "user_id": "681d12ee0c2e20334cd4170a",
+    "trip_oid": "681d12ee0c2e20334cd41d12",
+    "text": "Exploring Namibia was a historic delight!",
+    "location": "Namibia",
+    "budget": "3001+",
+    "activities": [
+      "Biking",
+      "Swimming",
+      "Sightseeing"
+    ],
+    "start_date": "2025-05-27",
+    "end_date": "2025-05-31",
+    "likes": [
+      "681d12ee0c2e20334cd416b1"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41542",
+        "text": "Sounds like a dream getaway.",
+        "date": "2025-05-28T05:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd4162c",
+        "text": "I\u2019m so jealous\u2014tell me more!",
+        "date": "2025-05-29T05:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a037"
+    },
+    "user_id": "681d12ee0c2e20334cd41503",
+    "trip_oid": "681d12ee0c2e20334cd41d13",
+    "text": "Guinea exceeded all expectations\u2014what a lively trip!",
+    "location": "Guinea",
+    "budget": "3001+",
+    "activities": [
+      "Dining",
+      "Swimming",
+      "Sightseeing"
+    ],
+    "start_date": "2025-05-31",
+    "end_date": "2025-06-08",
+    "likes": [
+      "681d12ee0c2e20334cd41566",
+      "681d12ee0c2e20334cd416b1",
+      "681d12ee0c2e20334cd41722"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a038"
+    },
+    "user_id": "681d12ee0c2e20334cd4189c",
+    "trip_oid": "681d12ee0c2e20334cd41d14",
+    "text": "Moldova exceeded all expectations\u2014what a lively trip!",
+    "location": "Moldova",
+    "budget": "3001+",
+    "activities": [
+      "Hiking",
+      "Visit Temple"
+    ],
+    "start_date": "2025-05-22",
+    "end_date": "2025-05-26",
+    "likes": [
+      "681d12ee0c2e20334cd4172d"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41548",
+        "text": "Wow, I need to add that to my bucket list.",
+        "date": "2025-05-23T10:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a039"
+    },
+    "user_id": "681d12ee0c2e20334cd4156c",
+    "trip_oid": "681d12ee0c2e20334cd41d15",
+    "text": "What an tranquil journey to Croatia!",
+    "image": "/uploads/dummy_Croatia.jpeg",
+    "location": "Croatia",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Dining"
+    ],
+    "start_date": "2025-06-17",
+    "end_date": "2025-06-20",
+    "likes": [
+      "681d12ee0c2e20334cd4167a"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4157b",
+        "text": "What was your favorite part?",
+        "date": "2025-06-19T08:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a03a"
+    },
+    "user_id": "681d12ee0c2e20334cd4180a",
+    "trip_oid": "681d12ee0c2e20334cd41d16",
+    "text": "Exploring Timor Leste was a tranquil delight!",
+    "location": "Timor Leste",
+    "budget": "3001+",
+    "activities": [
+      "Hiking",
+      "Swimming"
+    ],
+    "start_date": "2025-06-12",
+    "end_date": "2025-06-19",
+    "likes": [
+      "681d12ee0c2e20334cd4183e",
+      "681d12ee0c2e20334cd4179e"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4189f",
+        "text": "Those photos must look incredible.",
+        "date": "2025-06-13T22:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd414da",
+        "text": "How long did you stay?",
+        "date": "2025-06-16T22:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a03b"
+    },
+    "user_id": "681d12ee0c2e20334cd4183a",
+    "trip_oid": "681d12ee0c2e20334cd41d17",
+    "text": "Truly unforgettable memories made at Liechtenstein.",
+    "location": "Liechtenstein",
+    "budget": "3001+",
+    "activities": [
+      "Hiking",
+      "Diving"
+    ],
+    "start_date": "2025-05-15",
+    "end_date": "2025-05-19",
+    "likes": [
+      "681d12ee0c2e20334cd41578"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd414fd",
+        "text": "Did you meet any interesting people?",
+        "date": "2025-05-15T12:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a03c"
+    },
+    "user_id": "681d12ee0c2e20334cd41563",
+    "trip_oid": "681d12ee0c2e20334cd41d18",
+    "text": "Packing my bags for another scenic adventure in Lithuania!",
+    "image": "/uploads/dummy_Lithuania.jpeg",
+    "location": "Lithuania",
     "budget": "1001-2000",
-    "activities": ["Museums", "Broadway shows", "Shopping"],
-    "start_date": "2024-07-01",
-    "end_date": "2024-07-07",
-    "likes": ["67fba7d7cc439d8b22e006c7", "67fba7d7cc439d8b22e006c9", "67fba7d7cc439d8b22e006cc"],
-    "comments": []
-  },
-  {
-    "_id": {
-      "$oid": "67fbd152d2525d08daed895b"
-    },
-    "user_id": "67fba7d7cc439d8b22e006cc",
-    "text": "Northern Lights chase in Iceland",
-    "image": "images/iceland.jpg",
-    "location": "Reykjavik, Iceland",
-    "budget": "2001-3000",
-    "activities": ["Aurora viewing", "Hot springs", "Glacier hiking"],
-    "start_date": "2024-02-10",
-    "end_date": "2024-02-20",
-    "likes": ["67fba7d7cc439d8b22e006cd", "67fba7d7cc439d8b22e006ce", "67fba7d7cc439d8b22e006cf"],
+    "activities": [
+      "Visit Temple",
+      "Swimming",
+      "Dining"
+    ],
+    "start_date": "2025-05-19",
+    "end_date": "2025-05-22",
+    "likes": [
+      "681d12ee0c2e20334cd41768",
+      "681d12ee0c2e20334cd41889"
+    ],
     "comments": [
       {
-        "user_id": "67fba7d7cc439d8b22e006c8",
-        "text": "What camera settings did you use?",
-        "date": "2024-02-12T20:15:00Z"
+        "user_id": "681d12ee0c2e20334cd41797",
+        "text": "That sounds amazing!",
+        "date": "2025-05-19T17:24:14.831120"
       }
     ]
   },
   {
     "_id": {
-      "$oid": "67fbd152d2525d08daed895c"
+      "$oid": "6822327d53dbae0b41e7a03d"
     },
-    "user_id": "67fba7d7cc439d8b22e006cd",
-    "text": "Desert adventure in Dubai",
-    "image": "images/dubai.jpg",
-    "location": "Dubai, UAE",
-    "budget": "3001+",
-    "activities": ["Desert safari", "Luxury shopping", "Burj Khalifa"],
-    "start_date": "2024-11-01",
-    "end_date": "2024-11-08",
-    "likes": ["67fba7d7cc439d8b22e006c6", "67fba7d7cc439d8b22e006ca", "67fba7d7cc439d8b22e006ce"],
+    "user_id": "681d12ee0c2e20334cd417a7",
+    "trip_oid": "681d12ee0c2e20334cd41d19",
+    "text": "Dreaming of those historic moments in Bahrain.",
+    "image": "/uploads/dummy_Bahrain.jpeg",
+    "location": "Bahrain",
+    "budget": "2001-3000",
+    "activities": [
+      "Hiking",
+      "Dining",
+      "Biking"
+    ],
+    "start_date": "2025-05-28",
+    "end_date": "2025-06-01",
+    "likes": [
+      "681d12ee0c2e20334cd41755",
+      "681d12ee0c2e20334cd4172e"
+    ],
     "comments": []
   },
   {
     "_id": {
-      "$oid": "67fbd152d2525d08daed895d"
+      "$oid": "6822327d53dbae0b41e7a03e"
     },
-    "user_id": "67fba7d7cc439d8b22e006ce",
-    "text": "Cultural immersion in Marrakech",
-    "image": "images/marrakech.jpg",
-    "location": "Marrakech, Morocco",
+    "user_id": "681d12ee0c2e20334cd417cd",
+    "trip_oid": "681d12ee0c2e20334cd41d1a",
+    "text": "What an exotic journey to Belarus!",
+    "location": "Belarus",
+    "budget": "3001+",
+    "activities": [
+      "Diving",
+      "Swimming"
+    ],
+    "start_date": "2025-06-17",
+    "end_date": "2025-06-22",
+    "likes": [
+      "681d12ee0c2e20334cd41853",
+      "681d12ee0c2e20334cd4160d"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a03f"
+    },
+    "user_id": "681d12ee0c2e20334cd41765",
+    "trip_oid": "681d12ee0c2e20334cd41d1b",
+    "text": "Can't forget the luxurious views in Kyrgyzstan.",
+    "location": "Kyrgyzstan",
+    "budget": "3001+",
+    "activities": [
+      "Hiking"
+    ],
+    "start_date": "2025-06-08",
+    "end_date": "2025-06-13",
+    "likes": [
+      "681d12ee0c2e20334cd4168e",
+      "681d12ee0c2e20334cd41696",
+      "681d12ee0c2e20334cd415f9"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41535",
+        "text": "That sounds amazing!",
+        "date": "2025-06-12T23:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd415c8",
+        "text": "That sounds amazing!",
+        "date": "2025-06-11T23:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a040"
+    },
+    "user_id": "681d12ee0c2e20334cd41695",
+    "trip_oid": "681d12ee0c2e20334cd41d1c",
+    "text": "Can't forget the thrilling views in Aland Islands.",
+    "location": "Aland Islands",
+    "budget": "3001+",
+    "activities": [
+      "Swimming"
+    ],
+    "start_date": "2025-06-13",
+    "end_date": "2025-06-20",
+    "likes": [
+      "681d12ee0c2e20334cd416ee",
+      "681d12ee0c2e20334cd41896"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd417ba",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-06-20T07:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41753",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-06-14T07:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a041"
+    },
+    "user_id": "681d12ee0c2e20334cd4158f",
+    "trip_oid": "681d12ee0c2e20334cd41d1d",
+    "text": "Packing my bags for another unforgettable adventure in Switzerland!",
+    "location": "Switzerland",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Visit Temple",
+      "Diving"
+    ],
+    "start_date": "2025-05-25",
+    "end_date": "2025-05-31",
+    "likes": [
+      "681d12ee0c2e20334cd4154e",
+      "681d12ee0c2e20334cd414f3",
+      "681d12ee0c2e20334cd414cd"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4160c",
+        "text": "That sounds amazing!",
+        "date": "2025-05-25T23:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a042"
+    },
+    "user_id": "681d12ee0c2e20334cd415cd",
+    "trip_oid": "681d12ee0c2e20334cd41d1e",
+    "text": "Dreaming of those serene moments in Trinidad and Tobago.",
+    "location": "Trinidad and Tobago",
+    "budget": "2001-3000",
+    "activities": [
+      "Sightseeing",
+      "Swimming"
+    ],
+    "start_date": "2025-05-24",
+    "end_date": "2025-05-29",
+    "likes": [
+      "681d12ee0c2e20334cd416f7",
+      "681d12ee0c2e20334cd4177b",
+      "681d12ee0c2e20334cd41680"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41848",
+        "text": "What time of year did you go?",
+        "date": "2025-05-28T21:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd417ff",
+        "text": "Sounds like a dream getaway.",
+        "date": "2025-05-27T21:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a043"
+    },
+    "user_id": "681d12ee0c2e20334cd41779",
+    "trip_oid": "681d12ee0c2e20334cd41d1f",
+    "text": "From start to finish, French Southern Territories was luxurious.",
+    "location": "French Southern Territories",
+    "budget": "3001+",
+    "activities": [
+      "Hiking",
+      "Diving"
+    ],
+    "start_date": "2025-05-16",
+    "end_date": "2025-05-24",
+    "likes": [
+      "681d12ee0c2e20334cd41889",
+      "681d12ee0c2e20334cd41723",
+      "681d12ee0c2e20334cd41813"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd417c0",
+        "text": "That sounds amazing!",
+        "date": "2025-05-17T22:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a044"
+    },
+    "user_id": "681d12ee0c2e20334cd4159a",
+    "trip_oid": "681d12ee0c2e20334cd41d20",
+    "text": "What an luxurious journey to Portugal!",
+    "location": "Portugal",
+    "budget": "3001+",
+    "activities": [
+      "Biking",
+      "Staying in Resort",
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-18",
+    "end_date": "2025-06-20",
+    "likes": [
+      "681d12ee0c2e20334cd41532"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd416d5",
+        "text": "Sounds like a dream getaway.",
+        "date": "2025-06-19T13:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd415c0",
+        "text": "Absolutely stunning\u2014thanks for sharing.",
+        "date": "2025-06-20T13:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a045"
+    },
+    "user_id": "681d12ee0c2e20334cd4182d",
+    "trip_oid": "681d12ee0c2e20334cd41d21",
+    "text": "Can't forget the tranquil views in Afghanistan.",
+    "location": "Afghanistan",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Dining",
+      "Visit Temple"
+    ],
+    "start_date": "2025-05-18",
+    "end_date": "2025-05-24",
+    "likes": [
+      "681d12ee0c2e20334cd4165a",
+      "681d12ee0c2e20334cd415db",
+      "681d12ee0c2e20334cd41712"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41577",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-05-23T05:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a046"
+    },
+    "user_id": "681d12ee0c2e20334cd41777",
+    "trip_oid": "681d12ee0c2e20334cd41d22",
+    "text": "Uruguay delivered one serene experience after another.",
+    "image": "/uploads/dummy_Uruguay.jpeg",
+    "location": "Uruguay",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Staying in Resort"
+    ],
+    "start_date": "2025-05-15",
+    "end_date": "2025-05-22",
+    "likes": [
+      "681d12ee0c2e20334cd4184f"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a047"
+    },
+    "user_id": "681d12ee0c2e20334cd414db",
+    "trip_oid": "681d12ee0c2e20334cd41d23",
+    "text": "Exploring Guatemala was a tranquil delight!",
+    "location": "Guatemala",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Hiking",
+      "Biking"
+    ],
+    "start_date": "2025-05-20",
+    "end_date": "2025-05-27",
+    "likes": [
+      "681d12ee0c2e20334cd41750"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41751",
+        "text": "How did you find the local food?",
+        "date": "2025-05-21T02:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a048"
+    },
+    "user_id": "681d12ee0c2e20334cd414e6",
+    "trip_oid": "681d12ee0c2e20334cd41d24",
+    "text": "Truly picturesque memories made at South Georgia and the South Sandwich Islands.",
+    "location": "South Georgia and the South Sandwich Islands",
+    "budget": "1001-2000",
+    "activities": [
+      "Hiking",
+      "Sightseeing"
+    ],
+    "start_date": "2025-06-14",
+    "end_date": "2025-06-18",
+    "likes": [
+      "681d12ee0c2e20334cd414f3"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd415d9",
+        "text": "Those photos must look incredible.",
+        "date": "2025-06-18T06:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41636",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-06-17T06:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a049"
+    },
+    "user_id": "681d12ee0c2e20334cd415fd",
+    "trip_oid": "681d12ee0c2e20334cd41d25",
+    "text": "Feeling so thrilling after my stay in Niue.",
+    "location": "Niue",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-16",
+    "end_date": "2025-06-18",
+    "likes": [
+      "681d12ee0c2e20334cd41851",
+      "681d12ee0c2e20334cd4158b"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41575",
+        "text": "What time of year did you go?",
+        "date": "2025-06-17T02:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41505",
+        "text": "Would love to see your full itinerary.",
+        "date": "2025-06-17T02:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a04a"
+    },
+    "user_id": "681d12ee0c2e20334cd416c1",
+    "trip_oid": "681d12ee0c2e20334cd41d26",
+    "text": "My trip to Antarctica was truly scenic.",
+    "location": "Antarctica",
+    "budget": "3001+",
+    "activities": [
+      "Dining",
+      "Visit Museum",
+      "Hiking"
+    ],
+    "start_date": "2025-06-14",
+    "end_date": "2025-06-20",
+    "likes": [
+      "681d12ee0c2e20334cd41864",
+      "681d12ee0c2e20334cd4187f"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd416f9",
+        "text": "I\u2019m so jealous\u2014tell me more!",
+        "date": "2025-06-15T19:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd417c7",
+        "text": "What time of year did you go?",
+        "date": "2025-06-18T19:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a04b"
+    },
+    "user_id": "681d12ee0c2e20334cd4167b",
+    "trip_oid": "681d12ee0c2e20334cd41d27",
+    "text": "What an exotic journey to Djibouti!",
+    "image": "/uploads/dummy_Djibouti.jpeg",
+    "location": "Djibouti",
+    "budget": "3001+",
+    "activities": [
+      "Sightseeing"
+    ],
+    "start_date": "2025-05-24",
+    "end_date": "2025-05-31",
+    "likes": [
+      "681d12ee0c2e20334cd41631"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a04c"
+    },
+    "user_id": "681d12ee0c2e20334cd41694",
+    "trip_oid": "681d12ee0c2e20334cd41d28",
+    "text": "Mexico delivered one picturesque experience after another.",
+    "image": "/uploads/dummy_Mexico.jpeg",
+    "location": "Mexico",
+    "budget": "3001+",
+    "activities": [
+      "Visit Museum"
+    ],
+    "start_date": "2025-05-25",
+    "end_date": "2025-05-27",
+    "likes": [
+      "681d12ee0c2e20334cd4161e"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41570",
+        "text": "I can\u2019t believe how vibrant that must have been!",
+        "date": "2025-05-26T02:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd4157d",
+        "text": "Sounds like a dream getaway.",
+        "date": "2025-05-25T02:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a04d"
+    },
+    "user_id": "681d12ee0c2e20334cd416aa",
+    "trip_oid": "681d12ee0c2e20334cd41d29",
+    "text": "Who knew Democratic Republic of the Congo could be so exotic?",
+    "location": "Democratic Republic of the Congo",
+    "budget": "3001+",
+    "activities": [
+      "Visit Museum",
+      "Staying in Resort",
+      "Dining"
+    ],
+    "start_date": "2025-05-31",
+    "end_date": "2025-06-03",
+    "likes": [
+      "681d12ee0c2e20334cd416c4",
+      "681d12ee0c2e20334cd415cb"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41582",
+        "text": "Sounds like a dream getaway.",
+        "date": "2025-06-02T07:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a04e"
+    },
+    "user_id": "681d12ee0c2e20334cd416a1",
+    "trip_oid": "681d12ee0c2e20334cd41d2a",
+    "text": "French Polynesia delivered one historic experience after another.",
+    "location": "French Polynesia",
     "budget": "0-1000",
-    "activities": ["Markets", "Historic sites", "Local cuisine"],
-    "start_date": "2024-09-10",
-    "end_date": "2024-09-17",
-    "likes": ["67fba7d7cc439d8b22e006c7", "67fba7d7cc439d8b22e006c8", "67fba7d7cc439d8b22e006cb"],
+    "activities": [
+      "Visit Museum",
+      "Staying in Resort"
+    ],
+    "start_date": "2025-05-22",
+    "end_date": "2025-05-29",
+    "likes": [
+      "681d12ee0c2e20334cd417b4",
+      "681d12ee0c2e20334cd416d9"
+    ],
     "comments": [
       {
-        "user_id": "67fba7d7cc439d8b22e006cf",
-        "text": "Love the vibrant colors!",
-        "date": "2024-09-12T16:30:00Z"
+        "user_id": "681d12ee0c2e20334cd4162d",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-05-23T04:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41508",
+        "text": "What time of year did you go?",
+        "date": "2025-05-24T04:24:14.831120"
       }
     ]
   },
   {
     "_id": {
-      "$oid": "67fbd152d2525d08daed895e"
+      "$oid": "6822327d53dbae0b41e7a04f"
     },
-    "user_id": "67fba7d7cc439d8b22e006cf",
-    "text": "Hiking the Inca Trail",
-    "image": "images/inca.jpg",
-    "location": "Machu Picchu, Peru",
-    "budget": "1001-2000",
-    "activities": ["Hiking", "Archaeology", "Nature photography"],
-    "start_date": "2024-08-15",
-    "end_date": "2024-08-25",
-    "likes": ["67fba7d7cc439d8b22e006c6", "67fba7d7cc439d8b22e006c9", "67fba7d7cc439d8b22e006cc"],
+    "user_id": "681d12ee0c2e20334cd417cc",
+    "trip_oid": "681d12ee0c2e20334cd41d2b",
+    "text": "Dreaming of those serene moments in Tunisia.",
+    "image": "/uploads/dummy_Tunisia.jpeg",
+    "location": "Tunisia",
+    "budget": "0-1000",
+    "activities": [
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-07",
+    "end_date": "2025-06-14",
+    "likes": [
+      "681d12ee0c2e20334cd415ac",
+      "681d12ee0c2e20334cd41633",
+      "681d12ee0c2e20334cd415eb"
+    ],
     "comments": [
       {
-        "user_id": "67fba7d7cc439d8b22e006ca",
-        "text": "How was the altitude?",
-        "date": "2024-08-17T12:00:00Z"
+        "user_id": "681d12ee0c2e20334cd417dc",
+        "text": "What was your favorite part?",
+        "date": "2025-06-09T18:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd415e6",
+        "text": "Absolutely stunning\u2014thanks for sharing.",
+        "date": "2025-06-08T18:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a050"
+    },
+    "user_id": "681d12ee0c2e20334cd4155d",
+    "trip_oid": "681d12ee0c2e20334cd41d2c",
+    "text": "Truly breathtaking memories made at Kenya.",
+    "image": "/uploads/dummy_Kenya.jpeg",
+    "location": "Kenya",
+    "budget": "3001+",
+    "activities": [
+      "Visit Museum",
+      "Sightseeing",
+      "Swimming"
+    ],
+    "start_date": "2025-05-09",
+    "end_date": "2025-05-13",
+    "likes": [
+      "681d12ee0c2e20334cd41527",
+      "681d12ee0c2e20334cd41806",
+      "681d12ee0c2e20334cd416e8"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a051"
+    },
+    "user_id": "681d12ee0c2e20334cd41835",
+    "trip_oid": "681d12ee0c2e20334cd41d2d",
+    "text": "Dreaming of those picturesque moments in Qatar.",
+    "location": "Qatar",
+    "budget": "3001+",
+    "activities": [
+      "Diving"
+    ],
+    "start_date": "2025-06-04",
+    "end_date": "2025-06-06",
+    "likes": [
+      "681d12ee0c2e20334cd41533",
+      "681d12ee0c2e20334cd4155b"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd417e0",
+        "text": "Sounds like a dream getaway.",
+        "date": "2025-06-05T05:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd4150e",
+        "text": "Those photos must look incredible.",
+        "date": "2025-06-05T05:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a052"
+    },
+    "user_id": "681d12ee0c2e20334cd41801",
+    "trip_oid": "681d12ee0c2e20334cd41d2e",
+    "text": "Feeling so scenic after my stay in Lithuania.",
+    "image": "/uploads/dummy_Lithuania.jpeg",
+    "location": "Lithuania",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Biking",
+      "Swimming"
+    ],
+    "start_date": "2025-06-05",
+    "end_date": "2025-06-12",
+    "likes": [
+      "681d12ee0c2e20334cd415e4",
+      "681d12ee0c2e20334cd4165c",
+      "681d12ee0c2e20334cd415cf"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd416d1",
+        "text": "What time of year did you go?",
+        "date": "2025-06-11T23:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a053"
+    },
+    "user_id": "681d12ee0c2e20334cd415f0",
+    "trip_oid": "681d12ee0c2e20334cd41d2f",
+    "text": "Dreaming of those tranquil moments in Ivory Coast.",
+    "location": "Ivory Coast",
+    "budget": "3001+",
+    "activities": [
+      "Visit Temple",
+      "Swimming"
+    ],
+    "start_date": "2025-05-28",
+    "end_date": "2025-06-02",
+    "likes": [
+      "681d12ee0c2e20334cd41561",
+      "681d12ee0c2e20334cd41638"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd415de",
+        "text": "Wow, I need to add that to my bucket list.",
+        "date": "2025-05-30T18:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41753",
+        "text": "What was your favorite part?",
+        "date": "2025-05-31T18:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a054"
+    },
+    "user_id": "681d12ee0c2e20334cd418a1",
+    "trip_oid": "681d12ee0c2e20334cd41d30",
+    "text": "My trip to Equatorial Guinea was truly lively.",
+    "location": "Equatorial Guinea",
+    "budget": "3001+",
+    "activities": [
+      "Visit Museum",
+      "Dining"
+    ],
+    "start_date": "2025-06-18",
+    "end_date": "2025-06-22",
+    "likes": [
+      "681d12ee0c2e20334cd41776",
+      "681d12ee0c2e20334cd417c8",
+      "681d12ee0c2e20334cd417d2"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41701",
+        "text": "I can\u2019t believe how tranquil that must have been!",
+        "date": "2025-06-21T06:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd417c1",
+        "text": "What was your favorite part?",
+        "date": "2025-06-21T06:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a055"
+    },
+    "user_id": "681d12ee0c2e20334cd4180d",
+    "trip_oid": "681d12ee0c2e20334cd41d31",
+    "text": "Dreaming of those luxurious moments in Belgium.",
+    "location": "Belgium",
+    "budget": "3001+",
+    "activities": [
+      "Diving",
+      "Sightseeing"
+    ],
+    "start_date": "2025-06-10",
+    "end_date": "2025-06-17",
+    "likes": [
+      "681d12ee0c2e20334cd41826"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a056"
+    },
+    "user_id": "681d12ee0c2e20334cd41646",
+    "trip_oid": "681d12ee0c2e20334cd41d32",
+    "text": "What an cultural journey to Barbados!",
+    "location": "Barbados",
+    "budget": "3001+",
+    "activities": [
+      "Visit Temple",
+      "Biking"
+    ],
+    "start_date": "2025-06-11",
+    "end_date": "2025-06-17",
+    "likes": [
+      "681d12ee0c2e20334cd41697",
+      "681d12ee0c2e20334cd4184d"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd416d3",
+        "text": "Did you try any hidden gems there?",
+        "date": "2025-06-11T18:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd415c8",
+        "text": "How long did you stay?",
+        "date": "2025-06-13T18:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a057"
+    },
+    "user_id": "681d12ee0c2e20334cd41748",
+    "trip_oid": "681d12ee0c2e20334cd41d33",
+    "text": "Can't forget the luxurious views in Antarctica.",
+    "location": "Antarctica",
+    "budget": "3001+",
+    "activities": [
+      "Sightseeing",
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-08",
+    "end_date": "2025-06-10",
+    "likes": [
+      "681d12ee0c2e20334cd41757",
+      "681d12ee0c2e20334cd41720"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4151c",
+        "text": "What was your favorite part?",
+        "date": "2025-06-08T02:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a058"
+    },
+    "user_id": "681d12ee0c2e20334cd41803",
+    "trip_oid": "681d12ee0c2e20334cd41d34",
+    "text": "Dreaming of those picturesque moments in Gibraltar.",
+    "image": "/uploads/dummy_Gibraltar.jpeg",
+    "location": "Gibraltar",
+    "budget": "2001-3000",
+    "activities": [
+      "Dining",
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-01",
+    "end_date": "2025-06-05",
+    "likes": [
+      "681d12ee0c2e20334cd41665",
+      "681d12ee0c2e20334cd415cd",
+      "681d12ee0c2e20334cd415a3"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41863",
+        "text": "How long did you stay?",
+        "date": "2025-06-02T19:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a059"
+    },
+    "user_id": "681d12ee0c2e20334cd4182d",
+    "trip_oid": "681d12ee0c2e20334cd41d35",
+    "text": "Japan exceeded all expectations\u2014what a exotic trip!",
+    "image": "/uploads/dummy_Japan.jpeg",
+    "location": "Japan",
+    "budget": "3001+",
+    "activities": [
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-04",
+    "end_date": "2025-06-08",
+    "likes": [
+      "681d12ee0c2e20334cd41681",
+      "681d12ee0c2e20334cd417ac",
+      "681d12ee0c2e20334cd414cb"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a05a"
+    },
+    "user_id": "681d12ee0c2e20334cd41800",
+    "trip_oid": "681d12ee0c2e20334cd41d36",
+    "text": "If you love serene adventures, you need to visit San Marino.",
+    "location": "San Marino",
+    "budget": "3001+",
+    "activities": [
+      "Biking",
+      "Visit Museum",
+      "Hiking"
+    ],
+    "start_date": "2025-05-20",
+    "end_date": "2025-05-22",
+    "likes": [
+      "681d12ee0c2e20334cd41847",
+      "681d12ee0c2e20334cd4152d",
+      "681d12ee0c2e20334cd41862"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a05b"
+    },
+    "user_id": "681d12ee0c2e20334cd4171d",
+    "trip_oid": "681d12ee0c2e20334cd41d37",
+    "text": "Can't forget the tranquil views in Monaco.",
+    "image": "/uploads/dummy_Monaco.jpeg",
+    "location": "Monaco",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Sightseeing"
+    ],
+    "start_date": "2025-05-17",
+    "end_date": "2025-05-24",
+    "likes": [
+      "681d12ee0c2e20334cd4160f",
+      "681d12ee0c2e20334cd41626",
+      "681d12ee0c2e20334cd416e5"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4181d",
+        "text": "Did you try any hidden gems there?",
+        "date": "2025-05-19T08:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a05c"
+    },
+    "user_id": "681d12ee0c2e20334cd41814",
+    "trip_oid": "681d12ee0c2e20334cd41d38",
+    "text": "Cocos Islands exceeded all expectations\u2014what a tranquil trip!",
+    "location": "Cocos Islands",
+    "budget": "3001+",
+    "activities": [
+      "Diving",
+      "Biking",
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-19",
+    "end_date": "2025-06-27",
+    "likes": [
+      "681d12ee0c2e20334cd416e9"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a05d"
+    },
+    "user_id": "681d12ee0c2e20334cd41610",
+    "trip_oid": "681d12ee0c2e20334cd41d39",
+    "text": "Turkmenistan delivered one serene experience after another.",
+    "location": "Turkmenistan",
+    "budget": "3001+",
+    "activities": [
+      "Sightseeing",
+      "Visit Temple"
+    ],
+    "start_date": "2025-05-15",
+    "end_date": "2025-05-17",
+    "likes": [
+      "681d12ee0c2e20334cd41546",
+      "681d12ee0c2e20334cd41891",
+      "681d12ee0c2e20334cd41870"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd417d3",
+        "text": "How did you find the local food?",
+        "date": "2025-05-15T20:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd4167b",
+        "text": "How long did you stay?",
+        "date": "2025-05-15T20:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a05e"
+    },
+    "user_id": "681d12ee0c2e20334cd41620",
+    "trip_oid": "681d12ee0c2e20334cd41d3a",
+    "text": "Greenland exceeded all expectations\u2014what a tranquil trip!",
+    "image": "/uploads/dummy_Greenland.jpeg",
+    "location": "Greenland",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort"
+    ],
+    "start_date": "2025-05-19",
+    "end_date": "2025-05-26",
+    "likes": [
+      "681d12ee0c2e20334cd41865"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a05f"
+    },
+    "user_id": "681d12ee0c2e20334cd417b4",
+    "trip_oid": "681d12ee0c2e20334cd41d3b",
+    "text": "Dreaming of those historic moments in Mayotte.",
+    "image": "/uploads/dummy_Mayotte.jpeg",
+    "location": "Mayotte",
+    "budget": "2001-3000",
+    "activities": [
+      "Dining",
+      "Hiking",
+      "Staying in Resort"
+    ],
+    "start_date": "2025-05-12",
+    "end_date": "2025-05-19",
+    "likes": [
+      "681d12ee0c2e20334cd4172d",
+      "681d12ee0c2e20334cd4184f",
+      "681d12ee0c2e20334cd4188d"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd416c6",
+        "text": "I can\u2019t believe how vibrant that must have been!",
+        "date": "2025-05-12T15:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd415ff",
+        "text": "What was your favorite part?",
+        "date": "2025-05-17T15:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a060"
+    },
+    "user_id": "681d12ee0c2e20334cd4166b",
+    "trip_oid": "681d12ee0c2e20334cd41d3c",
+    "text": "Who knew Antarctica could be so lively?",
+    "location": "Antarctica",
+    "budget": "3001+",
+    "activities": [
+      "Swimming"
+    ],
+    "start_date": "2025-06-08",
+    "end_date": "2025-06-14",
+    "likes": [
+      "681d12ee0c2e20334cd41563",
+      "681d12ee0c2e20334cd415fb"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd416de",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-06-14T01:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a061"
+    },
+    "user_id": "681d12ee0c2e20334cd41566",
+    "trip_oid": "681d12ee0c2e20334cd41d3d",
+    "text": "Packing my bags for another adventurous adventure in Algeria!",
+    "image": "/uploads/dummy_Algeria.jpeg",
+    "location": "Algeria",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Staying in Resort"
+    ],
+    "start_date": "2025-06-13",
+    "end_date": "2025-06-20",
+    "likes": [
+      "681d12ee0c2e20334cd41504",
+      "681d12ee0c2e20334cd41677",
+      "681d12ee0c2e20334cd4184e"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4181d",
+        "text": "Did you meet any interesting people?",
+        "date": "2025-06-16T14:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd415c5",
+        "text": "Those photos must look incredible.",
+        "date": "2025-06-15T14:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a062"
+    },
+    "user_id": "681d12ee0c2e20334cd417d5",
+    "trip_oid": "681d12ee0c2e20334cd41d3e",
+    "text": "United States Minor Outlying Islands exceeded all expectations\u2014what a thrilling trip!",
+    "location": "United States Minor Outlying Islands",
+    "budget": "3001+",
+    "activities": [
+      "Diving",
+      "Sightseeing"
+    ],
+    "start_date": "2025-05-23",
+    "end_date": "2025-05-30",
+    "likes": [
+      "681d12ee0c2e20334cd41734",
+      "681d12ee0c2e20334cd41896",
+      "681d12ee0c2e20334cd41504"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd415b6",
+        "text": "How did you find the local food?",
+        "date": "2025-05-27T01:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a063"
+    },
+    "user_id": "681d12ee0c2e20334cd4169d",
+    "trip_oid": "681d12ee0c2e20334cd41d3f",
+    "text": "Dreaming of those cultural moments in Belgium.",
+    "location": "Belgium",
+    "budget": "2001-3000",
+    "activities": [
+      "Biking",
+      "Visit Temple"
+    ],
+    "start_date": "2025-05-25",
+    "end_date": "2025-05-27",
+    "likes": [
+      "681d12ee0c2e20334cd414d5",
+      "681d12ee0c2e20334cd41596",
+      "681d12ee0c2e20334cd41669"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a064"
+    },
+    "user_id": "681d12ee0c2e20334cd4184b",
+    "trip_oid": "681d12ee0c2e20334cd41d40",
+    "text": "Togo exceeded all expectations\u2014what a unforgettable trip!",
+    "location": "Togo",
+    "budget": "3001+",
+    "activities": [
+      "Visit Museum"
+    ],
+    "start_date": "2025-05-30",
+    "end_date": "2025-05-31",
+    "likes": [
+      "681d12ee0c2e20334cd41786"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4163c",
+        "text": "Wow, I need to add that to my bucket list.",
+        "date": "2025-05-31T04:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a065"
+    },
+    "user_id": "681d12ee0c2e20334cd416a7",
+    "trip_oid": "681d12ee0c2e20334cd41d41",
+    "text": "If you love cultural adventures, you need to visit Djibouti.",
+    "image": "/uploads/dummy_Djibouti.jpeg",
+    "location": "Djibouti",
+    "budget": "3001+",
+    "activities": [
+      "Hiking",
+      "Visit Museum",
+      "Diving"
+    ],
+    "start_date": "2025-05-30",
+    "end_date": "2025-06-01",
+    "likes": [
+      "681d12ee0c2e20334cd418ab",
+      "681d12ee0c2e20334cd41797",
+      "681d12ee0c2e20334cd417a8"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41746",
+        "text": "What time of year did you go?",
+        "date": "2025-05-31T17:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd4162f",
+        "text": "I\u2019m so jealous\u2014tell me more!",
+        "date": "2025-05-31T17:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a066"
+    },
+    "user_id": "681d12ee0c2e20334cd415e2",
+    "trip_oid": "681d12ee0c2e20334cd41d42",
+    "text": "Just had a luxurious time exploring Malta.",
+    "location": "Malta",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Hiking",
+      "Staying in Resort"
+    ],
+    "start_date": "2025-05-27",
+    "end_date": "2025-06-02",
+    "likes": [
+      "681d12ee0c2e20334cd41773",
+      "681d12ee0c2e20334cd41885",
+      "681d12ee0c2e20334cd4186c"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41520",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-06-02T08:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd4155f",
+        "text": "Sounds like a dream getaway.",
+        "date": "2025-05-31T08:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a067"
+    },
+    "user_id": "681d12ee0c2e20334cd41561",
+    "trip_oid": "681d12ee0c2e20334cd41d43",
+    "text": "Netherlands Antilles was more scenic than I ever imagined!",
+    "image": "/uploads/dummy_Netherlands Antilles.jpeg",
+    "location": "Netherlands Antilles",
+    "budget": "3001+",
+    "activities": [
+      "Diving"
+    ],
+    "start_date": "2025-06-19",
+    "end_date": "2025-06-26",
+    "likes": [
+      "681d12ee0c2e20334cd41619",
+      "681d12ee0c2e20334cd41632"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd415ad",
+        "text": "What time of year did you go?",
+        "date": "2025-06-20T20:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a068"
+    },
+    "user_id": "681d12ee0c2e20334cd41566",
+    "trip_oid": "681d12ee0c2e20334cd41d44",
+    "text": "Dreaming of those serene moments in North Macedonia.",
+    "location": "North Macedonia",
+    "budget": "3001+",
+    "activities": [
+      "Hiking",
+      "Visit Temple",
+      "Biking"
+    ],
+    "start_date": "2025-06-07",
+    "end_date": "2025-06-09",
+    "likes": [
+      "681d12ee0c2e20334cd4186e"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd416c5",
+        "text": "Sounds like a dream getaway.",
+        "date": "2025-06-07T21:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a069"
+    },
+    "user_id": "681d12ee0c2e20334cd415e2",
+    "trip_oid": "681d12ee0c2e20334cd41d45",
+    "text": "Truly breathtaking memories made at Italy.",
+    "location": "Italy",
+    "budget": "3001+",
+    "activities": [
+      "Biking"
+    ],
+    "start_date": "2025-06-17",
+    "end_date": "2025-06-23",
+    "likes": [
+      "681d12ee0c2e20334cd415b4",
+      "681d12ee0c2e20334cd41697",
+      "681d12ee0c2e20334cd41868"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a06a"
+    },
+    "user_id": "681d12ee0c2e20334cd415b8",
+    "trip_oid": "681d12ee0c2e20334cd41d46",
+    "text": "From start to finish, British Indian Ocean Territory was cultural.",
+    "location": "British Indian Ocean Territory",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Dining"
+    ],
+    "start_date": "2025-06-14",
+    "end_date": "2025-06-19",
+    "likes": [
+      "681d12ee0c2e20334cd41861",
+      "681d12ee0c2e20334cd41522",
+      "681d12ee0c2e20334cd41572"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a06b"
+    },
+    "user_id": "681d12ee0c2e20334cd41736",
+    "trip_oid": "681d12ee0c2e20334cd41d47",
+    "text": "Packing my bags for another exotic adventure in Sri Lanka!",
+    "location": "Sri Lanka",
+    "budget": "3001+",
+    "activities": [
+      "Hiking",
+      "Diving",
+      "Visit Museum"
+    ],
+    "start_date": "2025-06-15",
+    "end_date": "2025-06-18",
+    "likes": [
+      "681d12ee0c2e20334cd4170f",
+      "681d12ee0c2e20334cd41881",
+      "681d12ee0c2e20334cd41566"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a06c"
+    },
+    "user_id": "681d12ee0c2e20334cd41758",
+    "trip_oid": "681d12ee0c2e20334cd41d48",
+    "text": "Feeling so immersive after my stay in Zimbabwe.",
+    "location": "Zimbabwe",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort"
+    ],
+    "start_date": "2025-06-07",
+    "end_date": "2025-06-09",
+    "likes": [
+      "681d12ee0c2e20334cd416e1",
+      "681d12ee0c2e20334cd416c4",
+      "681d12ee0c2e20334cd4178a"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd414d1",
+        "text": "How long did you stay?",
+        "date": "2025-06-08T15:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd4169f",
+        "text": "How did you find the local food?",
+        "date": "2025-06-07T15:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a06d"
+    },
+    "user_id": "681d12ee0c2e20334cd418a2",
+    "trip_oid": "681d12ee0c2e20334cd41d49",
+    "text": "South Sudan was more adventurous than I ever imagined!",
+    "location": "South Sudan",
+    "budget": "3001+",
+    "activities": [
+      "Dining",
+      "Swimming",
+      "Hiking"
+    ],
+    "start_date": "2025-05-30",
+    "end_date": "2025-06-05",
+    "likes": [
+      "681d12ee0c2e20334cd41793",
+      "681d12ee0c2e20334cd418ac",
+      "681d12ee0c2e20334cd41879"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd414e6",
+        "text": "Those photos must look incredible.",
+        "date": "2025-06-01T19:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd418a5",
+        "text": "Did you try any hidden gems there?",
+        "date": "2025-05-31T19:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a06e"
+    },
+    "user_id": "681d12ee0c2e20334cd4185d",
+    "trip_oid": "681d12ee0c2e20334cd41d4a",
+    "text": "Exploring Greenland was a luxurious delight!",
+    "image": "/uploads/dummy_Greenland.jpeg",
+    "location": "Greenland",
+    "budget": "1001-2000",
+    "activities": [
+      "Diving",
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-03",
+    "end_date": "2025-06-10",
+    "likes": [
+      "681d12ee0c2e20334cd418b2",
+      "681d12ee0c2e20334cd41859",
+      "681d12ee0c2e20334cd4161e"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4179d",
+        "text": "Those photos must look incredible.",
+        "date": "2025-06-09T13:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41566",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-06-03T13:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a06f"
+    },
+    "user_id": "681d12ee0c2e20334cd4162e",
+    "trip_oid": "681d12ee0c2e20334cd41d4b",
+    "text": "Nicaragua exceeded all expectations\u2014what a breathtaking trip!",
+    "location": "Nicaragua",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Staying in Resort",
+      "Hiking"
+    ],
+    "start_date": "2025-06-13",
+    "end_date": "2025-06-14",
+    "likes": [
+      "681d12ee0c2e20334cd4154b"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4171f",
+        "text": "Did you meet any interesting people?",
+        "date": "2025-06-14T20:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd418b0",
+        "text": "I\u2019m so jealous\u2014tell me more!",
+        "date": "2025-06-14T20:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a070"
+    },
+    "user_id": "681d12ee0c2e20334cd41748",
+    "trip_oid": "681d12ee0c2e20334cd41d4c",
+    "text": "If you love cultural adventures, you need to visit Palestinian Territory.",
+    "location": "Palestinian Territory",
+    "budget": "3001+",
+    "activities": [
+      "Swimming"
+    ],
+    "start_date": "2025-05-31",
+    "end_date": "2025-06-05",
+    "likes": [
+      "681d12ee0c2e20334cd414d6",
+      "681d12ee0c2e20334cd41545"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41594",
+        "text": "What was your favorite part?",
+        "date": "2025-05-31T19:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a071"
+    },
+    "user_id": "681d12ee0c2e20334cd415b1",
+    "trip_oid": "681d12ee0c2e20334cd41d4d",
+    "text": "Just had a exotic time exploring Tokelau.",
+    "location": "Tokelau",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Sightseeing",
+      "Visit Museum"
+    ],
+    "start_date": "2025-05-14",
+    "end_date": "2025-05-22",
+    "likes": [
+      "681d12ee0c2e20334cd4165c"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a072"
+    },
+    "user_id": "681d12ee0c2e20334cd417b3",
+    "trip_oid": "681d12ee0c2e20334cd41d4e",
+    "text": "Can't forget the scenic views in Western Sahara.",
+    "location": "Western Sahara",
+    "budget": "3001+",
+    "activities": [
+      "Sightseeing",
+      "Swimming"
+    ],
+    "start_date": "2025-05-24",
+    "end_date": "2025-06-01",
+    "likes": [
+      "681d12ee0c2e20334cd41899",
+      "681d12ee0c2e20334cd415ed"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a073"
+    },
+    "user_id": "681d12ee0c2e20334cd4189b",
+    "trip_oid": "681d12ee0c2e20334cd41d4f",
+    "text": "Feeling so historic after my stay in Estonia.",
+    "location": "Estonia",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Visit Museum",
+      "Swimming"
+    ],
+    "start_date": "2025-05-22",
+    "end_date": "2025-05-26",
+    "likes": [
+      "681d12ee0c2e20334cd41721",
+      "681d12ee0c2e20334cd415eb",
+      "681d12ee0c2e20334cd41847"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4164c",
+        "text": "I can\u2019t believe how immersive that must have been!",
+        "date": "2025-05-22T05:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a074"
+    },
+    "user_id": "681d12ee0c2e20334cd415d1",
+    "trip_oid": "681d12ee0c2e20334cd41d50",
+    "text": "Truly lively memories made at Argentina.",
+    "image": "/uploads/dummy_Argentina.jpeg",
+    "location": "Argentina",
+    "budget": "3001+",
+    "activities": [
+      "Visit Museum",
+      "Visit Temple",
+      "Hiking"
+    ],
+    "start_date": "2025-05-25",
+    "end_date": "2025-05-31",
+    "likes": [
+      "681d12ee0c2e20334cd415ff"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd416bb",
+        "text": "What was your favorite part?",
+        "date": "2025-05-27T12:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd415ad",
+        "text": "That sounds amazing!",
+        "date": "2025-05-26T12:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a075"
+    },
+    "user_id": "681d12ee0c2e20334cd4188a",
+    "trip_oid": "681d12ee0c2e20334cd41d51",
+    "text": "Serbia exceeded all expectations\u2014what a thrilling trip!",
+    "location": "Serbia",
+    "budget": "3001+",
+    "activities": [
+      "Dining",
+      "Swimming"
+    ],
+    "start_date": "2025-06-10",
+    "end_date": "2025-06-13",
+    "likes": [
+      "681d12ee0c2e20334cd41822",
+      "681d12ee0c2e20334cd4177c",
+      "681d12ee0c2e20334cd415f9"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4151d",
+        "text": "That sounds amazing!",
+        "date": "2025-06-11T01:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41706",
+        "text": "I can\u2019t believe how tranquil that must have been!",
+        "date": "2025-06-12T01:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a076"
+    },
+    "user_id": "681d12ee0c2e20334cd417a2",
+    "trip_oid": "681d12ee0c2e20334cd41d52",
+    "text": "Austria delivered one picturesque experience after another.",
+    "location": "Austria",
+    "budget": "3001+",
+    "activities": [
+      "Biking",
+      "Staying in Resort",
+      "Visit Museum"
+    ],
+    "start_date": "2025-06-11",
+    "end_date": "2025-06-19",
+    "likes": [
+      "681d12ee0c2e20334cd415ae",
+      "681d12ee0c2e20334cd41617",
+      "681d12ee0c2e20334cd41696"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a077"
+    },
+    "user_id": "681d12ee0c2e20334cd4152f",
+    "trip_oid": "681d12ee0c2e20334cd41d53",
+    "text": "Dreaming of those thrilling moments in Comoros.",
+    "location": "Comoros",
+    "budget": "3001+",
+    "activities": [
+      "Biking"
+    ],
+    "start_date": "2025-05-14",
+    "end_date": "2025-05-16",
+    "likes": [
+      "681d12ee0c2e20334cd41595"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a078"
+    },
+    "user_id": "681d12ee0c2e20334cd416c9",
+    "trip_oid": "681d12ee0c2e20334cd41d54",
+    "text": "Guinea-Bissau delivered one scenic experience after another.",
+    "location": "Guinea-Bissau",
+    "budget": "2001-3000",
+    "activities": [
+      "Sightseeing",
+      "Visit Temple"
+    ],
+    "start_date": "2025-06-17",
+    "end_date": "2025-06-24",
+    "likes": [
+      "681d12ee0c2e20334cd41621",
+      "681d12ee0c2e20334cd41868",
+      "681d12ee0c2e20334cd415e7"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a079"
+    },
+    "user_id": "681d12ee0c2e20334cd4169b",
+    "trip_oid": "681d12ee0c2e20334cd41d55",
+    "text": "If you love thrilling adventures, you need to visit Morocco.",
+    "location": "Morocco",
+    "budget": "3001+",
+    "activities": [
+      "Visit Temple",
+      "Dining"
+    ],
+    "start_date": "2025-05-13",
+    "end_date": "2025-05-17",
+    "likes": [
+      "681d12ee0c2e20334cd417f5"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4176e",
+        "text": "How did you find the local food?",
+        "date": "2025-05-16T03:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a07a"
+    },
+    "user_id": "681d12ee0c2e20334cd41809",
+    "trip_oid": "681d12ee0c2e20334cd41d56",
+    "text": "My trip to Turks and Caicos Islands was truly luxurious.",
+    "location": "Turks and Caicos Islands",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort"
+    ],
+    "start_date": "2025-06-18",
+    "end_date": "2025-06-20",
+    "likes": [
+      "681d12ee0c2e20334cd415c4"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd416a8",
+        "text": "How did you find the local food?",
+        "date": "2025-06-18T23:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41677",
+        "text": "I\u2019m so jealous\u2014tell me more!",
+        "date": "2025-06-19T23:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a07b"
+    },
+    "user_id": "681d12ee0c2e20334cd4188d",
+    "trip_oid": "681d12ee0c2e20334cd41d57",
+    "text": "Feeling so vibrant after my stay in Brunei.",
+    "location": "Brunei",
+    "budget": "3001+",
+    "activities": [
+      "Hiking",
+      "Biking"
+    ],
+    "start_date": "2025-06-10",
+    "end_date": "2025-06-12",
+    "likes": [
+      "681d12ee0c2e20334cd416b4",
+      "681d12ee0c2e20334cd415f1",
+      "681d12ee0c2e20334cd415c5"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4171a",
+        "text": "Did you try any hidden gems there?",
+        "date": "2025-06-11T23:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a07c"
+    },
+    "user_id": "681d12ee0c2e20334cd414f5",
+    "trip_oid": "681d12ee0c2e20334cd41d58",
+    "text": "Packing my bags for another immersive adventure in Comoros!",
+    "location": "Comoros",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Visit Temple"
+    ],
+    "start_date": "2025-05-19",
+    "end_date": "2025-05-23",
+    "likes": [
+      "681d12ee0c2e20334cd417ef"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4172f",
+        "text": "Absolutely stunning\u2014thanks for sharing.",
+        "date": "2025-05-19T10:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd416b4",
+        "text": "That sounds amazing!",
+        "date": "2025-05-22T10:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a07d"
+    },
+    "user_id": "681d12ee0c2e20334cd41635",
+    "trip_oid": "681d12ee0c2e20334cd41d59",
+    "text": "My trip to Haiti was truly picturesque.",
+    "image": "/uploads/dummy_Haiti.jpeg",
+    "location": "Haiti",
+    "budget": "3001+",
+    "activities": [
+      "Visit Temple",
+      "Visit Museum",
+      "Sightseeing"
+    ],
+    "start_date": "2025-05-18",
+    "end_date": "2025-05-19",
+    "likes": [
+      "681d12ee0c2e20334cd417f8",
+      "681d12ee0c2e20334cd41698"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd4163b",
+        "text": "How long did you stay?",
+        "date": "2025-05-18T10:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41775",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-05-18T10:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a07e"
+    },
+    "user_id": "681d12ee0c2e20334cd41624",
+    "trip_oid": "681d12ee0c2e20334cd41d5a",
+    "text": "Exploring Tuvalu was a adventurous delight!",
+    "image": "/uploads/dummy_Tuvalu.jpeg",
+    "location": "Tuvalu",
+    "budget": "3001+",
+    "activities": [
+      "Diving",
+      "Dining"
+    ],
+    "start_date": "2025-06-02",
+    "end_date": "2025-06-04",
+    "likes": [
+      "681d12ee0c2e20334cd414d2",
+      "681d12ee0c2e20334cd41742"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a07f"
+    },
+    "user_id": "681d12ee0c2e20334cd4163d",
+    "trip_oid": "681d12ee0c2e20334cd41d5b",
+    "text": "If you love adventurous adventures, you need to visit Nicaragua.",
+    "location": "Nicaragua",
+    "budget": "3001+",
+    "activities": [
+      "Sightseeing",
+      "Biking"
+    ],
+    "start_date": "2025-05-19",
+    "end_date": "2025-05-26",
+    "likes": [
+      "681d12ee0c2e20334cd417b2"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41796",
+        "text": "I\u2019ve heard great things about that place!",
+        "date": "2025-05-26T06:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a080"
+    },
+    "user_id": "681d12ee0c2e20334cd4159a",
+    "trip_oid": "681d12ee0c2e20334cd41d5c",
+    "text": "From start to finish, North Macedonia was adventurous.",
+    "location": "North Macedonia",
+    "budget": "2001-3000",
+    "activities": [
+      "Staying in Resort",
+      "Dining",
+      "Sightseeing"
+    ],
+    "start_date": "2025-06-13",
+    "end_date": "2025-06-18",
+    "likes": [
+      "681d12ee0c2e20334cd41526",
+      "681d12ee0c2e20334cd416ee",
+      "681d12ee0c2e20334cd415c6"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd417a3",
+        "text": "That sounds amazing!",
+        "date": "2025-06-15T03:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd414e3",
+        "text": "Absolutely stunning\u2014thanks for sharing.",
+        "date": "2025-06-14T03:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a081"
+    },
+    "user_id": "681d12ee0c2e20334cd414f6",
+    "trip_oid": "681d12ee0c2e20334cd41d5d",
+    "text": "Exploring El Salvador was a serene delight!",
+    "location": "El Salvador",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Diving",
+      "Biking"
+    ],
+    "start_date": "2025-06-05",
+    "end_date": "2025-06-07",
+    "likes": [
+      "681d12ee0c2e20334cd416d8",
+      "681d12ee0c2e20334cd41746",
+      "681d12ee0c2e20334cd41859"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41651",
+        "text": "Those photos must look incredible.",
+        "date": "2025-06-06T23:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a082"
+    },
+    "user_id": "681d12ee0c2e20334cd41672",
+    "trip_oid": "681d12ee0c2e20334cd41d5e",
+    "text": "Pitcairn exceeded all expectations\u2014what a adventurous trip!",
+    "location": "Pitcairn",
+    "budget": "3001+",
+    "activities": [
+      "Swimming",
+      "Visit Museum",
+      "Visit Temple"
+    ],
+    "start_date": "2025-05-09",
+    "end_date": "2025-05-10",
+    "likes": [
+      "681d12ee0c2e20334cd415fc",
+      "681d12ee0c2e20334cd417a8",
+      "681d12ee0c2e20334cd417a3"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd414f8",
+        "text": "Did you meet any interesting people?",
+        "date": "2025-05-10T20:24:14.831120"
+      },
+      {
+        "user_id": "681d12ee0c2e20334cd41645",
+        "text": "I\u2019m so jealous\u2014tell me more!",
+        "date": "2025-05-09T20:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a083"
+    },
+    "user_id": "681d12ee0c2e20334cd41505",
+    "trip_oid": "681d12ee0c2e20334cd41d5f",
+    "text": "Can't forget the cultural views in Belgium.",
+    "location": "Belgium",
+    "budget": "2001-3000",
+    "activities": [
+      "Diving",
+      "Sightseeing"
+    ],
+    "start_date": "2025-05-24",
+    "end_date": "2025-05-29",
+    "likes": [
+      "681d12ee0c2e20334cd4163f"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd415c0",
+        "text": "Did you meet any interesting people?",
+        "date": "2025-05-27T15:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a084"
+    },
+    "user_id": "681d12ee0c2e20334cd417d6",
+    "trip_oid": "681d12ee0c2e20334cd41d60",
+    "text": "What an scenic journey to American Samoa!",
+    "location": "American Samoa",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort",
+      "Sightseeing",
+      "Diving"
+    ],
+    "start_date": "2025-06-12",
+    "end_date": "2025-06-19",
+    "likes": [
+      "681d12ee0c2e20334cd4185f"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41858",
+        "text": "Would love to see your full itinerary.",
+        "date": "2025-06-19T11:24:14.831120"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a085"
+    },
+    "user_id": "681d12ee0c2e20334cd414ce",
+    "trip_oid": "681d12ee0c2e20334cd41d61",
+    "text": "Tuvalu delivered one vibrant experience after another.",
+    "image": "/uploads/dummy_Tuvalu.jpeg",
+    "location": "Tuvalu",
+    "budget": "3001+",
+    "activities": [
+      "Staying in Resort"
+    ],
+    "start_date": "2025-06-02",
+    "end_date": "2025-06-07",
+    "likes": [
+      "681d12ee0c2e20334cd4164d",
+      "681d12ee0c2e20334cd4176b",
+      "681d12ee0c2e20334cd41691"
+    ],
+    "comments": []
+  },
+  {
+    "_id": {
+      "$oid": "6822327d53dbae0b41e7a086"
+    },
+    "user_id": "681d12ee0c2e20334cd41762",
+    "trip_oid": "681d12ee0c2e20334cd41d62",
+    "text": "Just had a picturesque time exploring Panama.",
+    "location": "Panama",
+    "budget": "3001+",
+    "activities": [
+      "Diving",
+      "Staying in Resort",
+      "Dining"
+    ],
+    "start_date": "2025-06-11",
+    "end_date": "2025-06-16",
+    "likes": [
+      "681d12ee0c2e20334cd417cd",
+      "681d12ee0c2e20334cd416b4"
+    ],
+    "comments": [
+      {
+        "user_id": "681d12ee0c2e20334cd41651",
+        "text": "Absolutely stunning\u2014thanks for sharing.",
+        "date": "2025-06-14T16:24:14.831120"
       }
     ]
   }
