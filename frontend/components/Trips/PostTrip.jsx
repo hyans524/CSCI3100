@@ -83,21 +83,13 @@ const PostTrip = ({ onClose, onTripPosted }) => {
         setLoading(true);
         
         try {
-            // Map budget values to match backend schema format
-            const budgetMapping = {
-                "0-1000": "0-1000",
-                "1001-3000": "1001-2000", 
-                "3001-5000": "2001-3000",
-                "5001-10000": "3001+",
-                "10001+": "3001+"
-            };
     
             // Create form data for multipart/form-data (for image upload)
             const formData = new FormData();
             formData.append("user_id", currentUserId);
             formData.append("text", details);
             formData.append("location", location);
-            formData.append("budget", budgetMapping[budget] || budget);
+            formData.append("budget", budget);
             formData.append("activities", activities.join(","));
             formData.append("start_date", fromDate);
             formData.append("end_date", toDate);

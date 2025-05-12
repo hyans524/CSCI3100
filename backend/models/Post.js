@@ -14,7 +14,7 @@ const PostSchema = new mongoose.Schema({
   text: { type: String, required: true, trim: true },
   image: { type: String },
   location: { type: String, required: true },
-  budget: { type: String, enum: ['0-1000', '1001-2000', '2001-3000', '3001+'], required: true },
+  budget: { type: String, enum: ['0-1000', '1001-3000', '3001-5000', '5001-10000', '10001+'], required: true },
   activities: [{ type: String, required: true }],
   start_date: { type: Date, required: true },
   end_date: { type: Date, required: true },

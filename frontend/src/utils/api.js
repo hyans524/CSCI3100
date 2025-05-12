@@ -143,8 +143,33 @@ export const uploadApi = {
 
 // Post-related APIs
 export const postApi = {
-    getAll: (params) => api.get('/posts', { params }), // e.g. { location, budget, likedBy, keyword, trip_oid, limit, page }
-    getById: (id) => api.get(`/posts/${id}`),
+    // e.g. { location, budget, likedBy, keyword, trip_oid, limit, page }
+    getAll: async (queryString = '') => {
+        try {
+            const response = await fetch(`${API_URL}/posts${queryString}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            return { data, ok: true };
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+            return { error, ok: false };
+        }
+    },
+    getById: async (id) => {
+        try {
+            const response = await fetch(`${API_URL}/posts/${id}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            return { data, ok: true };
+        } catch (error) {
+            console.error('Error fetching post:', error);
+            return { error, ok: false };
+        }
+    },
     create: (data) => { // body: { text, location, budget, activities, start_date, end_date, image? }
         if (data instanceof FormData) {
             return uploadApi.post('/posts', data);
