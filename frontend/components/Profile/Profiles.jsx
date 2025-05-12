@@ -14,6 +14,7 @@ import {
 import { MdLocalDining, MdOutlineHiking } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { userApi, authApi } from '../../src/utils/api';
+
 const TravelProfile = () => {
   // State management
   const [user, setUser] = useState(null);
@@ -26,8 +27,8 @@ const TravelProfile = () => {
   // Editing state
   const [editFields, setEditFields] = useState({
     name: false,
-    location: false,
-    bio: false,
+    email: false,
+    language: false,
     badges: false,
   });
   const navigate = useNavigate()
@@ -37,8 +38,8 @@ const TravelProfile = () => {
     }
   const [editValues, setEditValues] = useState({
     name: '',
-    location: '',
-    bio: '',
+    email: '',
+    language: '',
     badges: [],
     addBadge: '',
   });
@@ -55,8 +56,8 @@ const TravelProfile = () => {
         const response = await userApi.getById(id);
         const mockUser = {
           name: response.data.username,
-          location: 'Hong Kong SAR, China',
-          bio: 'Waiting for you to write!',
+          email: response.data.email, // 新增email字段
+          language: response.data.language,       // 新增language字段
           avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
           coverPhoto: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
           stats: {
@@ -65,7 +66,6 @@ const TravelProfile = () => {
             followers: 0,
             following: 0,
           },
-          badges: ['Globetrotter', 'Foodie', 'Photographer', 'Adventurer'],
           upcomingTrips: [
             { destination: 'Bali, Indonesia', date: 'June 2023' },
             { destination: 'Patagonia, Chile', date: 'September 2023' },
@@ -115,32 +115,16 @@ const TravelProfile = () => {
   // Handle editing state
   const startEdit = (field) => {
     setEditFields({ ...editFields, [field]: true });
-    if (field === 'badges') {
-      setEditValues((vals) => ({
-        ...vals,
-        badges: [...user.badges],
-        addBadge: '',
-      }));
-    } else {
-      setEditValues({ ...editValues, [field]: user[field] });
-    }
   };
 
   const cancelEdit = (field) => {
     setEditFields({ ...editFields, [field]: false });
     setEditValues((vals) => ({
-      ...vals,
-      [field]: field === 'badges' ? user.badges : user[field],
-      ...(field === 'badges' ? { addBadge: '' } : {}),
+      ...vals
     }));
   };
 
   const saveEdit = async(field) => {
-    if (field === 'badges') {
-      setUser((old) => ({ ...old, badges: editValues.badges.filter(Boolean) }));
-      setEditFields({ ...editFields, [field]: false });
-      return;
-    } 
     if (field === 'name') {
       try {
         setIsLoading(true);
@@ -150,7 +134,7 @@ const TravelProfile = () => {
         // fetch updated user info
         const updated = await userApi.getById(userId);
         setUser(updated.data);
-        setEditFields({ ...editFields, username: false });
+        setEditFields({ ...editFields, name: false });
         setIsLoading(false);
         window.location.reload();
       } catch (err) {
@@ -159,40 +143,46 @@ const TravelProfile = () => {
         console.error('Error updating name:', err);
       }
     }
+    // 新增email和language的保存逻辑
+    else if (field === 'email') {
+      try {
+        setIsLoading(true);
+        const newEmail = editValues.email.trim();
+        await userApi.update(userId, { email: newEmail });
+        const updated = await userApi.getById(userId);
+        setUser({ ...user, email: updated.data.email });
+        setEditFields({ ...editFields, email: false });
+        setIsLoading(false);
+        window.location.reload();
+      } catch (err) {
+        setError('Failed to update email.');
+        setIsLoading(false);
+        console.error('Error updating email:', err);
+      }
+    }
+    else if (field === 'language') {
+      try {
+        setIsLoading(true);
+        const newLanguage = editValues.language.trim();
+        await userApi.update(userId, { language: newLanguage });
+        const updated = await userApi.getById(userId);
+        setUser({ ...user, language: updated.data.language });
+        setEditFields({ ...editFields, language: false });
+        setIsLoading(false);
+        window.location.reload();
+      } catch (err) {
+        setError('Failed to update language.');
+        setIsLoading(false);
+        console.error('Error updating language:', err);
+      }
+    }
     else {
       setUser((old) => ({ ...old, [field]: editValues[field].trim() || old[field] }));
       setEditFields({ ...editFields, [field]: false });
     }
-    
   };
 
   // Handle badges (labels)
-  const handleBadgeInputChange = (e) => {
-    setEditValues((vals) => ({ ...vals, addBadge: e.target.value }));
-  };
-
-  const addBadge = () => {
-    const badge = editValues.addBadge.trim();
-    if (
-      badge &&
-      !editValues.badges.includes(badge) &&
-      badge.length <= 20
-    ) {
-      setEditValues((vals) => ({
-        ...vals,
-        badges: [...vals.badges, badge],
-        addBadge: '',
-      }));
-    }
-  };
-
-  const removeBadge = (badge) => {
-    setEditValues((vals) => ({
-      ...vals,
-      badges: vals.badges.filter((b) => b !== badge),
-    }));
-  };
-
   // Main component
   return (
     <div className="max-w-6xl mx-auto my-8 bg-white rounded-xl shadow-md overflow-hidden">
@@ -286,160 +276,85 @@ const TravelProfile = () => {
                 </>
               )}
             </div>
-            {/* Location */}
+            {/* Email */}
             <div className="flex items-center gap-2 mb-3">
-              <FaMapMarkedAlt className="text-blue-500" />
-              {editFields.location ? (
+              <FaGlobeAmericas className="text-blue-500" /> {/* 换一个图标更适合email，可根据需求调整 */}
+              {editFields.email ? (
                 <>
                   <input
-                    type="text"
-                    value={editValues.location}
+                    type="email"
+                    value={editValues.email}
                     maxLength={40}
-                    onChange={e => setEditValues({ ...editValues, location: e.target.value })}
+                    onChange={e => setEditValues({ ...editValues, email: e.target.value })}
                     className="text-gray-500 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    style={{ maxWidth: '200px' }}
+                    style={{ maxWidth: '240px' }}
                   />
                   <button
                     className="ml-2 px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
-                    onClick={() => saveEdit('location')}
+                    onClick={() => saveEdit('email')}
                   >
                     Save
                   </button>
                   <button
                     className="ml-1 px-2 py-1 bg-gray-300 text-gray-800 text-xs rounded hover:bg-gray-400 transition-colors"
-                    onClick={() => cancelEdit('location')}
+                    onClick={() => cancelEdit('email')}
                   >
                     Cancel
                   </button>
                 </>
               ) : (
                 <>
-                  <span className="text-gray-500 truncate">{user.location}</span>
+                  <span className="text-gray-500 truncate">{user.email}</span>
                   <button
                     className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
-                    onClick={() => startEdit('location')}
-                    title="Edit location"
+                    onClick={() => startEdit('email')}
+                    title="Edit email"
                   >
                     Edit
                   </button>
                 </>
               )}
             </div>
-            {/* Bio/Introduction */}
-            <div className="mb-4 sm:mb-6">
-              {editFields.bio ? (
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <textarea
-                    value={editValues.bio}
-                    maxLength={120}
-                    rows={2}
-                    onChange={e => setEditValues({ ...editValues, bio: e.target.value })}
-                    className="flex-1 text-gray-700 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+            {/* Language */}
+            <div className="flex items-center gap-2 mb-3">
+              <FaGlobeAmericas className="text-green-500" />
+              {editFields.language ? (
+                <>
+                  <input
+                    type="text"
+                    value={editValues.language}
+                    maxLength={24}
+                    onChange={e => setEditValues({ ...editValues, language: e.target.value })}
+                    className="text-gray-500 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    style={{ maxWidth: '160px' }}
                   />
-                  <div className="flex gap-1 mt-2 sm:mt-0">
-                    <button
-                      className="px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
-                      onClick={() => saveEdit('bio')}
-                    >
-                      Save
-                    </button>
-                    <button
-                      className="px-2 py-1 bg-gray-300 text-gray-800 text-xs rounded hover:bg-gray-400 transition-colors"
-                      onClick={() => cancelEdit('bio')}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
+                  <button
+                    className="ml-2 px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
+                    onClick={() => saveEdit('language')}
+                  >
+                    Save
+                  </button>
+                  <button
+                    className="ml-1 px-2 py-1 bg-gray-300 text-gray-800 text-xs rounded hover:bg-gray-400 transition-colors"
+                    onClick={() => cancelEdit('language')}
+                  >
+                    Cancel
+                  </button>
+                </>
               ) : (
-                <div className="flex items-center">
-                  <span className="text-gray-700">{user.bio}</span>
+                <>
+                  <span className="text-gray-500 truncate">{user.language}</span>
                   <button
                     className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
-                    onClick={() => startEdit('bio')}
-                    title="Edit introduction"
+                    onClick={() => startEdit('language')}
+                    title="Edit language"
                   >
                     Edit
                   </button>
-                </div>
+                </>
               )}
             </div>
             {/* Badges/Labels */}
-            <div className="flex flex-wrap gap-2 items-center">
-              {editFields.badges ? (
-                <>
-                  {editValues.badges.map((badge, idx) => (
-                    <span
-                      key={badge}
-                      className="flex items-center px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full whitespace-nowrap"
-                    >
-                      {badge}
-                      <button
-                        className="ml-1"
-                        onClick={() => removeBadge(badge)}
-                        title="Remove"
-                        type="button"
-                      >
-                        <FaTimes className="text-white text-xs" />
-                      </button>
-                    </span>
-                  ))}
-                  <input
-                    type="text"
-                    value={editValues.addBadge}
-                    maxLength={20}
-                    onChange={handleBadgeInputChange}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        addBadge();
-                      }
-                    }}
-                    placeholder="Add label"
-                    className="px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 text-xs"
-                    style={{ width: 100 }}
-                  />
-                  <button
-                    className="px-2 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600 transition-colors"
-                    onClick={addBadge}
-                    title="Add label"
-                    type="button"
-                  >
-                    <FaPlus />
-                  </button>
-                  <button
-                    className="ml-2 px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
-                    onClick={() => saveEdit('badges')}
-                  >
-                    Save
-                  </button>
-                  <button
-                    className="ml-1 px-2 py-1 bg-gray-300 text-gray-800 text-xs rounded hover:bg-gray-400 transition-colors"
-                    onClick={() => cancelEdit('badges')}
-                  >
-                    Cancel
-                  </button>
-                </>
-              ) : (
-                <>
-                  {user.badges.map((badge, idx) => (
-                    <span
-                      key={badge}
-                      className="px-3 py-1 bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-full whitespace-nowrap"
-                    >
-                      {badge}
-                    </span>
-                  ))}
-                  <button
-                    className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded hover:bg-orange-200 transition-colors"
-                    onClick={() => startEdit('badges')}
-                    title="Edit labels"
-                  >
-                    Edit
-                  </button>
-                </>
-              )}
-            </div>
           </div>
         </div>
 
