@@ -42,6 +42,8 @@ import {
   Event as EventIcon,
 } from '@mui/icons-material';
 import { userApi, authApi } from '../../src/utils/api';
+import constantCheckAdmin from '../CheckAdmin/CheckAdmin';
+import constantCheckLoggedIn from '../CheckLoggedIn/CheckLoggedIn';
 
 function Admin() {
   const navigate = useNavigate();
@@ -60,6 +62,8 @@ function Admin() {
     password: '',
     isAdmin: ''
   })
+  constantCheckLoggedIn()
+  constantCheckAdmin()
 
   // Fetch user data 
   useEffect(() => {
