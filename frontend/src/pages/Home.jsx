@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import Temple_background from '../assets/Temple_background.png'
 import Searchbox from '../../components/Searchbox/Searchbox'
 import Trip from '../../components/Trips/Trip'
-
+import constantCheckLoggedIn from '../../components/CheckLoggedIn/CheckLoggedIn'
 const Home = () => {
 
+  constantCheckLoggedIn()
   const [searchCriteria, setSearchCriteria] = useState(null);
 
   const handleSearch = (criteria) => {

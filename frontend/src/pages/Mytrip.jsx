@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { tripApi, authApi } from "../utils/api";
 import travelAnimation from "../assets/travel_animation.jpg";
 import { formatDate, formatCurrency } from "../utils/formatters";
+import constantCheckLoggedIn from "../../components/CheckLoggedIn/CheckLoggedIn";
 
 const MyTrip = () => {
   const [trips, setTrips] = useState([]);
@@ -10,6 +11,9 @@ const MyTrip = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  constantCheckLoggedIn()
+
 
   // Get current user ID
   const currentUserId = authApi.getCurrentUserId();

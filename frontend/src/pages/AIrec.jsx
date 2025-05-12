@@ -1,8 +1,10 @@
 import React from 'react'
 import Fuji_background from '../assets/Fuji_background.jpg'
 import Recommend from '../../components/Recommend/Recommend'
-
+import constantCheckLoggedIn from '../../components/CheckLoggedIn/CheckLoggedIn'
 const AIrec = () => {
+
+  constantCheckLoggedIn()
   return (
     <>
       <div>
