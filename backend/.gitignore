@@ -34,6 +34,7 @@ pids
 ehthumbs.db
 Thumbs.db 
 
-# Uploaded files - prevent user uploads from being committed
-/uploads/
-/backend/uploads/
+# Uploaded files - prevent user uploads from being committed (except the dummy image)
+uploads/*
+!uploads/dummy_*
+!uploads/.gitkeep
