@@ -73,8 +73,12 @@ const TripDetail = () => {
         // Set likes from the trip data
         if (tripData.likes && Array.isArray(tripData.likes)) {
           setLikes(tripData.likes);
-          // Check if current user has liked the post
-          setIsLiked(tripData.likes.includes(currentUserId));
+
+          const userHasLiked = currentUserId && tripData.likes.some(userId => 
+            userId === currentUserId || userId?._id === currentUserId
+          );
+          
+          setIsLiked(userHasLiked);
         }
 
         if (tripData.user_id) {
@@ -98,9 +102,10 @@ const TripDetail = () => {
             const groupId = trip_detail.data.group_id;
             const groupResponse = await groupApi.getByGroupId(groupId);
             
-            const isMember = groupResponse.data.members.some(member => 
-              member._id === currentUserId
-            );
+            const isMember = groupResponse.data.members.some(member => {
+              const memberId = typeof member === 'object' ? member._id : member;
+              return memberId === currentUserId || memberId?.toString() === currentUserId?.toString();
+            });
             
             if (isMember) {
               setJoinStatus("joined");
@@ -386,16 +391,15 @@ const TripDetail = () => {
     ? trip.activities 
     : (typeof trip.activities === 'string' ? trip.activities.split(',').map(act => act.trim()) : []);
 
-  // Get image URL
+
   const getImageUrl = () => {
-    if (!trip.image) {
-      return Travel_animation;
-    }
+    if (!trip || !trip.image) return Travel_animation;
     
     if (typeof trip.image === 'string') {
       if (trip.image.startsWith('/uploads/')) {
-        return `${window.location.origin}${trip.image}`;
+        return `http://localhost:5000${trip.image}`;
       }
+
       if (trip.image.startsWith('http')) {
         return trip.image;
       }
@@ -462,6 +466,7 @@ const TripDetail = () => {
           alt={trip.location}
           className="mx-auto w-full h-full object-cover transition duration-700 hover:scale-110"
           onError={(e) => {
+            e.target.error = null;
             e.target.src = Travel_animation;
           }}
         />

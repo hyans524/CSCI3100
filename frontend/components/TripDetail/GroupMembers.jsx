@@ -11,8 +11,6 @@ const GroupMembers = ({ members }) => {
     return name.charAt(0).toUpperCase();
   };
   
-  // For debugging
-  console.log("GroupMembers received:", members);
   
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">

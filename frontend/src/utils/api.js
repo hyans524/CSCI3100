@@ -124,11 +124,33 @@ export const licenseApi = {
     isValidLicense: (key) => api.get(`/licenses/key/${key}`)
 };
 
+export const uploadApi = {
+    post: (endpoint, formData) => {
+    const token = localStorage.getItem('token');
+    const headers = {};
+    
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+    
+    return fetch(`${API_URL}${endpoint}`, {
+        method: 'POST',
+        headers,
+        body: formData
+    }).then(res => res.json());
+    }
+};
+
 // Post-related APIs
 export const postApi = {
     getAll: (params) => api.get('/posts', { params }), // e.g. { location, budget, likedBy, keyword, trip_oid, limit, page }
     getById: (id) => api.get(`/posts/${id}`),
-    create: (data) => api.post('/posts', data), // body: { text, location, budget, activities, start_date, end_date, image? }
+    create: (data) => { // body: { text, location, budget, activities, start_date, end_date, image? }
+        if (data instanceof FormData) {
+            return uploadApi.post('/posts', data);
+        }
+        return api.post('/posts', data);
+    }, 
     update: (id, data) => api.put(`/posts/${id}`, data), // same shape as create
     delete: (id) => api.delete(`/posts/${id}`),
     like: (id, userId) => api.put(`/posts/like/${id}`, { userId }), // body: { userId }

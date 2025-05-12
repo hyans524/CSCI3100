@@ -35,7 +35,6 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
   
     fetchMessages();
   
-    // Clean up interval on unmount
     return () => {
       if (pollInterval) {
         clearInterval(pollInterval);
@@ -96,12 +95,10 @@ const GroupMessages = ({ messages: initialMessages, members, groupId }) => {
       
       console.log('Message deleted successfully', response.data);
       
-      // Update local state to remove the deleted message
       setMessages(messages.filter(message => 
         message._id !== messageToDelete._id
       ));
       
-      // Close the confirmation popup
       setShowDeleteConfirm(false);
       setMessageToDelete(null);
       

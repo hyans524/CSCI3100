@@ -10,7 +10,7 @@ const Trip = ({ heading = "Interested Trips to Join", headingStyle = "border-l-8
     const fetchTrips = async () => {
       try {
         setLoading(true);
-        const response = await fetch("/api/posts");
+        const response = await fetch("http://localhost:5000/api/posts");
         
         if (!response.ok) {
           throw new Error("Failed to fetch trips");

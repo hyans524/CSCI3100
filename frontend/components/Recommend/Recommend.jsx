@@ -66,21 +66,16 @@ const Recommend = () => {
 
             console.log("Data to send:", data);
 
-            // Call API to get recommendation
             const response = await recommendationApi.create(data);
             
             console.log("API response:", response.data);
 
-            // Format suggestions for display
             if (response.data && response.data.suggestions) {
                 const suggestions = response.data.suggestions;
                 
-                // Format as daily itinerary
                 let formattedRecommendation = '';
                 
-                // If we have enough suggestions, group them by day
                 if (suggestions.length >= duration) {
-                    // Group suggestions by day
                     const suggestionsPerDay = Math.ceil(suggestions.length / duration);
                     
                     for (let day = 0; day < duration; day++) {
@@ -91,7 +86,6 @@ const Recommend = () => {
                         formattedRecommendation += `Day ${day + 1}: ${dayActivities.join(', ')}\n\n`;
                     }
                 } else {
-                    // Not enough suggestions for full itinerary, just show them all
                     formattedRecommendation = suggestions.join('\n\n');
                 }
                 

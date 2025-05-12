@@ -28,7 +28,8 @@ router.get('/', async (req, res) => {
                 groupName: group ? group.group_name : "Unnamed Group",
                 memberCount: group && group.members ? group.members.length : 0,
                 hasGroup: !!group,
-                member: group.members
+                member: group.members,
+                image: trip.image || null
             };
         });
         
@@ -42,23 +43,17 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        console.log(`Fetching trip with ID: ${req.params.id}`);
+        //console.log(`Fetching trip with ID: ${req.params.id}`);
         
-        // Find the trip by its MongoDB ID
         const trip = await Trip.findById(req.params.id).lean();
         
         if (!trip) {
-            console.log(`Trip not found with ID: ${req.params.id}`);
             return res.status(404).json({ message: 'Trip not found' });
         }
         
-        console.log(`Found trip: ${trip.destination}, group_id: ${trip.group_id}`);
-        
-        // Find the associated group using the group_id field
         let group = null;
         if (trip.group_id) {
             group = await Group.findOne({ group_id: trip.group_id }).lean();
-            console.log(`Group lookup result: ${group ? 'Found' : 'Not found'}`);
         }
         
         const formattedTrip = {
@@ -70,10 +65,10 @@ router.get('/:id', async (req, res) => {
             activity: trip.activity,
             group_id: trip.group_id,
             groupName: group ? group.group_name : "Unnamed Group",
-            memberCount: group && group.members ? group.members.length : 0
+            memberCount: group && group.members ? group.members.length : 0,
+            image: trip.image || null
         };
 
-        console.log(`Returning formatted trip for ${formattedTrip.destination}`);
         res.json(formattedTrip);
     } catch (error) {
         console.error('Error fetching trip details:', error);

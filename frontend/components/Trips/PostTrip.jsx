@@ -107,7 +107,7 @@ const PostTrip = ({ onClose, onTripPosted }) => {
             }
             
             // Send post request using fetch to create post, trip and group
-            const response = await fetch("/api/posts", {
+            const response = await fetch("http://localhost:5000/api/posts", {
                 method: 'POST',
                 body: formData
             });
@@ -124,6 +124,10 @@ const PostTrip = ({ onClose, onTripPosted }) => {
             if (onTripPosted) {
                 onTripPosted(data);
             }
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 100);
             
             onClose();
             
@@ -178,9 +182,17 @@ const PostTrip = ({ onClose, onTripPosted }) => {
                                 id="fromDate"
                                 value={fromDate}
                                 onChange={(e) => {
-                                    setFromDate(e.target.value);
-                                    calculateDuration(e.target.value, toDate);
+                                    const today = new Date().toISOString().split('T')[0];
+                                    const selectedDate = e.target.value;
+                                    
+                                    if (selectedDate >= today) {
+                                        setFromDate(selectedDate);
+                                        calculateDuration(selectedDate, toDate);
+                                    } else {
+                                        alert("Start date cannot be in the past");
+                                    }
                                 }}
+                                min={new Date().toISOString().split('T')[0]}
                                 className="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-blue-50"
                             />
                         </div>
@@ -191,9 +203,15 @@ const PostTrip = ({ onClose, onTripPosted }) => {
                                 id="toDate"
                                 value={toDate}
                                 onChange={(e) => {
-                                    setToDate(e.target.value);
-                                    calculateDuration(fromDate, e.target.value);
+                                    const newToDate = e.target.value;
+                                    if (fromDate && new Date(newToDate) < new Date(fromDate)) {
+                                        alert("End date cannot be earlier than start date");
+                                        return;
+                                    }
+                                    setToDate(newToDate);
+                                    calculateDuration(fromDate, newToDate);
                                 }}
+                                min={fromDate}
                                 className="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-blue-50"
                             />
                         </div>
