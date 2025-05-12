@@ -1,7 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { postApi } from '../../src/utils/api';
 
-const Searchbox = () => {
+const Searchbox = ({ onSearch }) => {
+  
+  // State for form inputs
+  const [destination, setDestination] = useState('');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
   const [priceValue, setPriceValue] = useState(500);
+  
+  // State for location suggestions
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [allLocations, setAllLocations] = useState([]);
+
+  // autocomplete
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const response = await postApi.getAll();
+        if (response.data) {
+          const locations = [...new Set(response.data.map(post => post.location))];
+          setAllLocations(locations);
+        }
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
+
+  const handleDestinationChange = (e) => {
+    const value = e.target.value;
+    setDestination(value);
+    
+    if (value.trim() === '') {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+    
+    const filteredLocations = allLocations.filter(location => 
+      location.toLowerCase().includes(value.toLowerCase())
+    );
+    
+    setSuggestions(filteredLocations);
+    setShowSuggestions(true);
+  };
+
+  const selectSuggestion = (suggestion) => {
+    setDestination(suggestion);
+    setShowSuggestions(false);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    
+    const searchCriteria = {
+      location: destination || null,
+      fromDate: fromDate || null,
+      toDate: toDate || null,
+      budget: priceValue || null
+    };
+    
+    if (onSearch) {
+      onSearch(searchCriteria);
+    }
+  };
 
   return (
     <div className="bg-gradient-to-b from-black/40 to-black/20 backdrop-blur-[2px] h-full">
@@ -23,7 +90,8 @@ const Searchbox = () => {
           </div>
 
           {/* form section */}
-          <div
+          <form 
+            onSubmit={handleSearch}
             data-aos="fade-up"
             data-aos-delay="600"
             className="bg-white/95 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-2xl"
@@ -38,12 +106,31 @@ const Searchbox = () => {
                     type="text"
                     name="destination"
                     id="destination"
-                    placeholder="Bangkok"
+                    placeholder="Enter destination"
+                    value={destination}
+                    onChange={handleDestinationChange}
+                    onFocus={() => destination.trim() !== '' && setShowSuggestions(true)}
+                    onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                     className="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 pl-4 focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all duration-300"
                   />
                   <svg className="w-5 h-5 text-gray-500 absolute right-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                   </svg>
+                  
+                  {/* Location suggestions dropdown */}
+                  {showSuggestions && suggestions.length > 0 && (
+                    <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                      {suggestions.map((suggestion, index) => (
+                        <div
+                          key={index}
+                          className="p-2 hover:bg-gray-100 cursor-pointer"
+                          onClick={() => selectSuggestion(suggestion)}
+                        >
+                          {suggestion}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -56,6 +143,8 @@ const Searchbox = () => {
                     type="date"
                     name="from-date"
                     id="from-date"
+                    value={fromDate}
+                    onChange={(e) => setFromDate(e.target.value)}
                     className="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all duration-300"
                   />
                   <svg className="w-5 h-5 text-gray-500 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -73,6 +162,8 @@ const Searchbox = () => {
                     type="date"
                     name="to-date"
                     id="to-date"
+                    value={toDate}
+                    onChange={(e) => setToDate(e.target.value)}
                     className="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all duration-300"
                   />
                   <svg className="w-5 h-5 text-gray-500 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +188,7 @@ const Searchbox = () => {
                     min="500"
                     max="10000"
                     value={priceValue}
-                    step="10"
+                    step="100"
                     onChange={(e) => setPriceValue(e.target.value)}
                   />
                   <div className="flex justify-between text-xs text-gray-500 mt-1">
@@ -108,13 +199,31 @@ const Searchbox = () => {
               </div>
             </div>
 
-            {/* button search */}
-            <div className="flex justify-center mt-8">
-              <button className="text-white font-medium text-center bg-gradient-to-r from-orange-500 to-amber-500 px-8 py-3 rounded-lg shadow-lg hover:shadow-orange-300/30 hover:scale-105 transition-all duration-300 transform">
+            {/* Search button */}
+            <div className="flex justify-center mt-8 gap-6">
+              <button 
+                type="submit"
+                className="text-white font-medium text-center bg-gradient-to-r from-orange-500 to-amber-500 px-8 py-3 rounded-lg shadow-lg hover:shadow-orange-300/30 hover:scale-105 transition-all duration-300 transform"
+              >
                 Search Trips
               </button>
+              <button 
+                type="button"
+                onClick={() => {
+                  setDestination('');
+                  setFromDate('');
+                  setToDate('');
+                  setPriceValue(500);
+                  if (onSearch) {
+                    onSearch(null);
+                  }
+                }}
+                className="text-gray-700 font-medium text-center bg-gray-100 border border-gray-300 px-8 py-3 rounded-lg shadow hover:bg-gray-200 transition-all duration-300 transform"
+              >
+                Clear Search
+              </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

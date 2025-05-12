@@ -24,8 +24,11 @@ router.post('/', upload.single('image'), async (req, res) => {
     const { user_id, text, location, budget, activities, start_date, end_date } = req.body;
 
     // 1. Create a new group
-    const groupCount = await Group.countDocuments();
-    const newGroupId = groupCount + 1;
+    let newGroupId = 1;
+    const highestGroup = await Group.findOne().sort({ group_id: -1 }).limit(1);
+    if (highestGroup) {
+      newGroupId = highestGroup.group_id + 1;
+    }
     
     const newGroup = new Group({
       group_id: newGroupId,
@@ -33,6 +36,8 @@ router.post('/', upload.single('image'), async (req, res) => {
       members: [user_id],
       trip_summary: text
     });
+
+    console.log('New Group:', newGroup);
     
     const savedGroup = await newGroup.save();
     
@@ -41,7 +46,13 @@ router.post('/', upload.single('image'), async (req, res) => {
       destination: location,
       start_date,
       end_date,
-      budget: parseInt(budget.split('-')[1]) || 1000,
+      budget: (() => {
+        if (budget.includes('+')) {
+          return parseInt(budget.replace('+', ''));
+        }
+        const parts = budget.split('-');
+        return parseInt(parts[1]);
+      })(),
       activity: activities.split(','),
       group_id: newGroupId,
       image: req.file ? `/uploads/${req.file.filename}` : null
@@ -78,24 +89,19 @@ router.post('/', upload.single('image'), async (req, res) => {
 // Get posts with filters + counts
 router.get('/', async (req, res) => {
   try {
-    const query = {};
-    if (req.query.location) query.location = req.query.location;
-    if (req.query.budget) query.budget = req.query.budget;
-    if (req.query.likedBy) query.likes = { $in: [req.query.likedBy] };
-    if (req.query.keyword) query.text = { $regex: req.query.keyword, $options: 'i' };
+    let query = {};
+    
+    if (req.query.location) {
+      query.location = { $regex: req.query.location, $options: 'i' };
+    }
 
+    // Fetch posts with optional filters
     const posts = await Post.find(query)
       .populate('user_id', 'username')
-      .populate('likes', 'username')
-      .populate('comments.user_id', 'username');
+      .sort({ createdAt: -1 })
+      .lean();
 
-    const enrichedPosts = posts.map(post => ({
-      ...post.toObject(),
-      likeCount: post.likes.length,
-      commentCount: post.comments.length
-    }));
-
-    res.json(enrichedPosts);
+    res.json(posts);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch posts' });
   }

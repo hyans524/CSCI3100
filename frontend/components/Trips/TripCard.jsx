@@ -38,9 +38,10 @@ const TripCard = ({
   const formatBudget = (budget) => {
     switch(budget) {
       case "0-1000": return "$0-$1000";
-      case "1001-2000": return "$1001-$2000";
-      case "2001-3000": return "$2001-$3000";
-      case "3001+": return "$3001+";
+      case "1001-3000": return "$1001-$3000";
+      case "3001-5000": return "$3001-$5000";
+      case "5001-10000": return "$5001-$10000";
+      case "10001+": return "$10001+";
       default: return budget;
     }
   };
