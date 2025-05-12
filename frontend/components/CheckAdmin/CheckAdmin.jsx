@@ -7,12 +7,24 @@ function constantCheckAdmin() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const isAdmin = localStorage.getItem('isAdmin');
-    if (isAdmin) {
+    const admin = authApi.isAdmin()
+    if (admin) {
       setIsAdmin(authApi.isAdmin());
     }
     else {
-      navigate('/LoginSignup');
+      try {
+        localStorage.removeItem('token');
+        localStorage.removeItem('isAdmin');
+        localStorage.removeItem('useroid');
+        localStorage.removeItem('username');
+        localStorage.removeItem('license');
+        sessionStorage.clear()
+      }
+      catch (error) {
+        console.error('Cannot remove current user info:', err);
+        setError('Cannot clear data for someone who attempts to access Admin page with no authority');
+      }
+      window.location.href = '/LoginSignup'
     }
   }, []);
 }
